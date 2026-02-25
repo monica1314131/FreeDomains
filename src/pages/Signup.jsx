@@ -5,6 +5,24 @@ import { subdomainAPI } from "../lib/api";
 import { Loader2, CheckCircle, Info, Check, X, Eye, EyeOff } from "lucide-react";
 import { Turnstile } from '@marsidev/react-turnstile';
 
+// Allowed email domains
+const ALLOWED_EMAIL_DOMAINS = [
+    'gmail.com',
+    'outlook.com',
+    'hotmail.com',
+    'live.com',
+    'yahoo.com',
+    'icloud.com',
+    'proton.me',
+    'protonmail.com',
+    'zoho.com'
+];
+
+const isAllowedEmailProvider = (email) => {
+    const domain = email.toLowerCase().split('@')[1];
+    return ALLOWED_EMAIL_DOMAINS.includes(domain);
+};
+
 export default function Signup() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -24,6 +42,7 @@ export default function Signup() {
     const [usernameAvailable, setUsernameAvailable] = useState(null);
     const [usernameChecking, setUsernameChecking] = useState(false);
     const [usernameError, setUsernameError] = useState("");
+    const [emailError, setEmailError] = useState("");
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [captchaToken, setCaptchaToken] = useState(null);
@@ -77,6 +96,20 @@ export default function Signup() {
         return () => clearTimeout(timeoutId);
     }, [username]);
 
+    // Email validation effect
+    useEffect(() => {
+        if (!email || !email.includes('@')) {
+            setEmailError("");
+            return;
+        }
+
+        if (!isAllowedEmailProvider(email)) {
+            setEmailError("We currently allow only popular email providers to prevent spam and fake accounts. Please use Gmail, Outlook, Yahoo, iCloud, Proton, or Zoho.");
+        } else {
+            setEmailError("");
+        }
+    }, [email]);
+
     const handleSignup = async (e) => {
         e.preventDefault();
 
@@ -85,6 +118,15 @@ export default function Signup() {
                 variant: "destructive",
                 title: "CAPTCHA Required",
                 description: "Please complete the verification check. If it's not loading, try refreshing the page.",
+            });
+            return;
+        }
+
+        if (emailError) {
+            toast({
+                variant: "destructive",
+                title: "Invalid Email Provider",
+                description: emailError,
             });
             return;
         }
@@ -207,9 +249,11 @@ export default function Signup() {
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black ${emailError ? 'border-red-500' : 'border-gray-300'
+                                }`}
                             placeholder="name@example.com"
                         />
+                        {emailError && <p className="text-xs text-red-500 mt-1">{emailError}</p>}
                     </div>
 
                     <div>
