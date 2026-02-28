@@ -285,11 +285,15 @@ export default function Register() {
 
                 {!canRegisterMore ? (
                     <p className="text-xs text-red-800 mt-2">
-                        You've reached your registration limit. Please{' '}
-                        <a href="mailto:support@stackryze.com" className="underline font-bold hover:text-red-900">
-                            contact support
-                        </a>{' '}
-                        to request a limit increase.
+                        {!user?.githubVerified
+                            ? <>
+                                ⭐ <a href={`${API_BASE}/github/kyc/start`} className="underline font-bold hover:text-red-900">Star our repo</a> to unlock 1 more domain — it's free & instant!
+                              </>
+                            : <>You've reached your registration limit. Please{' '}
+                                <a href="mailto:support@stackryze.com" className="underline font-bold hover:text-red-900">contact support</a>{' '}
+                                to request a limit increase.
+                              </>
+                        }
                     </p>
                 ) : (
                     <p className="text-xs text-blue-800">
@@ -304,7 +308,12 @@ export default function Register() {
                     <Alert className="mb-6 border-red-200 bg-red-50">
                         <AlertCircle className="h-4 w-4 text-red-600" />
                         <AlertDescription className="text-red-800 font-medium">
-                            Registration disabled. You've reached your limit of {domainLimit} domains.
+                            Registration disabled. You've reached your limit of {domainLimit} domain{domainLimit === 1 ? '' : 's'}.
+                            {!user?.githubVerified && (
+                                <span className="block mt-1 text-xs">
+                                    ⭐ <a href={`${API_BASE}/github/kyc/start`} className="underline font-bold hover:text-red-900">Star our repo</a> to unlock 1 more domain instantly!
+                                </span>
+                            )}
                         </AlertDescription>
                     </Alert>
                 )}
@@ -404,7 +413,7 @@ export default function Register() {
                                         <p className="text-[#4A4A4A] text-sm mb-1">
                                             {isSryze
                                                 ? <>Star our repo to get a free <span className="font-mono font-bold text-[#E63946]">sryze.cc</span> domain.</>
-                                                : <>You've used your 1 free domain. Star our repo to unlock <span className="font-bold text-[#E63946]">5 indevs.in domains</span> + <span className="font-mono font-bold text-[#E63946]">sryze.cc</span> access!</>
+                                                : <>You've used your 1 free domain. Star our repo to unlock <span className="font-bold text-[#E63946]">1 more indevs.in domain</span> + <span className="font-mono font-bold text-[#E63946]">sryze.cc</span> access!</>
                                             }
                                         </p>
                                         <p className="text-[#6B6B6B] text-xs mb-4">

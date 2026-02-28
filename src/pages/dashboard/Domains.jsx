@@ -210,23 +210,35 @@ export default function MyDomains() {
 
                 {/* Indevs.in Usage */}
                 <div className="mb-4">
-                    <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-semibold text-blue-900">indevs.in Domains</span>
-                        <span className="text-xs text-blue-800">
-                            {subdomains?.filter(s => s.domain === 'indevs.in').length || 0} / {user?.domainLimit || 5}
-                        </span>
-                    </div>
-                    <div className="w-full bg-white rounded-full h-2">
-                        <div
-                            className={`h-2 rounded-full transition-all ${((subdomains?.filter(s => s.domain === 'indevs.in').length || 0) / (user?.domainLimit || 5) * 100) >= 100
-                                    ? 'bg-red-600'
-                                    : ((subdomains?.filter(s => s.domain === 'indevs.in').length || 0) / (user?.domainLimit || 5) * 100) >= 80
-                                        ? 'bg-amber-500'
-                                        : 'bg-blue-600'
-                                }`}
-                            style={{ width: `${Math.min(((subdomains?.filter(s => s.domain === 'indevs.in').length || 0) / (user?.domainLimit || 5) * 100), 100)}%` }}
-                        ></div>
-                    </div>
+                    {(() => {
+                        const indevsCount = subdomains?.filter(s => s.domain === 'indevs.in').length || 0;
+                        const indevsLimit = user?.githubVerified ? (user?.domainLimit || 1) : 1;
+                        const indevsPercent = Math.min((indevsCount / indevsLimit) * 100, 100);
+                        const atLimit = indevsCount >= indevsLimit;
+                        return (
+                            <>
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className="text-xs font-semibold text-blue-900">indevs.in Domains</span>
+                                    <span className="text-xs text-blue-800">{indevsCount} / {indevsLimit}</span>
+                                </div>
+                                <div className="w-full bg-white rounded-full h-2">
+                                    <div
+                                        className={`h-2 rounded-full transition-all ${
+                                            indevsPercent >= 100 ? 'bg-red-600'
+                                            : indevsPercent >= 80 ? 'bg-amber-500'
+                                            : 'bg-blue-600'
+                                        }`}
+                                        style={{ width: `${indevsPercent}%` }}
+                                    />
+                                </div>
+                                {atLimit && !user?.githubVerified && (
+                                    <p className="text-xs text-red-700 mt-1">
+                                        ⭐ <a href="/register" className="underline font-bold hover:text-red-900">Star our repo</a> to unlock 1 more indevs.in domain — free & instant!
+                                    </p>
+                                )}
+                            </>
+                        );
+                    })()}
                 </div>
 
                 {/* Sryze.cc Usage */}
