@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -8,8 +8,10 @@ import { useDashboard } from "@/context/dashboard-context";
 import { useToast } from "@/hooks/use-toast";
 import { subdomainAPI } from "@/lib/api";
 import { useAuth } from "@/context/auth-context";
-import { Globe, CheckCircle, XCircle, AlertCircle, Loader2, Sparkles, Info } from "lucide-react";
+import { Globe, CheckCircle, XCircle, AlertCircle, Loader2, Sparkles, Info, Github } from "lucide-react";
 import { Turnstile } from '@marsidev/react-turnstile';
+
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 export default function Register() {
     const [domain, setDomain] = useState("");
@@ -28,16 +30,70 @@ export default function Register() {
     const { user, checkAuth } = useAuth();
     const { toast } = useToast();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    // Refresh user data on mount to get latest domain limit
+    // On mount: handle return from GitHub KYC OAuth + pre-fill domain from URL params
     useEffect(() => {
-        checkAuth();
+        const params = new URLSearchParams(location.search);
+        const kyc = params.get('kyc');
+        const returnedDomain = params.get('domain');
+        const githubUser = params.get('github');
+        const returnedRoot = params.get('root') || 'sryze.cc'; // default to sryze.cc for backwards compat
+
+        if (returnedDomain) {
+            setDomain(returnedDomain);
+            setRootDomain(returnedRoot);
+        }
+
+        if (kyc === 'done') {
+            // Refresh user so githubVerified is up-to-date
+            checkAuth();
+            toast({
+                title: `🎉 GitHub Verified! Welcome, @${githubUser || 'you'}`,
+                description: 'Star confirmed! You can now register your sryze.cc domain.',
+                className: 'bg-green-50 border-green-200 text-green-900'
+            });
+        } else if (kyc === 'not_starred') {
+            toast({
+                title: '⭐ Star Required',
+                description: `@${githubUser || 'You'} haven\'t starred stackryze/FreeDomains yet. Star it on GitHub and try again!`,
+                variant: 'destructive'
+            });
+        } else if (kyc === 'cancelled') {
+            toast({
+                title: 'Verification Cancelled',
+                description: 'GitHub authorization was cancelled. Try again when ready.',
+                variant: 'destructive'
+            });
+        } else if (kyc === 'already_linked') {
+            toast({
+                title: '⛔ GitHub Account Already Used',
+                description: `@${githubUser || 'This GitHub account'} is already linked to another Stackryze account. Each GitHub account can only verify one account.`,
+                variant: 'destructive'
+            });
+        } else if (kyc === 'error') {
+            toast({
+                title: 'Verification Error',
+                description: 'Something went wrong during GitHub verification. Please try again.',
+                variant: 'destructive'
+            });
+        } else {
+            // No KYC param — normal mount, refresh user for latest limits
+            checkAuth();
+        }
+
+        // Clean up URL params so toasts don't replay on refresh
+        if (kyc) {
+            navigate(location.pathname, { replace: true });
+        }
     }, []);
 
-    // Calculate domain usage based on selected root domain
+    // Calculate domain usage based on selected root domain.
+    // For indevs.in: unverified users are capped at 1 free domain regardless of stored domainLimit.
+    // githubVerified covers BOTH old manually-approved users AND new star-KYC users.
     const domainLimit = rootDomain === 'sryze.cc'
         ? (user?.sryzeDomainsLimit || 1)
-        : (user?.domainLimit || 5);
+        : (user?.githubVerified ? (user?.domainLimit || 1) : 1);
     const domainsRegistered = rootDomain === 'sryze.cc'
         ? (user?.sryzeDomainsCount || 0)
         : (user?.domainsCount || 0);
@@ -161,19 +217,6 @@ export default function Register() {
         try {
             const domainLower = domain.toLowerCase().trim();
 
-            // Check if sryze.cc requires GitHub verification
-            if (rootDomain === 'sryze.cc' && !user.githubVerified) {
-                toast({
-                    title: "GitHub Verification Required ⭐",
-                    description: "You need to complete GitHub verification to register sryze.cc domains. Redirecting...",
-                    className: "bg-yellow-50 border-yellow-200 text-yellow-900"
-                });
-
-                setTimeout(() => {
-                    window.location.href = `/dashboard/verify-github?domain=${encodeURIComponent(domainLower)}`;
-                }, 2000);
-                return;
-            }
 
             await subdomainAPI.create({
                 name: domainLower,
@@ -327,15 +370,80 @@ export default function Register() {
                                         ✨ {domain}.{rootDomain} is available!
                                     </p>
                                     <p className="text-xs text-green-700">
-                                        This domain is yours for the taking. Accept the terms below to claim it.
+                                        {(rootDomain === 'sryze.cc' && !user?.githubVerified) ||
+                                         (rootDomain === 'indevs.in' && !canRegisterMore && !user?.githubVerified)
+                                            ? 'Star our repo on GitHub to unlock this domain — it takes 2 seconds!'
+                                            : 'This domain is yours for the taking. Accept the terms below to claim it.'
+                                        }
                                     </p>
                                 </div>
                             </div>
                         )}
                     </div>
 
-                    {/* Terms of Service */}
-                    {isAvailable && (
+                    {/* KYC Gate — shown for:
+                        - sryze.cc: always if not verified
+                        - indevs.in: when limit of 1 is reached and not yet verified */}
+                    {(() => {
+                        const needsKyc =
+                            (isAvailable && rootDomain === 'sryze.cc' && !user?.githubVerified) ||
+                            (isAvailable && rootDomain === 'indevs.in' && !canRegisterMore && !user?.githubVerified);
+                        if (!needsKyc) return null;
+
+                        const isSryze = rootDomain === 'sryze.cc';
+                        return (
+                            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 shadow-lg">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-10 h-10 rounded-full bg-yellow-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span className="text-xl">⭐</span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="text-white font-bold text-lg mb-1">
+                                            {isSryze ? 'GitHub Star Required for sryze.cc' : 'Unlock More Domains'}
+                                        </h3>
+                                        <p className="text-gray-300 text-sm mb-2">
+                                            {isSryze
+                                                ? <>To get a free <span className="font-mono text-yellow-400">sryze.cc</span> domain, star our repo on GitHub.</>
+                                                : <>You've used your 1 free domain. Star our repo to unlock <span className="text-yellow-400 font-bold">5 indevs.in domains</span> + access to <span className="font-mono text-yellow-400">sryze.cc</span>!</>
+                                            }
+                                        </p>
+                                        <p className="text-gray-500 text-xs mb-4">
+                                            ⭐ Starring helps our project get discovered on GitHub, reach more developers, and supports us in keeping these domains <span className="text-gray-300">free for everyone</span>.
+                                        </p>
+                                        <ol className="text-gray-400 text-xs space-y-1 mb-5 ml-1">
+                                            <li>1. Click the button below to authorize with GitHub</li>
+                                            <li>2. We check if you've starred <span className="font-mono text-white">stackryze/FreeDomains</span></li>
+                                            <li>3. If starred, you're instantly verified — no admin wait!</li>
+                                        </ol>
+                                        <a
+                                            href={`${API_BASE}/github/kyc/start?domain=${encodeURIComponent(domain)}&root=${encodeURIComponent(rootDomain)}`}
+                                            className="inline-flex items-center gap-2 bg-white text-gray-900 px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-gray-100 transition-all shadow-md"
+                                        >
+                                            <Github className="w-4 h-4" />
+                                            Verify with GitHub
+                                        </a>
+                                        <p className="text-gray-500 text-xs mt-3">
+                                            Haven't starred yet?{' '}
+                                            <a
+                                                href="https://github.com/stackryze/FreeDomains"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-yellow-400 hover:text-yellow-300 underline"
+                                            >
+                                                Star the repo first ↗
+                                            </a>
+                                            , then come back and click Verify.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })()}
+
+                    {/* Terms of Service — only shown if not gated by KYC */}
+                    {isAvailable &&
+                     !((rootDomain === 'sryze.cc' && !user?.githubVerified) ||
+                       (rootDomain === 'indevs.in' && !canRegisterMore && !user?.githubVerified)) && (
                         <>
                             {/* Registration Period Info */}
                             <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-5">
@@ -400,10 +508,15 @@ export default function Register() {
                         </>
                     )}
 
-                    {/* Register Button */}
+
+                    {/* Register Button — disabled when KYC gate is active */}
                     <Button
                         onClick={handleRegister}
-                        disabled={!isAvailable || !acceptedToS || !captchaToken || isSubmitting || !canRegisterMore}
+                        disabled={
+                            !isAvailable || !acceptedToS || !captchaToken || isSubmitting || !canRegisterMore ||
+                            (rootDomain === 'sryze.cc' && !user?.githubVerified) ||
+                            (rootDomain === 'indevs.in' && !canRegisterMore && !user?.githubVerified)
+                        }
                         className="w-full bg-[#FFD23F] hover:bg-[#FFB800] text-[#1A1A1A] font-extrabold py-6 text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] disabled:shadow-none"
                     >
                         {isSubmitting ? (
