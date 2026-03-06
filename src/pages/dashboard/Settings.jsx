@@ -90,6 +90,8 @@ export default function Settings() {
     const [disablePassword, setDisablePassword] = useState("");
     const [disableCode, setDisableCode] = useState("");
     const [showDisablePassword, setShowDisablePassword] = useState(false);
+    const [twoFAError, setTwoFAError] = useState("");
+    const [disableError, setDisableError] = useState("");
 
     // Update 2FA status when user changes
     useEffect(() => {
@@ -153,10 +155,15 @@ export default function Settings() {
         setTwoFACode("");
         setBackupCodes([]);
         setShow2FAPassword(false);
+        setTwoFAError("");
     };
 
     const handleStart2FASetup = async () => {
-        if (!twoFAPassword) return toast.error("Password is required");
+        if (!twoFAPassword) {
+            setTwoFAError("Password is required");
+            return;
+        }
+        setTwoFAError("");
         try {
             setTwoFALoading(true);
             const res = await fetch(`${API_BASE}/auth/2fa/setup`, {
@@ -165,16 +172,23 @@ export default function Settings() {
                 body: JSON.stringify({ password: twoFAPassword }),
             });
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error);
+            if (!res.ok) {
+                setTwoFAError(data.error || "Failed to start setup");
+                return;
+            }
             setTwoFAQRCode(data.qrCode);
             setTwoFASecret(data.secret);
             setTwoFASetupStep(2);
-        } catch (err) { toast.error(err.message); }
+        } catch (err) { setTwoFAError(err.message); }
         finally { setTwoFALoading(false); }
     };
 
     const handleVerify2FASetup = async () => {
-        if (!twoFACode || twoFACode.length !== 6) return toast.error("Enter a 6-digit code");
+        if (!twoFACode || twoFACode.length !== 6) {
+            setTwoFAError("Enter a 6-digit code");
+            return;
+        }
+        setTwoFAError("");
         try {
             setTwoFALoading(true);
             const res = await fetch(`${API_BASE}/auth/2fa/verify-setup`, {
@@ -183,19 +197,29 @@ export default function Settings() {
                 body: JSON.stringify({ code: twoFACode }),
             });
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error);
+            if (!res.ok) {
+                setTwoFAError(data.error || "Invalid code. Please try again.");
+                return;
+            }
             setBackupCodes(data.backupCodes);
             setTwoFAEnabled(true);
             setTwoFASetupStep(3);
             toast.success("2FA enabled successfully!");
             checkAuth(); // Refresh user data
-        } catch (err) { toast.error(err.message); }
+        } catch (err) { setTwoFAError(err.message); }
         finally { setTwoFALoading(false); }
     };
 
     const handleDisable2FA = async () => {
-        if (!disablePassword) return toast.error("Password is required");
-        if (!disableCode) return toast.error("2FA code is required");
+        if (!disablePassword) {
+            setDisableError("Password is required");
+            return;
+        }
+        if (!disableCode) {
+            setDisableError("2FA code is required");
+            return;
+        }
+        setDisableError("");
         try {
             setTwoFALoading(true);
             const res = await fetch(`${API_BASE}/auth/2fa/disable`, {
@@ -204,14 +228,18 @@ export default function Settings() {
                 body: JSON.stringify({ password: disablePassword, code: disableCode }),
             });
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error);
+            if (!res.ok) {
+                setDisableError(data.error || "Invalid password or code");
+                return;
+            }
             setTwoFAEnabled(false);
             setShow2FADisableModal(false);
             setDisablePassword("");
             setDisableCode("");
+            setDisableError("");
             toast.success("2FA disabled successfully");
             checkAuth(); // Refresh user data
-        } catch (err) { toast.error(err.message); }
+        } catch (err) { setDisableError(err.message); }
         finally { setTwoFALoading(false); }
     };
 
@@ -620,7 +648,7 @@ export default function Settings() {
             </Dialog>
 
             {/* 2FA Disable Modal */}
-            <Dialog open={show2FADisableModal} onOpenChange={(open) => { setShow2FADisableModal(open); if (!open) { setDisablePassword(""); setDisableCode(""); } }}>
+            <Dialog open={show2FADisableModal} onOpenChange={(open) => { setShow2FADisableModal(open); if (!open) { setDisablePassword(""); setDisableCode(""); setDisableError(""); } }}>
                 <DialogContent className="bg-white max-w-md">
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-2 text-lg font-bold text-[#1A1A1A]">
@@ -632,6 +660,15 @@ export default function Settings() {
                         </DialogDescription>
                     </DialogHeader>
 
+                    {/* Error Banner */}
+                    {disableError && (
+                        <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
+                            <AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                            <p className="text-sm text-red-700 flex-1">{disableError}</p>
+                            <button onClick={() => setDisableError("")} className="text-red-500 hover:text-red-700 font-bold">×</button>
+                        </div>
+                    )}
+
                     <div className="space-y-4 mt-4">
                         <div>
                             <label className="block text-xs font-semibold text-[#4A4A4A] mb-1">Password</label>
@@ -639,9 +676,9 @@ export default function Settings() {
                                 <input
                                     type={showDisablePassword ? "text" : "password"}
                                     value={disablePassword}
-                                    onChange={(e) => setDisablePassword(e.target.value)}
+                                    onChange={(e) => { setDisablePassword(e.target.value); setDisableError(""); }}
                                     placeholder="Enter your password"
-                                    className="w-full px-3 py-2.5 text-sm border-2 border-[#E5E3DF] focus:border-[#1A1A1A] rounded-lg outline-none pr-10"
+                                    className={`w-full px-3 py-2.5 text-sm border-2 ${disableError ? 'border-red-300' : 'border-[#E5E3DF]'} focus:border-[#1A1A1A] rounded-lg outline-none pr-10`}
                                 />
                                 <button type="button" onClick={() => setShowDisablePassword(!showDisablePassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888]">
                                     {showDisablePassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -653,10 +690,10 @@ export default function Settings() {
                             <input
                                 type="text"
                                 value={disableCode}
-                                onChange={(e) => setDisableCode(e.target.value.toUpperCase().slice(0, 8))}
+                                onChange={(e) => { setDisableCode(e.target.value.toUpperCase().slice(0, 8)); setDisableError(""); }}
                                 placeholder="Enter code"
                                 maxLength={8}
-                                className="w-full px-3 py-2.5 text-sm border-2 border-[#E5E3DF] focus:border-[#1A1A1A] rounded-lg outline-none text-center font-mono tracking-widest"
+                                className={`w-full px-3 py-2.5 text-sm border-2 ${disableError ? 'border-red-300' : 'border-[#E5E3DF]'} focus:border-[#1A1A1A] rounded-lg outline-none text-center font-mono tracking-widest`}
                             />
                         </div>
                         <div className="flex gap-2">
