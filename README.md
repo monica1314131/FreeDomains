@@ -49,11 +49,11 @@ Supported by organizations that believe in open-source and developer communities
 
 <img src="/public/Cloudflare_Logo.png" alt="Cloudflare" height="40" />
 &nbsp;&nbsp;&nbsp;
-<img src="https://ca.insight.com/content/dam/insight-web/logos/partner-logos/white/branded-search/1password.png" alt="1Password" height="48" />
+<img src="https://companieslogo.com/img/orig/DOCN_BIG.D-a2c943bc.png" alt="Digital Ocean" height="40" />
 &nbsp;&nbsp;&nbsp;
 <img src="/public/hetrixtools.png" alt="Hetrix Tools" height="40" />
+<img src="https://ca.insight.com/content/dam/insight-web/logos/partner-logos/white/branded-search/1password.png" alt="1Password" height="48" />
 &nbsp;&nbsp;&nbsp;
-<img src="https://cdn2.steamgriddb.com/logo/88502646b2293c4aaa173b33afcd40f1.png" alt="Termius" height="40" />
 
 </div>
 
