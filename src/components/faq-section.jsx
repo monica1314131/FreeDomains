@@ -24,6 +24,10 @@ export function FAQSection() {
     {
       question: "Can I transfer my subdomain to someone else?",
       answer: "Not yet. Right now, once you claim it, it's tied to your GitHub account. We might add transfers later if people want it."
+    },
+    {
+      question: "Can I point my subdomain to a custom domain?",
+      answer: "You can use CNAME records to point your *.indevs.in subdomain to any host — Vercel, Netlify, Cloudflare Pages, or your own server. Full DNS control is yours from day one."
     }
   ];
 
@@ -60,13 +64,16 @@ export function FAQSection() {
                 )}
               </button>
 
-              {openIndex === idx && (
+              <div
+                className="overflow-hidden transition-all duration-300 ease-in-out"
+                style={{ maxHeight: openIndex === idx ? "200px" : "0px" }}
+              >
                 <div className="px-8 pb-6 pt-2">
                   <p className="text-lg text-[#6B6B6B] leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
