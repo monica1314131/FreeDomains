@@ -61,7 +61,7 @@ Supported by organizations that believe in open-source and developer communities
 
 ## 🚀 Get Started
 
-**Dashboard:** https://domains.stackryze.com   
+**Dashboard:** https://domain.stackryze.com   
 **GitHub:** https://github.com/stackryze/FreeDomains/issues  
 **Discord:** https://discord.gg/wr7s97cfM7   
 **Support:** support@stackryze.com  
