@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect, useRef } from "react";
-import { X, Heart, Star, Github, CheckCircle, ArrowRight } from "lucide-react";
+import { X, Star, CheckCircle, Rocket } from "lucide-react";
 
 export function IncidentAnnouncement() {
     const [showModal, setShowModal] = useState(false);
@@ -31,9 +31,9 @@ export function IncidentAnnouncement() {
                 <div className="max-w-7xl mx-auto px-4 py-2.5 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between flex-wrap gap-3">
                         <div className="flex items-center gap-3 flex-1 min-w-0">
-                            <span className="text-base flex-shrink-0">⭐</span>
+                            <span className="text-base flex-shrink-0">🎉</span>
                             <p className="text-sm font-medium text-[#1A1A1A]">
-                                <span className="font-bold">New: ryzedns.org</span> domain extension is live!{" "}
+                                <span className="font-bold">New: nx.kg</span> domain extension is live!{" "}
                                 <span className="text-[#4A4A4A]">Star our repo to unlock access.</span>{" "}
                                 <button
                                     onClick={() => setShowModal(true)}
@@ -62,11 +62,11 @@ export function IncidentAnnouncement() {
                         <div className="sticky top-0 bg-[#FFF8F0] p-6 border-b-2 border-[#FFD23F] flex items-start justify-between">
                             <div className="flex items-start gap-3">
                                 <div className="p-2 bg-[#FFD23F]/30 rounded-lg border border-[#FFD23F]">
-                                    <Heart className="w-6 h-6 text-[#FF6B35] fill-[#FF6B35]" />
+                                    <Rocket className="w-6 h-6 text-[#FF6B35]" />
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-bold text-[#1A1A1A]">Support Stackryze Servers</h2>
-                                    <p className="text-sm text-[#6B7280] mt-0.5">Help keep the platform running for everyone</p>
+                                    <h2 className="text-xl font-bold text-[#1A1A1A]">New Domain Extensions</h2>
+                                    <p className="text-sm text-[#6B7280] mt-0.5">Unlock more domains for your projects</p>
                                 </div>
                             </div>
                             <button
@@ -80,35 +80,17 @@ export function IncidentAnnouncement() {
 
                         {/* Content */}
                         <div className="p-6 space-y-4 text-[#1A1A1A]">
-                            <p className="text-sm leading-relaxed text-[#4A4A4A]">
-                                Stackryze is one of the fastest-growing platforms offering <strong>free domains and DNS</strong>, with fast and active support from our team.
-                            </p>
-
-                            <div className="bg-amber-50 border-l-4 border-[#FFD23F] p-4 rounded-r-lg">
-                                <p className="text-sm text-amber-900 leading-relaxed">
-                                    It costs <strong>~$20 per month</strong> to keep the servers running, plus additional costs for domain renewals. I personally cover these expenses and work on Stackryze <strong>completely for free as a student.</strong>
-                                </p>
-                            </div>
-
                             {/* New domain extension */}
                             <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
                                 <div className="flex items-start gap-2">
                                     <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <p className="text-sm font-bold text-green-900 mb-1">🎉 New: ryzedns.org domain extension!</p>
+                                        <p className="text-sm font-bold text-green-900 mb-1">🎉 New: nx.kg domain extension!</p>
                                         <p className="text-xs text-green-800">
-                                            Now offering <strong className="font-mono">.indevs.in</strong>, <strong className="font-mono">.sryze.cc</strong>, and <strong className="font-mono">.ryzedns.org</strong>.
-                                            If we receive enough support, we plan to introduce even more extensions.
+                                            Now offering <strong className="font-mono">.indevs.in</strong>, <strong className="font-mono">.sryze.cc</strong>, <strong className="font-mono">.ryzedns.org</strong>, and <strong className="font-mono">.nx.kg</strong>.
                                         </p>
                                     </div>
                                 </div>
-                            </div>
-
-                            {/* Quote */}
-                            <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg p-3">
-                                <p className="text-sm text-[#4A4A4A] italic">
-                                    "Let's not make money the barrier to having a better name on the internet."
-                                </p>
                             </div>
 
                             {/* Star to unlock */}
@@ -123,6 +105,10 @@ export function IncidentAnnouncement() {
                                         <div className="bg-white border border-[#E5E7EB] rounded-lg p-3 mb-3">
                                             <p className="text-xs font-bold text-[#1A1A1A] mb-1.5">⭐ Starring unlocks:</p>
                                             <ul className="text-xs text-[#4A4A4A] space-y-1">
+                                                <li className="flex items-center gap-1.5">
+                                                    <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
+                                                    1 free <strong className="font-mono">.nx.kg</strong> domain
+                                                </li>
                                                 <li className="flex items-center gap-1.5">
                                                     <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
                                                     1 free <strong className="font-mono">.sryze.cc</strong> domain
@@ -158,29 +144,16 @@ export function IncidentAnnouncement() {
                                     </div>
                                 </div>
                             </div>
-
-                            <p className="text-sm text-[#4A4A4A]">
-                                If Stackryze has helped you, please consider donating. Even a small contribution makes a real difference. <strong>Thank you ❤️</strong>
-                            </p>
                         </div>
 
                         {/* Footer Buttons */}
                         <div className="sticky bottom-0 bg-white border-t-2 border-[#E5E3DF] p-4 flex gap-3">
                             <button
                                 onClick={() => setShowModal(false)}
-                                className="flex-1 bg-white border-2 border-[#E5E3DF] text-[#1A1A1A] py-3 rounded-lg font-bold hover:bg-gray-50 transition-colors text-sm"
+                                className="w-full bg-white border-2 border-[#E5E3DF] text-[#1A1A1A] py-3 rounded-lg font-bold hover:bg-gray-50 transition-colors text-sm"
                             >
                                 Close
                             </button>
-                            <a
-                                href="https://github.com/sponsors/sudheerbhuvana"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 bg-[#FF6B35] text-white py-3 rounded-lg font-bold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 text-sm"
-                            >
-                                <Github className="w-4 h-4" />
-                                Donate <ArrowRight className="w-4 h-4" />
-                            </a>
                         </div>
                     </div>
                 </div>
