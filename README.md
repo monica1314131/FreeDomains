@@ -28,7 +28,7 @@ Our goal is simple: remove cost and complexity from getting online.
 - **.indevs.in**
 - **.sryze.cc**
 - **.ryzedns.org**
-
+- **.nx.kg**
 *More extensions coming soon.*
 
 ---
