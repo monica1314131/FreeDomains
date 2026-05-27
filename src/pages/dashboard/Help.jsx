@@ -29,7 +29,7 @@ const docLinks = [
     {
         icon: GitBranch,
         title: "GitHub KYC / Verification",
-        desc: "Unlock higher limits and .sryze.cc & .ryzedns.org domains",
+        desc: "Unlock higher limits and .sryze.cc, .ryzedns.org & .nx.kg domains",
         href: `${DOCS_BASE}/github-kyc`,
     },
     {
@@ -49,15 +49,15 @@ const docLinks = [
 const faqs = [
     {
         q: "How do I register a free subdomain?",
-        a: "Go to Dashboard → Register Domain. Enter your desired name, choose your suffix (.indevs.in, .sryze.cc, or .ryzedns.org), and click Register. Activation is instant."
+        a: "Go to Dashboard → Register Domain. Enter your desired name, choose your suffix (.indevs.in, .sryze.cc, .ryzedns.org, or .nx.kg), and click Register. Activation is instant."
     },
     {
         q: "What is KYC / GitHub verification?",
-        a: "Verifying your GitHub account lets us confirm your identity. It unlocks the .sryze.cc and .ryzedns.org domain suffixes and higher domain limits. Your data is never stored beyond your profile."
+        a: "Verifying your GitHub account lets us confirm your identity. It unlocks the .sryze.cc, .ryzedns.org, and .nx.kg domain suffixes and higher domain limits. Your data is never stored beyond your profile."
     },
     {
         q: "How many domains can I register?",
-        a: "Users get 1 free .indevs.in domain by default. Starring our GitHub repo and verifying unlocks 1 free .sryze.cc domain and 1 free .ryzedns.org domain. Further limits can be increased by contacting support via Discord or email and stating your reason."
+        a: "Users get 1 free .indevs.in domain by default. Starring our GitHub repo and verifying unlocks 1 free .sryze.cc domain, 1 free .ryzedns.org domain, and 1 free .nx.kg domain. Further limits can be increased by contacting support via Discord or email and stating your reason."
     },
     {
         q: "Do domains expire?",

@@ -348,6 +348,12 @@ export default function Settings() {
                                     <span className="font-bold text-[#1A1A1A]">{user?.ryzeDnsDomainsLimit || 1} domain{(user?.ryzeDnsDomainsLimit || 1) > 1 ? "s" : ""}</span>
                                 </div>
                             )}
+                            {user?.githubVerified && (
+                                <div className="flex justify-between items-center text-sm">
+                                    <span className="text-[#4A4A4A]">nx.kg</span>
+                                    <span className="font-bold text-[#1A1A1A]">{user?.nxKgDomainsLimit || 1} domain{(user?.nxKgDomainsLimit || 1) > 1 ? "s" : ""}</span>
+                                </div>
+                            )}
                         </div>
 
                     </div>

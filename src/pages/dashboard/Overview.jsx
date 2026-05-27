@@ -110,7 +110,7 @@ export default function Overview() {
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-green-800">KYC Verified</p>
-                        <p className="text-xs text-green-600">GitHub identity verified — you have access to sryze.cc & ryzedns.org domains & higher limits</p>
+                        <p className="text-xs text-green-600">GitHub identity verified — you have access to sryze.cc, ryzedns.org & nx.kg domains & higher limits</p>
                     </div>
                     <span className="shrink-0 text-xs font-bold px-2.5 py-1 bg-green-600 text-white rounded-full">Verified</span>
                 </div>
@@ -124,7 +124,7 @@ export default function Overview() {
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-amber-900">KYC Not Verified</p>
-                        <p className="text-xs text-amber-700">Complete GitHub verification to unlock sryze.cc, ryzedns.org domains and extra limits</p>
+                        <p className="text-xs text-amber-700">Complete GitHub verification to unlock sryze.cc, ryzedns.org &amp; nx.kg domains and extra limits</p>
                     </div>
                     <span className="shrink-0 text-xs font-bold px-2.5 py-1 border-2 border-amber-400 text-amber-700 rounded-full group-hover:bg-amber-400 group-hover:text-white transition-colors">
                         Verify →
@@ -219,7 +219,7 @@ export default function Overview() {
                     </div>
                     <h3 className="text-xl font-extrabold text-[#1A1A1A] mb-2">Register your first domain 🎉</h3>
                     <p className="text-sm text-[#4A4A4A] mb-5 max-w-sm mx-auto">
-                        It's free, instant, and takes under a minute. Get a personal <strong>.indevs.in</strong>, <strong>.sryze.cc</strong>, or <strong>.ryzedns.org</strong> subdomain.
+                        It's free, instant, and takes under a minute. Get a personal <strong>.indevs.in</strong>, <strong>.sryze.cc</strong>, <strong>.ryzedns.org</strong>, or <strong>.nx.kg</strong> subdomain.
                     </p>
                     <Link
                         to="/register"

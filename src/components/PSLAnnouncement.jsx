@@ -16,7 +16,7 @@ export function PSLAnnouncement() {
                         <div className="flex items-center gap-3 flex-1 min-w-0">
                             <span className="text-base flex-shrink-0">⭐</span>
                             <p className="text-sm font-medium text-[#1A1A1A]">
-                                <span className="font-bold">New:</span> ryzedns.org domain extension launched!{" "}
+                                <span className="font-bold">New:</span> ryzedns.org &amp; nx.kg domain extensions launched!{" "}
                                 <span className="text-[#4A4A4A]">Star our GitHub repo to unlock access.</span>
                                 <button
                                     onClick={() => setShowModal(true)}
@@ -81,9 +81,9 @@ export function PSLAnnouncement() {
                                 <div className="flex items-start gap-3">
                                     <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <h3 className="font-bold text-green-900 mb-1">🎉 New Domain Extension: ryzedns.org</h3>
+                                        <h3 className="font-bold text-green-900 mb-1">🎉 New Domain Extensions: ryzedns.org &amp; nx.kg</h3>
                                         <p className="text-sm text-green-800">
-                                            We've launched a new domain extension <strong className="font-mono">.ryzedns.org</strong> alongside the existing{" "}
+                                            We've launched two new domain extensions <strong className="font-mono">.ryzedns.org</strong> and <strong className="font-mono">.nx.kg</strong> alongside the existing{" "}
                                             <strong className="font-mono">.indevs.in</strong> and{" "}
                                             <strong className="font-mono">.sryze.cc</strong>.
                                             If we receive enough community support, we plan to introduce even more extensions and expand the ecosystem.
@@ -121,6 +121,10 @@ export function PSLAnnouncement() {
                                                 <li className="flex items-center gap-2">
                                                     <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
                                                     Access to <strong className="font-mono">.ryzedns.org</strong> domain (1 free)
+                                                </li>
+                                                <li className="flex items-center gap-2">
+                                                    <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
+                                                    Access to <strong className="font-mono">.nx.kg</strong> domain (1 free)
                                                 </li>
                                                 <li className="flex items-center gap-2">
                                                     <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />

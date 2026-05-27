@@ -104,7 +104,7 @@ export function Whois() {
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            placeholder="e.g. myproject.indevs.in or mybrand.sryze.cc or myapp.ryzedns.org"
+                            placeholder="e.g. myproject.indevs.in or mybrand.sryze.cc or myapp.ryzedns.org or myapp.nx.kg"
                             className="flex-1 px-4 py-3 text-[#1A1A1A] bg-transparent font-mono text-sm outline-none placeholder:text-[#aaa] w-full"
                             disabled={loading}
                             autoFocus
@@ -128,6 +128,8 @@ export function Whois() {
                         Supported: <span className="font-mono font-bold text-[#4A4A4A]">.indevs.in</span> &amp;{" "}
                         <span className="font-mono font-bold text-[#4A4A4A]">.sryze.cc</span> &amp;{" "}
                         <span className="font-mono font-bold text-[#4A4A4A]">.ryzedns.org</span>
+                        <span className="text-[#888]">·</span>
+                        <span className="font-mono font-bold text-[#4A4A4A]">.nx.kg</span>
                     </p>
                 </div>
             </section>
