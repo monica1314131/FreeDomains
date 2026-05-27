@@ -18,29 +18,36 @@ export function Header() {
               <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-8 sm:h-10 md:h-12 w-auto" />
               <span className="text-sm sm:text-lg md:text-2xl font-bold text-[#1A1A1A] tracking-tight">Stackryze Domains</span>
             </div>
-            <div className="hidden md:block h-6 sm:h-8 w-[1px] bg-[#E5E3DF]"></div>
-            <div className="hidden md:flex items-baseline gap-0.5">
-              <div className="flex items-center font-extrabold text-xl sm:text-2xl md:text-3xl tracking-tighter gap-0.5 [-webkit-text-stroke:0.5px_#1A1A1A] sm:[-webkit-text-stroke:1px_#1A1A1A]">
+            <div className="hidden xl:block h-5 sm:h-6 w-[1px] bg-[#E5E3DF]"></div>
+            <div className="hidden xl:flex items-baseline gap-0.5">
+              <div className="flex items-center font-extrabold text-lg sm:text-xl md:text-2xl tracking-tighter gap-0.5 [-webkit-text-stroke:0.5px_#1A1A1A] sm:[-webkit-text-stroke:1px_#1A1A1A]">
                 <span className="text-[#FF6B35]">IN</span>
                 <span className="text-white">DE</span>
                 <span className="text-[#138808]">VS</span>
               </div>
-              <span className="text-base sm:text-lg md:text-xl font-bold text-[#1A1A1A] tracking-tight">.in</span>
+              <span className="text-sm sm:text-base md:text-lg font-bold text-[#1A1A1A] tracking-tight">.in</span>
             </div>
-            <div className="hidden md:block h-6 sm:h-8 w-[1px] bg-[#E5E3DF]"></div>
-            <div className="hidden md:flex items-baseline gap-0.5">
-              <div className="flex items-center font-bold text-xl sm:text-2xl md:text-3xl tracking-tight gap-0.5">
+            <div className="hidden xl:block h-5 sm:h-6 w-[1px] bg-[#E5E3DF]"></div>
+            <div className="hidden xl:flex items-baseline gap-0.5">
+              <div className="flex items-center font-bold text-lg sm:text-xl md:text-2xl tracking-tight gap-0.5">
                 <span className="text-[#1A1A1A]">SRYZE</span>
               </div>
-              <span className="text-base sm:text-lg md:text-xl font-bold text-[#1A1A1A] tracking-tight">.cc</span>
+              <span className="text-sm sm:text-base md:text-lg font-bold text-[#1A1A1A] tracking-tight">.cc</span>
             </div>
-            <div className="hidden md:block h-6 sm:h-8 w-[1px] bg-[#E5E3DF]"></div>
-            <div className="hidden md:flex items-baseline gap-0.5">
-              <div className="flex items-center font-bold text-xl sm:text-2xl md:text-3xl tracking-tight gap-0.5">
+            <div className="hidden xl:block h-5 sm:h-6 w-[1px] bg-[#E5E3DF]"></div>
+            <div className="hidden xl:flex items-baseline gap-0.5">
+              <div className="flex items-center font-bold text-lg sm:text-xl md:text-2xl tracking-tight gap-0.5">
                 <span className="text-[#E63946]">RYZE</span>
                 <span className="text-[#1A1A1A]">DNS</span>
               </div>
-              <span className="text-base sm:text-lg md:text-xl font-bold text-[#1A1A1A] tracking-tight">.org</span>
+              <span className="text-sm sm:text-base md:text-lg font-bold text-[#1A1A1A] tracking-tight">.org</span>
+            </div>
+            <div className="hidden xl:block h-5 sm:h-6 w-[1px] bg-[#E5E3DF]"></div>
+            <div className="hidden xl:flex items-baseline gap-0.5">
+              <div className="flex items-center font-bold text-lg sm:text-xl md:text-2xl tracking-tight gap-0.5">
+                <span className="text-[#1A1A1A]">NX</span>
+              </div>
+              <span className="text-sm sm:text-base md:text-lg font-bold text-[#1A1A1A] tracking-tight">.kg</span>
             </div>
           </a>
         </div>
@@ -48,7 +55,7 @@ export function Header() {
         {/* Right Side: Nav + CTA */}
         <div className="flex items-center gap-8">
           {/* Navigation - Desktop */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-8">
             <a href="/about" className="text-[#1A1A1A] hover:text-[#FF6B35] transition-colors duration-150 font-medium text-sm lg:text-base">
               About
             </a>
