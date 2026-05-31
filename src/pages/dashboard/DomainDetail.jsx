@@ -430,7 +430,15 @@ export default function DomainDetail() {
                                     type="button"
                                     onClick={async () => {
                                         const filled = nameservers.map(n => n.trim()).filter(Boolean);
-                                        if (filled.length < MIN_NS) {
+                                        // Deduplicate case-insensitively, preserving first occurrence
+                                        const seen = new Set();
+                                        const unique = filled.filter(ns => {
+                                            const key = ns.toLowerCase();
+                                            if (seen.has(key)) return false;
+                                            seen.add(key);
+                                            return true;
+                                        });
+                                        if (unique.length < MIN_NS) {
                                             toast({
                                                 title: "Validation Error",
                                                 description: `At least ${MIN_NS} nameservers (NS1 and NS2) are required.`,
@@ -440,11 +448,11 @@ export default function DomainDetail() {
                                         }
                                         try {
                                             await subdomainAPI.update(domain._id, {
-                                                recordValue: filled.join(', ')
+                                                recordValue: unique.join(', ')
                                             });
                                             toast({
                                                 title: "Nameservers Updated Successfully!",
-                                                description: `${filled.length} nameserver${filled.length > 1 ? 's' : ''} saved. Changes may take up to 48 hours to propagate.`,
+                                                description: `${unique.length} nameserver${unique.length > 1 ? 's' : ''} saved. Changes may take up to 48 hours to propagate.`,
                                                 className: "bg-[#e6f4ea] border-green-200 text-green-900"
                                             });
                                             setIsEditingDNS(false);
