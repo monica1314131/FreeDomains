@@ -16,8 +16,9 @@ export default function DomainDetail() {
     const { toast } = useToast();
 
     const [domain, setDomain] = useState(null);
-    const [ns1, setNs1] = useState("");
-    const [ns2, setNs2] = useState("");
+    const [nameservers, setNameservers] = useState(["ns1.stackryze.com", "ns2.stackryze.com"]);
+    const MAX_NS = 6;
+    const MIN_NS = 2;
     const [isEditingDNS, setIsEditingDNS] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -33,9 +34,13 @@ export default function DomainDetail() {
             setDomain(foundDomain);
             // Parse nameservers from recordValue if it's NS type
             if (foundDomain.recordType === 'NS' && foundDomain.recordValue) {
-                const ns = foundDomain.recordValue.split(',').map(n => n.trim());
-                setNs1(ns[0] || '');
-                setNs2(ns[1] || '');
+                const parsed = foundDomain.recordValue.split(',').map(n => n.trim()).filter(Boolean);
+                // Always keep at least MIN_NS slots
+                const padded = [...parsed];
+                while (padded.length < MIN_NS) padded.push('');
+                setNameservers(padded);
+            } else {
+                setNameservers(["ns1.stackryze.com", "ns2.stackryze.com"]);
             }
         }
         // Only set loading to false after we've checked the subdomains
@@ -321,11 +326,14 @@ export default function DomainDetail() {
                             <Button
                                 onClick={() => {
                                     if (isEditingDNS) {
-                                        // Cancel editing - reset values
+                                        // Cancel editing — reset values
                                         if (domain.recordType === 'NS' && domain.recordValue) {
-                                            const ns = domain.recordValue.split(',').map(n => n.trim());
-                                            setNs1(ns[0] || '');
-                                            setNs2(ns[1] || '');
+                                            const parsed = domain.recordValue.split(',').map(n => n.trim()).filter(Boolean);
+                                            const padded = [...parsed];
+                                            while (padded.length < MIN_NS) padded.push('');
+                                            setNameservers(padded);
+                                        } else {
+                                            setNameservers(["ns1.stackryze.com", "ns2.stackryze.com"]);
                                         }
                                         setIsEditingDNS(false);
                                     } else {
@@ -357,57 +365,88 @@ export default function DomainDetail() {
                         <h3 className="font-bold text-[#1A1A1A] mb-2">Nameservers (NS Records)</h3>
                         <p className="text-sm text-[#4A4A4A] mb-4">
                             Custom nameservers allow you to manage your DNS records via external providers like Cloudflare or Route53.
+                            NS1 and NS2 are required. You can add up to {MAX_NS} nameservers total.
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label className="text-xs uppercase font-bold">Primary Nameserver (NS1)</Label>
-                                <Input
-                                    value={ns1}
-                                    onChange={(e) => setNs1(e.target.value)}
-                               
-                                    className={`font-mono transition-all ${isEditingDNS ? 'bg-white border-blue-300 focus:border-blue-500' : 'bg-gray-100 cursor-not-allowed'}`}
-                                    readOnly={!isEditingDNS}
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label className="text-xs uppercase font-bold">Secondary Nameserver (NS2)</Label>
-                                <Input
-                                    value={ns2}
-                                    onChange={(e) => setNs2(e.target.value)}
-                                  
-                                    className={`font-mono transition-all ${isEditingDNS ? 'bg-white border-blue-300 focus:border-blue-500' : 'bg-gray-100 cursor-not-allowed'}`}
-                                    readOnly={!isEditingDNS}
-                                />
-                            </div>
+                        <div className="space-y-3">
+                            {nameservers.map((ns, idx) => {
+                                const isRequired = idx < MIN_NS;
+                                const label = `NS${idx + 1}${isRequired ? '' : ' (Optional)'}`;
+                                return (
+                                    <div key={idx} className="flex items-center gap-2">
+                                        <div className="flex-1 space-y-1">
+                                            <Label className="text-xs uppercase font-bold tracking-wide">{label}</Label>
+                                            <Input
+                                                value={ns}
+                                                onChange={(e) => {
+                                                    const updated = [...nameservers];
+                                                    updated[idx] = e.target.value;
+                                                    setNameservers(updated);
+                                                }}
+                                                placeholder={`e.g. ns${idx + 1}.example.com`}
+                                                className={`font-mono transition-all ${
+                                                    isEditingDNS
+                                                        ? 'bg-white border-blue-300 focus:border-blue-500'
+                                                        : 'bg-gray-100 cursor-not-allowed'
+                                                }`}
+                                                readOnly={!isEditingDNS}
+                                            />
+                                        </div>
+                                        {/* Remove button — only for optional entries, only when editing */}
+                                        {isEditingDNS && !isRequired && (
+                                            <button
+                                                type="button"
+                                                onClick={() => setNameservers(nameservers.filter((_, i) => i !== idx))}
+                                                className="mt-5 w-7 h-7 flex-shrink-0 rounded-full bg-red-100 hover:bg-red-200 text-red-600 font-bold text-lg leading-none flex items-center justify-center transition-colors"
+                                                title="Remove this nameserver"
+                                            >
+                                                −
+                                            </button>
+                                        )}
+                                        {/* Spacer so required rows align with optional rows that have a button */}
+                                        {isEditingDNS && isRequired && nameservers.length > MIN_NS && (
+                                            <div className="mt-5 w-7 flex-shrink-0" />
+                                        )}
+                                    </div>
+                                );
+                            })}
+
+                            {/* Add nameserver button */}
+                            {isEditingDNS && nameservers.length < MAX_NS && (
+                                <button
+                                    type="button"
+                                    onClick={() => setNameservers([...nameservers, ''])}
+                                    className="mt-1 inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors"
+                                >
+                                    <span className="w-5 h-5 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-600 font-bold text-base leading-none flex items-center justify-center transition-colors">+</span>
+                                    Add nameserver{nameservers.length < MAX_NS ? ` (${MAX_NS - nameservers.length} remaining)` : ''}
+                                </button>
+                            )}
                         </div>
 
                         {isEditingDNS && (
-                            <div className="flex justify-end mt-4">
-                                <Button
+                            <div className="flex justify-end mt-5">
+                                <button
+                                    type="button"
                                     onClick={async () => {
-                                        // Validate nameservers
-                                        if (!ns1 || !ns2) {
+                                        const filled = nameservers.map(n => n.trim()).filter(Boolean);
+                                        if (filled.length < MIN_NS) {
                                             toast({
                                                 title: "Validation Error",
-                                                description: "Both nameservers are required.",
+                                                description: `At least ${MIN_NS} nameservers (NS1 and NS2) are required.`,
                                                 variant: "destructive"
                                             });
                                             return;
                                         }
-
                                         try {
-                                            // Update via API
                                             await subdomainAPI.update(domain._id, {
-                                                recordValue: `${ns1.trim()}, ${ns2.trim()}`
+                                                recordValue: filled.join(', ')
                                             });
-
                                             toast({
                                                 title: "Nameservers Updated Successfully!",
-                                                description: "Changes may take up to 48 hours to propagate globally.",
+                                                description: `${filled.length} nameserver${filled.length > 1 ? 's' : ''} saved. Changes may take up to 48 hours to propagate.`,
                                                 className: "bg-[#e6f4ea] border-green-200 text-green-900"
                                             });
-
                                             setIsEditingDNS(false);
                                             await refresh();
                                         } catch (error) {
@@ -418,10 +457,10 @@ export default function DomainDetail() {
                                             });
                                         }
                                     }}
-                                    className="bg-[#1A1A1A] text-white hover:bg-[#333] font-bold"
+                                    className="bg-[#1A1A1A] text-white hover:bg-[#333] font-bold px-5 py-2 rounded-lg text-sm transition-colors"
                                 >
                                     Save Nameservers
-                                </Button>
+                                </button>
                             </div>
                         )}
                     </div>
