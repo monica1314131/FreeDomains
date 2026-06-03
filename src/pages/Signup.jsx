@@ -105,6 +105,8 @@ export default function Signup() {
 
         if (!isAllowedEmailProvider(email)) {
             setEmailError("We currently allow only popular email providers to prevent spam and fake accounts. Please use Gmail, Outlook, Yahoo, iCloud, Proton, or Zoho.");
+        } else if (email.includes('+')) {
+            setEmailError("Due to security reasons, This email is not allowed.");
         } else {
             setEmailError("");
         }
