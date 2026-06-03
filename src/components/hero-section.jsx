@@ -87,9 +87,9 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center pt-20 pb-12 bg-[#FFF8F0] bg-[url('/pixel_art_large.png')] bg-cover bg-center bg-no-repeat overflow-hidden">
-      {/* Darker overlay for white text readability */}
-      <div className="absolute inset-0 bg-black/40 z-0"></div>
+    <section className="relative w-full min-h-screen flex flex-col justify-center pt-20 pb-12 bg-[#0A0A0B] bg-[url('/pixel_art_large.png')] bg-cover bg-center bg-no-repeat overflow-hidden">
+      {/* Subtle overlay for white text readability */}
+      <div className="absolute inset-0 bg-black/50 z-0"></div>
 
       {/* Container with generous padding */}
       <div className="relative z-10 w-full px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-center">
@@ -97,48 +97,43 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center max-w-[1600px] mx-auto w-full">
 
           {/* Left: Text */}
-          <div className="space-y-8">
-            <p className="text-base font-bold uppercase tracking-widest text-[#FF6B35]">
-              Free Domains for Developers
+          <div className="space-y-6 lg:pr-8">
 
-
-            </p>
-
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight text-white tracking-tight">
-              A FREE NAME<br />
-              <span className="text-[#FF6B35]">FOR EVERYONE.</span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white tracking-tight">
+              A NAME FOR EVERYONE <span className="text-[#6FD1D7]">ONLINE.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white max-w-3xl">
-              Made for <span className="font-bold text-white">the world</span>, by Indians.
-              <br className="hidden md:block" />
-              100% Open Source and cost-free. No strings attached.
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed">
+              A public namespace for everyone to belong online. Made for the world. 100% free and open-source.
             </p>
           </div>
 
           {/* Right: Search */}
           <div className="w-full">
-            <div className="bg-white border-4 border-[#1A1A1A] rounded-xl p-6 shadow-[8px_8px_0px_0px_#FF6B35] w-full">
-              <label className="block text-xs font-bold uppercase mb-4 text-[#1A1A1A]">
+            <div className="bg-[#111113]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 w-full relative overflow-hidden">
+              {/* Subtle gradient glow inside the card */}
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#6FD1D7]/20 blur-3xl rounded-full pointer-events-none"></div>
+
+              <label className="block text-xs font-bold uppercase tracking-widest mb-5 text-gray-400">
                 Check Availability
               </label>
 
-              <div className="space-y-3">
-                <div className="flex border-2 border-[#1A1A1A] rounded-md relative overflow-hidden">
+              <div className="space-y-5 relative z-10">
+                <div className="flex border border-white/10 rounded-xl relative overflow-hidden focus-within:ring-2 focus-within:ring-[#6FD1D7]/30 focus-within:border-[#6FD1D7] transition-all bg-black/40 shadow-inner">
                   <input
                     type="text"
                     placeholder="yourname"
                     value={domain}
                     onChange={(e) => setDomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
                     onKeyPress={handleKeyPress}
-                    className="flex-1 px-4 py-3 text-base md:text-lg font-mono min-w-0 outline-none"
+                    className="flex-1 px-5 py-4 text-base md:text-lg font-mono min-w-0 outline-none text-white placeholder:text-gray-600 bg-transparent"
                   />
-                  <span className="px-4 py-3 bg-[#E5E3DF] text-[#6B6B6B] font-mono text-xs md:text-sm whitespace-nowrap flex items-center border-l-2 border-[#1A1A1A]">
+                  <span className="px-5 py-4 text-gray-400 font-mono text-sm md:text-base flex items-center border-l border-white/10 bg-black/20">
                     .indevs.in
                   </span>
                   {isChecking && (
-                    <div className="absolute right-28 top-1/2 -translate-y-1/2">
-                      <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
+                    <div className="absolute right-32 top-1/2 -translate-y-1/2">
+                      <Loader2 className="w-5 h-5 text-[#6FD1D7] animate-spin" />
                     </div>
                   )}
                 </div>
@@ -146,57 +141,55 @@ export function HeroSection() {
                 <button
                   onClick={handleClaimClick}
                   disabled={isChecking || (domain.length > 0 && domain.length < 3)}
-                  className="w-full bg-[#FFD23F] text-[#1A1A1A] rounded-md py-3 px-4 font-bold uppercase text-xs hover:bg-[#1A1A1A] hover:text-[#FFD23F] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#FFD23F] text-[#1A1A1A] rounded-xl py-4 px-6 font-extrabold uppercase tracking-widest text-sm hover:bg-[#FFB800] transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,210,63,0.15)] hover:shadow-[0_0_25px_rgba(255,210,63,0.25)] disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
                 >
                   {isChecking ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <Loader2 className="w-5 h-5 animate-spin" />
                       Checking...
                     </>
                   ) : isAvailable ? (
                     <>
                       Login to Claim
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-5 h-5" />
                     </>
                   ) : (
                     <>
                       Check Availability
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-5 h-5" />
                     </>
                   )}
                 </button>
 
                 {/* Status Messages */}
                 {domain && domain.length > 0 && domain.length < 3 && (
-                  <p className="text-xs text-amber-600 flex items-center gap-1">
+                  <p className="text-sm font-medium text-amber-500 flex items-center gap-1.5 mt-2">
                     <XCircle className="w-4 h-4" />
                     Domain must be at least 3 characters
                   </p>
                 )}
                 {errorMsg && domain.length >= 3 && (
-                  <p className="text-xs text-red-600 flex items-center gap-1">
+                  <p className="text-sm font-medium text-red-400 flex items-center gap-1.5 mt-2">
                     <XCircle className="w-4 h-4" />
                     {errorMsg}
                   </p>
                 )}
                 {isAvailable && !errorMsg && (
-                  <p className="text-xs text-green-600 flex items-center gap-1">
+                  <p className="text-sm font-medium text-emerald-400 flex items-center gap-1.5 mt-2">
                     <CheckCircle className="w-4 h-4" />
-                    <span className="font-bold">{domain}.indevs.in</span> is available!
+                    <span className="font-bold text-white">{domain}.indevs.in</span> is available!
                   </p>
                 )}
               </div>
 
-              <div className="mt-6 pt-4 border-t-2 border-[#1A1A1A]/10 text-center">
-                <Link to="/donate" className="inline-flex items-center gap-2 text-xs font-bold text-[#FF6B35] hover:text-[#1A1A1A] hover:underline transition-colors">
-                  <Heart className="w-3 h-3 fill-[#FF6B35]" />
+              <div className="mt-8 pt-6 border-t border-white/10 text-center relative z-10">
+                <Link to="/donate" className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors group">
+                  <Heart className="w-4 h-4 text-rose-500/80 group-hover:text-rose-500 fill-rose-500/50 group-hover:fill-rose-500 transition-all" />
                   Help us keep this free — Donate
                 </Link>
               </div>
             </div>
-
-
-          </div>
+          </div>v>
         </div>
 
       </div>
@@ -208,13 +201,13 @@ export function HeroSection() {
             "INSTANT ACTIVATION",
             "FULL DNS CONTROL",
             "NO BILLING DETAILS",
-            "MADE FOR INDIA",
+            "MADE FOR THE WORLD",
             "100% OPEN SOURCE",
             "FREE FOREVER",
             "INSTANT ACTIVATION",
             "FULL DNS CONTROL",
             "NO BILLING DETAILS",
-            "MADE FOR INDIA",
+            "MADE FOR THE WORLD",
             "100% OPEN SOURCE",
             "FREE FOREVER",
           ].map((text, idx) => (
@@ -226,16 +219,6 @@ export function HeroSection() {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-scroll {
-          animation: scroll 20s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }

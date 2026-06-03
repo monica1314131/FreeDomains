@@ -8,7 +8,7 @@ import { useDashboard } from "@/context/dashboard-context";
 import { useToast } from "@/hooks/use-toast";
 import { subdomainAPI } from "@/lib/api";
 import { useAuth } from "@/context/auth-context";
-import { Globe, CheckCircle, XCircle, AlertCircle, Loader2, Sparkles, Info, Github } from "lucide-react";
+import { Globe, CheckCircle, XCircle, AlertCircle, Loader2, Sparkles, Info, Github, Shield } from "lucide-react";
 import { Turnstile } from '@marsidev/react-turnstile';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
