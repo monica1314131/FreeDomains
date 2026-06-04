@@ -79,7 +79,7 @@ function FAQ({ q, a }) {
         <button
             type="button"
             onClick={() => setOpen(o => !o)}
-            className="w-full text-left bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 hover:border-[#9CA3AF] transition-colors group"
+            className="w-full text-left bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 hover:border-[#9CA3AF] transition-colors group"
         >
             <div className="flex items-center justify-between gap-4">
                 <span className="font-semibold text-[#111827] text-sm">{q}</span>
@@ -117,7 +117,7 @@ export default function Help() {
             </div>
 
             {/* Discord CTA */}
-            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <p className="font-bold text-[#111827] text-base">Join our Discord</p>
                     <p className="text-sm text-[#4B5563] mt-0.5">Get real-time help from the community and the Stackryze team.</p>
@@ -154,7 +154,7 @@ export default function Help() {
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 flex items-start gap-3 hover:border-[#9CA3AF] transition-colors group"
+                            className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 flex items-start gap-3 hover:border-[#9CA3AF] transition-colors group"
                         >
                             <div className="w-9 h-9 rounded-lg bg-[#F9FAFB] border-[1px] border-[#E5E7EB] flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <Icon className="w-4 h-4 text-[#4B5563]" />
@@ -187,7 +187,7 @@ export default function Help() {
                         <a
                             key={email}
                             href={`mailto:${email}`}
-                            className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 flex items-start gap-3 hover:border-[#9CA3AF] transition-colors group"
+                            className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 flex items-start gap-3 hover:border-[#9CA3AF] transition-colors group"
                         >
                             <div className="w-9 h-9 rounded-lg bg-[#F9FAFB] border-[1px] border-[#E5E7EB] flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <Icon className="w-4 h-4 text-[#4B5563]" />

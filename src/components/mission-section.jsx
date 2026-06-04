@@ -188,7 +188,7 @@ const features = [
 
 export function MissionSection() {
   return (
-    <section className="w-full bg-[#FAFAFA]" style={{ overflow: 'clip' }}>
+    <section className="w-full bg-transparent" style={{ overflow: 'clip' }}>
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 pt-8 pb-10 md:pt-10 md:pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start relative">
 
@@ -204,18 +204,18 @@ export function MissionSection() {
             ].map((block, idx, arr) => (
               <Fragment key={idx}>
                 <div
-                  className="sticky w-full bg-[#FAFAFA] pt-8 pb-8 min-h-[65vh] top-[15vh] lg:top-[35vh]"
+                  className="sticky w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] pt-8 pb-8 min-h-[65vh] top-[15vh] lg:top-[35vh]"
                   style={{
                     zIndex: 10 + idx
                   }}
                 >
-                  <div className="relative z-10 bg-[#FAFAFA] pr-4">
+                  <div className="relative z-10 bg-[#FAFAFA] dark:bg-[#1A1A1A] pr-4">
                     {block.isIntro ? (
                       <>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight mb-6">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-6">
                           Who are we?
                         </h2>
-                        <div className="space-y-4 text-slate-600 text-base md:text-lg leading-relaxed font-medium">
+                        <div className="space-y-4 text-slate-600 dark:text-white text-base md:text-lg leading-relaxed font-medium">
                           <p>
                             We are a small team of passionate developers building an open, accessible, and community-driven namespace for the modern internet.
                           </p>
@@ -239,10 +239,10 @@ export function MissionSection() {
                             </div>
                             <div className="space-y-2 flex-1">
                               <div>
-                                <h3 className="text-slate-900 font-extrabold text-2xl md:text-3xl tracking-tight">{f.title}</h3>
-                                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mt-1">{f.subtitle}</p>
+                                <h3 className="text-slate-900 dark:text-white font-extrabold text-2xl md:text-3xl tracking-tight">{f.title}</h3>
+                                <p className="text-slate-400 dark:text-slate-300 text-xs font-bold uppercase tracking-wider mt-1">{f.subtitle}</p>
                               </div>
-                              <p className="text-slate-600 text-base md:text-lg leading-relaxed font-medium">
+                              <p className="text-slate-600 dark:text-white text-base md:text-lg leading-relaxed font-medium">
                                 {f.description}
                               </p>
                             </div>
@@ -253,7 +253,7 @@ export function MissionSection() {
                   </div>
                   {/* White Tail to hide previous content */}
                   {idx < arr.length - 1 && (
-                    <div className="absolute top-full left-0 right-0 h-[150vh] bg-[#FAFAFA] pointer-events-none z-0"></div>
+                    <div className="absolute top-full left-0 right-0 h-[150vh] bg-[#FAFAFA] dark:bg-[#1A1A1A] pointer-events-none z-0"></div>
                   )}
                 </div>
                 {idx < arr.length - 1 && (
@@ -274,7 +274,7 @@ export function MissionSection() {
           >
             {/* Heading above the globe */}
             <div className="w-full max-w-[600px] text-center mb-4 lg:mb-8 relative z-50">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Connecting the world
               </h2>
             </div>

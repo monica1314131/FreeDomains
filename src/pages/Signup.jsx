@@ -182,10 +182,10 @@ export default function Signup() {
     if (isSuccess) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans">
-                <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-8 md:p-10 rounded-xl text-center">
+                <div className="w-full max-w-md bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] p-8 md:p-10 rounded-xl text-center">
                     <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                    <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2">Check your email</h1>
-                    <p className="text-[#4A4A4A] mb-6">
+                    <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Check your email</h1>
+                    <p className="text-[#4A4A4A] dark:text-slate-400 mb-6">
                         We've sent a verification link to <strong>{email}</strong>. Please click the link to activate your account.
                     </p>
                     <Link to="/login" className="text-black font-medium hover:underline">
@@ -198,160 +198,162 @@ export default function Signup() {
 
     return (
         <>
-        <Header />
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAFAFA] px-4 py-10" style={{ paddingTop: 'calc(4rem + var(--incident-height, 0px) + 2.5rem)' }}>
-            <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl ring-1 ring-slate-200/80 p-8 md:p-10">
+            <Header />
+            <div className="min-h-screen flex flex-col items-center justify-center bg-transparent px-4 py-10" style={{ paddingTop: 'calc(4rem + var(--incident-height, 0px) + 2.5rem)' }}>
+                <div className="w-full max-w-3xl bg-white dark:bg-transparent rounded-[24px] border border-slate-200/80 dark:border-white/5 p-8 md:p-10 relative overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/10"></div>
 
-                {/* Header */}
-                <div className="mb-8 flex items-start justify-between">
-                    <div>
-                        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-1">Create Account</h1>
-                        <p className="text-slate-500 text-sm">Sign up to register your free subdomains</p>
-                    </div>
-                    <Link to="/" className="flex items-center gap-2 shrink-0">
-                        <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-8 w-auto" />
-                    </Link>
-                </div>
-
-                <form onSubmit={handleSignup} className="space-y-5">
-                    {/* Row 1: Username + Legal Name */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Header */}
+                    <div className="mb-8 flex items-start justify-between">
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Username <span className="text-slate-400 font-normal">(Unique ID)</span></label>
-                            <div className="relative">
+                            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-1">Create Account</h1>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Sign up to register your free subdomains</p>
+                        </div>
+                        <Link to="/" className="flex items-center gap-2 shrink-0">
+                            <img src="/stackryze_logo_black.png" alt="Stackryze Logo" className="h-8 w-auto dark:hidden" />
+                        <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-8 w-auto hidden dark:block" />
+                        </Link>
+                    </div>
+
+                    <form onSubmit={handleSignup} className="space-y-5">
+                        {/* Row 1: Username + Legal Name */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">Username <span className="text-slate-400 font-normal">(Unique ID)</span></label>
+                                <div className="relative">
+                                    <input
+                                        type="text" required value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        className={`w-full px-4 py-3 pr-10 bg-white dark:bg-white/5 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500 ${usernameError ? 'border-red-400 dark:border-red-500' : usernameAvailable === true ? 'border-emerald-400 dark:border-emerald-500' : 'border-slate-200 dark:border-white/10'}`}
+                                        placeholder="johndoe123"
+                                    />
+                                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                                        {usernameChecking && <Loader2 className="w-4 h-4 animate-spin text-slate-400" />}
+                                        {!usernameChecking && usernameAvailable === true && <Check className="w-4 h-4 text-emerald-500" />}
+                                        {!usernameChecking && (usernameAvailable === false || usernameError) && <X className="w-4 h-4 text-red-500" />}
+                                    </div>
+                                </div>
+                                {usernameError && <p className="text-xs text-red-500 mt-1">{usernameError}</p>}
+                                {usernameAvailable === true && <p className="text-xs text-emerald-600 mt-1">Username available!</p>}
+                                {usernameAvailable === false && !usernameError && <p className="text-xs text-red-500 mt-1">Username already taken</p>}
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">Full Legal Name</label>
                                 <input
-                                    type="text" required value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    className={`w-full px-4 py-2.5 pr-10 bg-white border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all ${usernameError ? 'border-red-400' : usernameAvailable === true ? 'border-emerald-400' : 'border-slate-200'}`}
-                                    placeholder="johndoe123"
+                                    type="text" required value={legalName}
+                                    onChange={(e) => setLegalName(e.target.value)}
+                                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500"
+                                    placeholder="John Michael Doe"
                                 />
-                                <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                                    {usernameChecking && <Loader2 className="w-4 h-4 animate-spin text-slate-400" />}
-                                    {!usernameChecking && usernameAvailable === true && <Check className="w-4 h-4 text-emerald-500" />}
-                                    {!usernameChecking && (usernameAvailable === false || usernameError) && <X className="w-4 h-4 text-red-500" />}
+                            </div>
+                        </div>
+
+                        {/* Row 2: Email + Password */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">Email</label>
+                                <input
+                                    type="email" required value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className={`w-full px-4 py-3 bg-white dark:bg-white/5 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500 ${emailError ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-white/10'}`}
+                                    placeholder="name@example.com"
+                                />
+                                {emailError && <p className="text-xs text-red-500 mt-1">{emailError}</p>}
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">Password</label>
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"} required minLength={8}
+                                        value={password} onChange={(e) => setPassword(e.target.value)}
+                                        className="w-full px-4 py-3 pr-10 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500"
+                                        placeholder="Minimum 8 characters"
+                                    />
+                                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                    </button>
                                 </div>
                             </div>
-                            {usernameError && <p className="text-xs text-red-500 mt-1">{usernameError}</p>}
-                            {usernameAvailable === true && <p className="text-xs text-emerald-600 mt-1">Username available!</p>}
-                            {usernameAvailable === false && !usernameError && <p className="text-xs text-red-500 mt-1">Username already taken</p>}
                         </div>
 
+                        {/* Row 3: Address */}
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Legal Name</label>
-                            <input
-                                type="text" required value={legalName}
-                                onChange={(e) => setLegalName(e.target.value)}
-                                className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all"
-                                placeholder="John Michael Doe"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Row 2: Email + Password */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
-                            <input
-                                type="email" required value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className={`w-full px-4 py-2.5 bg-white border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all ${emailError ? 'border-red-400' : 'border-slate-200'}`}
-                                placeholder="name@example.com"
-                            />
-                            {emailError && <p className="text-xs text-red-500 mt-1">{emailError}</p>}
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
-                            <div className="relative">
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">Full Address</label>
+                            <div className="space-y-3">
                                 <input
-                                    type={showPassword ? "text" : "password"} required minLength={8}
-                                    value={password} onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full px-4 py-2.5 pr-10 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all"
-                                    placeholder="Minimum 8 characters"
+                                    type="text" required value={address.street}
+                                    onChange={(e) => setAddress({ ...address, street: e.target.value })}
+                                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500"
+                                    placeholder="Street Address"
                                 />
-                                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
-                                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                </button>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <input type="text" required value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500" placeholder="City" />
+                                    <input type="text" required value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })} className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500" placeholder="State" />
+                                    <input type="text" required value={address.postalCode} onChange={(e) => setAddress({ ...address, postalCode: e.target.value })} className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500" placeholder="Postal Code" />
+                                    <input type="text" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500" placeholder="Country" />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Row 3: Address */}
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Full Address</label>
-                        <div className="space-y-3">
+                        {/* Terms */}
+                        <div className="flex items-start gap-3 py-2">
                             <input
-                                type="text" required value={address.street}
-                                onChange={(e) => setAddress({ ...address, street: e.target.value })}
-                                className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all"
-                                placeholder="Street Address"
+                                type="checkbox" id="agreedToTerms" checked={agreedToTerms}
+                                onChange={(e) => setAgreedToTerms(e.target.checked)}
+                                className="mt-0.5 w-4 h-4 rounded border-slate-300 focus:ring-2 focus:ring-slate-900 shrink-0" required
                             />
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                <input type="text" required value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="City" />
-                                <input type="text" required value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="State" />
-                                <input type="text" required value={address.postalCode} onChange={(e) => setAddress({ ...address, postalCode: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="Postal Code" />
-                                <input type="text" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="Country" />
+                            <label htmlFor="agreedToTerms" className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                I agree to the{" "}
+                                <Link to="/terms" target="_blank" className="text-slate-900 dark:text-white font-semibold hover:underline">Terms</Link>,{" "}
+                                <Link to="/privacy" target="_blank" className="text-slate-900 dark:text-white font-semibold hover:underline">Privacy Policy</Link>,{" "}
+                                <Link to="/aup" target="_blank" className="text-slate-900 dark:text-white font-semibold hover:underline">AUP</Link>,
+                                and confirm all details are correct.
+                            </label>
+                        </div>
+
+                        {/* Captcha */}
+                        {!import.meta.env.DEV && (
+                            <div className="flex justify-center py-2">
+                                <Turnstile
+                                    siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                                    onSuccess={(token) => setCaptchaToken(token)}
+                                    onError={(error) => {
+                                        console.error('Turnstile error:', error);
+                                        toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification. Please refresh the page or contact support if this persists." });
+                                    }}
+                                    options={{ theme: 'light' }}
+                                />
                             </div>
-                        </div>
+                        )}
+
+                        {/* Button */}
+                        <button
+                            type="submit"
+                            disabled={isLoading || !captchaToken}
+                            className="w-full bg-black text-white dark:bg-white dark:text-black py-3 rounded-xl font-medium text-sm hover:bg-neutral-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-sm disabled:opacity-50"
+                        >
+                            {isLoading ? <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> Creating Account...</span> : "Create Account"}
+                        </button>
+                    </form>
+
+                    <div className="mt-6 pt-5 border-t border-slate-100 dark:border-white/5 text-center">
+                        <p className="text-sm text-slate-500 dark:text-[#888]">
+                            Already have an account?{" "}
+                            <Link to="/login" className="font-medium text-slate-900 dark:text-white hover:underline">Log in</Link>
+                        </p>
                     </div>
-
-                    {/* Terms */}
-                    <div className="flex items-start gap-3 py-2">
-                        <input
-                            type="checkbox" id="agreedToTerms" checked={agreedToTerms}
-                            onChange={(e) => setAgreedToTerms(e.target.checked)}
-                            className="mt-0.5 w-4 h-4 rounded border-slate-300 focus:ring-2 focus:ring-slate-900 shrink-0" required
-                        />
-                        <label htmlFor="agreedToTerms" className="text-sm text-slate-600 leading-relaxed">
-                            I agree to the{" "}
-                            <Link to="/terms" target="_blank" className="text-slate-900 font-semibold hover:underline">Terms</Link>,{" "}
-                            <Link to="/privacy" target="_blank" className="text-slate-900 font-semibold hover:underline">Privacy Policy</Link>,{" "}
-                            <Link to="/aup" target="_blank" className="text-slate-900 font-semibold hover:underline">AUP</Link>,
-                            and confirm all details are correct.
-                        </label>
-                    </div>
-
-                    {/* Captcha */}
-                    {!import.meta.env.DEV && (
-                        <div className="flex justify-center py-2">
-                            <Turnstile
-                                siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-                                onSuccess={(token) => setCaptchaToken(token)}
-                                onError={(error) => {
-                                    console.error('Turnstile error:', error);
-                                    toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification. Please refresh the page or contact support if this persists." });
-                                }}
-                                options={{ theme: 'light' }}
-                            />
-                        </div>
-                    )}
-
-                    {/* Button */}
-                    <button
-                        type="submit"
-                        disabled={isLoading || !captchaToken}
-                        className="w-full bg-slate-900 text-white py-3 rounded-xl font-bold text-sm hover:bg-slate-700 transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-50"
-                    >
-                        {isLoading ? <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> Creating Account...</span> : "Create Account"}
-                    </button>
-                </form>
-
-                <div className="mt-6 pt-5 border-t border-slate-100 text-center">
-                    <p className="text-sm text-slate-500">
-                        Already have an account?{" "}
-                        <Link to="/login" className="font-semibold text-slate-900 hover:underline">Log in</Link>
-                    </p>
                 </div>
-            </div>
 
-            <div className="mt-6 text-center text-sm text-slate-500">
-                Need help? <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="text-slate-900 font-medium hover:underline">Join our Discord</a> or email <a href="mailto:support@stackryze.com" className="text-slate-900 font-medium hover:underline">support@stackryze.com</a>
-            </div>
+                <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+                    Need help? <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="text-slate-900 dark:text-white font-medium hover:underline">Join our Discord</a> or email <a href="mailto:support@stackryze.com" className="text-slate-900 dark:text-white font-medium hover:underline">support@stackryze.com</a>
+                </div>
 
-            <p className="mt-8 text-xs text-slate-400">
-                &copy; 2026 Stackryze domains
-            </p>
-        </div>
+                <p className="mt-8 text-xs text-slate-400">
+                    &copy; 2026 Stackryze domains
+                </p>
+            </div>
         </>
     );
 }

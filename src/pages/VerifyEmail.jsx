@@ -108,16 +108,17 @@ export default function VerifyEmail() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans" style={{ paddingTop: 'var(--incident-height, 0px)' }}>
             <Link to="/" className="mb-8 flex items-center gap-3 group">
-                <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-12 w-auto" />
-                <span className="text-2xl font-bold text-[#1A1A1A] tracking-tight">Stackryze Domains</span>
+                <img src="/stackryze_logo_black.png" alt="Stackryze Logo" className="h-12 w-auto dark:hidden" />
+                        <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-12 w-auto hidden dark:block" />
+                <span className="text-2xl font-bold text-[#1A1A1A] dark:text-white tracking-tight">Stackryze Domains</span>
             </Link>
 
-            <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-8 md:p-10 rounded-xl text-center">
+            <div className="w-full max-w-md bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] p-8 md:p-10 rounded-xl text-center">
                 {/* NOREPLY EMAIL DETECTION */}
                 {isNoreplyEmail ? (
                     <>
                         <MailCheck className="w-16 h-16 text-red-500 mx-auto mb-4" />
-                        <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2">Cannot Verify This Email</h1>
+                        <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Cannot Verify This Email</h1>
 
                         <div className="bg-red-50 border border-red-200 text-red-900 p-4 rounded-lg text-left mb-6">
                             <div className="flex gap-3 mb-3">
@@ -146,8 +147,8 @@ export default function VerifyEmail() {
                 ) : (
                     <>
                         <MailCheck className="w-16 h-16 text-orange-500 mx-auto mb-4" />
-                        <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2">Check your inbox</h1>
-                        <p className="text-[#4A4A4A] mb-6">
+                        <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Check your inbox</h1>
+                        <p className="text-[#4A4A4A] dark:text-slate-400 mb-6">
                             We've sent a 6-digit verification code to <br />
                             <strong className="text-black">{email}</strong>
                         </p>

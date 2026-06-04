@@ -33,7 +33,7 @@ function Toggle({ enabled, onChange, loading }) {
 function PwField({ label, value, onChange, show, onToggle, placeholder, error }) {
     return (
         <div>
-            <label className="block text-xs font-semibold text-[#4A4A4A] mb-1">{label}</label>
+            <label className="block text-xs font-semibold text-[#4A4A4A] dark:text-slate-400 mb-1">{label}</label>
             <div className="relative">
                 <input
                     type={show ? "text" : "password"}
@@ -41,9 +41,9 @@ function PwField({ label, value, onChange, show, onToggle, placeholder, error })
                     onChange={onChange}
                     placeholder={placeholder}
                     required
-                    className={`w-full px-3 py-2.5 text-sm border-2 rounded-lg outline-none pr-9 transition-colors ${error ? "border-red-400" : "border-[#E5E3DF] focus:border-[#1A1A1A]"}`}
+                    className={`w-full px-3 py-2.5 text-sm border-2 rounded-lg outline-none pr-9 transition-colors ${error ? "border-red-400" : "border-[#E5E3DF] dark:border-[#27272a] focus:border-[#1A1A1A]"}`}
                 />
-                <button type="button" onClick={onToggle} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999] hover:text-[#1A1A1A]">
+                <button type="button" onClick={onToggle} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999] hover:text-[#1A1A1A] dark:text-white">
                     {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
             </div>
@@ -265,14 +265,14 @@ export default function Settings() {
 
     return (
         <div className="max-w-4xl">
-            <h1 className="text-2xl font-bold text-[#1A1A1A] mb-6">Settings & Profile</h1>
+            <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-6">Settings & Profile</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
 
                 {/* ── LEFT: Profile sidebar ── */}
                 <div className="space-y-4">
                     {/* Avatar + name card */}
-                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5 text-center">
+                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5 text-center">
                         <div className="relative inline-block mb-3">
                             <img
                                 src={user?.avatarUrl || "https://github.com/shadcn.png"}
@@ -283,21 +283,21 @@ export default function Settings() {
                                 <span title="GitHub Verified" className="absolute bottom-0 right-0 w-5 h-5 bg-[#1A1A1A] rounded-full flex items-center justify-center text-[10px]">✓</span>
                             )}
                         </div>
-                        <h2 className="text-base font-bold text-[#1A1A1A] leading-tight">{user?.name || "User"}</h2>
+                        <h2 className="text-base font-bold text-[#1A1A1A] dark:text-white leading-tight">{user?.name || "User"}</h2>
                         <p className="text-xs text-[#888] font-mono mt-0.5">@{user?.username || "—"}</p>
-                        {user?.bio && <p className="text-xs text-[#4A4A4A] italic mt-2 leading-relaxed">"{user.bio}"</p>}
+                        {user?.bio && <p className="text-xs text-[#4A4A4A] dark:text-slate-400 italic mt-2 leading-relaxed">"{user.bio}"</p>}
                     </div>
 
                     {/* Details card */}
-                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5 space-y-2.5">
+                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5 space-y-2.5">
                         {user?.location && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A]">
+                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
                                 <MapPin className="w-3.5 h-3.5 text-[#888] shrink-0" />
                                 <span>{user.location}</span>
                             </div>
                         )}
                         {user?.company && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A]">
+                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
                                 <Building2 className="w-3.5 h-3.5 text-[#888] shrink-0" />
                                 <span>{user.company}</span>
                             </div>
@@ -305,53 +305,53 @@ export default function Settings() {
                         {user?.blog && (
                             <div className="flex items-center gap-2 text-sm">
                                 <Link2 className="w-3.5 h-3.5 text-[#888] shrink-0" />
-                                <a href={user.blog.startsWith("http") ? user.blog : `https://${user.blog}`} target="_blank" rel="noreferrer" className="text-[#1A1A1A] hover:text-[#FF6B35] hover:underline truncate">
+                                <a href={user.blog.startsWith("http") ? user.blog : `https://${user.blog}`} target="_blank" rel="noreferrer" className="text-[#1A1A1A] dark:text-white hover:text-[#FF6B35] hover:underline truncate">
                                     {user.blog.replace(/^https?:\/\//, "")}
                                 </a>
                             </div>
                         )}
                         {user?.twitterUsername && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A]">
+                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
                                 <Twitter className="w-3.5 h-3.5 text-[#888] shrink-0" />
                                 <span>@{user.twitterUsername}</span>
                             </div>
                         )}
                         {memberSince && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A]">
+                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
                                 <Calendar className="w-3.5 h-3.5 text-[#888] shrink-0" />
                                 <span>Joined {memberSince}</span>
                             </div>
                         )}
-                        <div className="flex items-center gap-2 text-sm text-[#4A4A4A]">
+                        <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
                             <User2 className="w-3.5 h-3.5 text-[#888] shrink-0" />
                             <span>{user?.githubId ? "GitHub account" : "Email account"}</span>
                         </div>
                     </div>
 
                     {/* Account stats */}
-                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5">
+                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5">
                         <p className="text-xs font-bold uppercase tracking-widest text-[#888] mb-3">Domain Limits</p>
                         <div className="space-y-2">
                             <div className="flex justify-between items-center text-sm">
-                                <span className="text-[#4A4A4A]">indevs.in</span>
-                                <span className="font-bold text-[#1A1A1A]">{user?.domainLimit || 1} domain{(user?.domainLimit || 1) > 1 ? "s" : ""}</span>
+                                <span className="text-[#4A4A4A] dark:text-slate-400">indevs.in</span>
+                                <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.domainLimit || 1} domain{(user?.domainLimit || 1) > 1 ? "s" : ""}</span>
                             </div>
                             {user?.githubVerified && (
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-[#4A4A4A]">sryze.cc</span>
-                                    <span className="font-bold text-[#1A1A1A]">{user?.sryzeDomainsLimit || 1} domain{(user?.sryzeDomainsLimit || 1) > 1 ? "s" : ""}</span>
+                                    <span className="text-[#4A4A4A] dark:text-slate-400">sryze.cc</span>
+                                    <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.sryzeDomainsLimit || 1} domain{(user?.sryzeDomainsLimit || 1) > 1 ? "s" : ""}</span>
                                 </div>
                             )}
                             {user?.githubVerified && (
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-[#4A4A4A]">ryzedns.org</span>
-                                    <span className="font-bold text-[#1A1A1A]">{user?.ryzeDnsDomainsLimit || 1} domain{(user?.ryzeDnsDomainsLimit || 1) > 1 ? "s" : ""}</span>
+                                    <span className="text-[#4A4A4A] dark:text-slate-400">ryzedns.org</span>
+                                    <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.ryzeDnsDomainsLimit || 1} domain{(user?.ryzeDnsDomainsLimit || 1) > 1 ? "s" : ""}</span>
                                 </div>
                             )}
                             {user?.githubVerified && (
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-[#4A4A4A]">nx.kg</span>
-                                    <span className="font-bold text-[#1A1A1A]">{user?.nxKgDomainsLimit || 1} domain{(user?.nxKgDomainsLimit || 1) > 1 ? "s" : ""}</span>
+                                    <span className="text-[#4A4A4A] dark:text-slate-400">nx.kg</span>
+                                    <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.nxKgDomainsLimit || 1} domain{(user?.nxKgDomainsLimit || 1) > 1 ? "s" : ""}</span>
                                 </div>
                             )}
                         </div>
@@ -363,10 +363,10 @@ export default function Settings() {
                 <div className="space-y-4">
 
                     {/* Email */}
-                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5">
+                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5">
                         <div className="flex items-center gap-2 mb-4">
                             <Mail className="w-4 h-4 text-[#FF6B35]" />
-                            <h3 className="font-bold text-[#1A1A1A] text-sm">Email Address</h3>
+                            <h3 className="font-bold text-[#1A1A1A] dark:text-white text-sm">Email Address</h3>
                         </div>
                         {isEditingEmail ? (
                             <div className="flex gap-2">
@@ -376,19 +376,19 @@ export default function Settings() {
                                     onChange={(e) => setNewEmail(e.target.value)}
                                     placeholder="Enter new email"
                                     autoFocus
-                                    className="flex-1 px-3 py-2 text-sm border-2 border-[#E5E3DF] focus:border-[#1A1A1A] rounded-lg outline-none"
+                                    className="flex-1 px-3 py-2 text-sm border-2 border-[#E5E3DF] dark:border-[#27272a] focus:border-[#1A1A1A] rounded-lg outline-none"
                                 />
                                 <button onClick={handleEmailUpdate} disabled={emailLoading} className="px-3 py-2 bg-[#1A1A1A] text-white rounded-lg hover:bg-[#FF6B35] transition-colors disabled:opacity-50">
                                     {emailLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
                                 </button>
-                                <button onClick={() => { setIsEditingEmail(false); setNewEmail(""); }} className="px-3 py-2 bg-[#F5F5F5] text-[#4A4A4A] rounded-lg hover:bg-[#E5E3DF]">
+                                <button onClick={() => { setIsEditingEmail(false); setNewEmail(""); }} className="px-3 py-2 bg-[#F5F5F5] text-[#4A4A4A] dark:text-slate-400 rounded-lg hover:bg-[#E5E3DF]">
                                     <X className="w-4 h-4" />
                                 </button>
                             </div>
                         ) : (
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-2 min-w-0">
-                                    <span className="font-mono text-sm text-[#1A1A1A] truncate">{user?.email}</span>
+                                    <span className="font-mono text-sm text-[#1A1A1A] dark:text-white truncate">{user?.email}</span>
                                     {!user?.isEmailVerified && <span className="shrink-0 text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">Unverified</span>}
                                     {user?.email?.includes("noreply.github.com") && (
                                         <span className="shrink-0 text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -398,7 +398,7 @@ export default function Settings() {
                                     )}
                                 </div>
                                 {user?.githubId && user?.email?.includes("noreply.github.com") && (
-                                    <button onClick={() => { setIsEditingEmail(true); setNewEmail(""); }} className="shrink-0 flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 border-2 border-[#E5E3DF] hover:border-[#1A1A1A] rounded-lg transition-colors">
+                                    <button onClick={() => { setIsEditingEmail(true); setNewEmail(""); }} className="shrink-0 flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 border-2 border-[#E5E3DF] dark:border-[#27272a] hover:border-[#1A1A1A] rounded-lg transition-colors">
                                         <Edit2 className="w-3 h-3" /> Change
                                     </button>
                                 )}
@@ -407,15 +407,15 @@ export default function Settings() {
                     </div>
 
                     {/* Security / Password */}
-                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5">
+                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5">
                         <div className="flex items-center gap-2 mb-4">
                             <KeyRound className="w-4 h-4 text-[#FF6B35]" />
-                            <h3 className="font-bold text-[#1A1A1A] text-sm">Security</h3>
+                            <h3 className="font-bold text-[#1A1A1A] dark:text-white text-sm">Security</h3>
                         </div>
 
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm font-semibold text-[#1A1A1A]">Password</p>
+                                <p className="text-sm font-semibold text-[#1A1A1A] dark:text-white">Password</p>
                                 <p className="text-xs text-[#888] mt-0.5">{user?.hasPassword ? "Change using your current password" : "No password set — use forgot password to create one"}</p>
                             </div>
                             {user?.hasPassword ? (
@@ -433,7 +433,7 @@ export default function Settings() {
                         </div>
 
                         {showPwForm && user?.hasPassword && (
-                            <form onSubmit={handlePasswordChange} className="mt-4 pt-4 border-t border-[#E5E3DF] space-y-3">
+                            <form onSubmit={handlePasswordChange} className="mt-4 pt-4 border-t border-[#E5E3DF] dark:border-[#27272a] space-y-3">
                                 <PwField label="Current password" value={currentPw} onChange={e => setCurrentPw(e.target.value)} show={showC} onToggle={() => setShowC(!showC)} placeholder="Your current password" />
                                 <PwField label="New password" value={newPw} onChange={e => setNewPw(e.target.value)} show={showN} onToggle={() => setShowN(!showN)} placeholder="At least 8 characters" />
                                 <PwField label="Confirm new password" value={confirmPw} onChange={e => setConfirmPw(e.target.value)} show={showCf} onToggle={() => setShowCf(!showCf)} placeholder="Repeat new password" error={confirmPw && newPw !== confirmPw ? "Passwords don't match" : ""} />
@@ -450,15 +450,15 @@ export default function Settings() {
 
                         <div className="mt-4 pt-3 border-t border-[#F0EDE8] flex items-center justify-between">
                             <p className="text-xs text-[#888]">Forgot your password?</p>
-                            <a href="/forgot-password" className="text-xs font-bold text-[#4A4A4A] hover:text-[#FF6B35] underline">Reset via email</a>
+                            <a href="/forgot-password" className="text-xs font-bold text-[#4A4A4A] dark:text-slate-400 hover:text-[#FF6B35] underline">Reset via email</a>
                         </div>
 
                         {/* 2FA Section */}
-                        <div className="mt-4 pt-4 border-t border-[#E5E3DF]">
+                        <div className="mt-4 pt-4 border-t border-[#E5E3DF] dark:border-[#27272a]">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <p className="text-sm font-semibold text-[#1A1A1A]">Two-Factor Authentication</p>
+                                        <p className="text-sm font-semibold text-[#1A1A1A] dark:text-white">Two-Factor Authentication</p>
                                         {twoFAEnabled && (
                                             <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-semibold">Enabled</span>
                                         )}
@@ -493,15 +493,15 @@ export default function Settings() {
                     </div>
 
                     {/* Privacy / WHOIS */}
-                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5">
+                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5">
                         <div className="flex items-center gap-2 mb-4">
                             <Globe className="w-4 h-4 text-[#FF6B35]" />
-                            <h3 className="font-bold text-[#1A1A1A] text-sm">Privacy</h3>
+                            <h3 className="font-bold text-[#1A1A1A] dark:text-white text-sm">Privacy</h3>
                         </div>
 
                         <div className="flex items-start justify-between gap-4">
                             <div>
-                                <p className="text-sm font-semibold text-[#1A1A1A]">WHOIS Privacy</p>
+                                <p className="text-sm font-semibold text-[#1A1A1A] dark:text-white">WHOIS Privacy</p>
                                 <p className="text-xs text-[#888] mt-0.5 leading-relaxed">
                                     Hide your email from public domain WHOIS lookups.
                                 </p>
@@ -520,16 +520,16 @@ export default function Settings() {
                     </div>
 
                     {/* Official Channels */}
-                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5">
+                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5">
                         <div className="flex items-center gap-2 mb-3">
-                            <Shield className="w-4 h-4 text-[#1A1A1A]" />
-                            <h3 className="font-bold text-[#1A1A1A] text-sm">Official Contact Channels</h3>
+                            <Shield className="w-4 h-4 text-[#1A1A1A] dark:text-white" />
+                            <h3 className="font-bold text-[#1A1A1A] dark:text-white text-sm">Official Contact Channels</h3>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                             {["support@stackryze.com", "reportabuse@stackryze.com", "security@stackryze.com", "no-reply@stackryze.com"].map(e => (
-                                <div key={e} className="flex items-center gap-2 text-xs bg-white border border-[#E5E3DF] rounded-lg px-3 py-2">
+                                <div key={e} className="flex items-center gap-2 text-xs bg-white dark:bg-[#111] border border-[#E5E3DF] dark:border-[#27272a] rounded-lg px-3 py-2">
                                     <Mail className="w-3 h-3 text-[#888] shrink-0" />
-                                    <span className="font-mono text-[#1A1A1A] truncate">{e}</span>
+                                    <span className="font-mono text-[#1A1A1A] dark:text-white truncate">{e}</span>
                                 </div>
                             ))}
                         </div>
@@ -543,7 +543,7 @@ export default function Settings() {
             <Dialog open={show2FASetupModal} onOpenChange={(open) => { if (!open) reset2FAModal(); setShow2FASetupModal(open); }}>
                 <DialogContent className="bg-white max-w-md">
                     <DialogHeader>
-                        <DialogTitle className="flex items-center gap-2 text-lg font-bold text-[#1A1A1A]">
+                        <DialogTitle className="flex items-center gap-2 text-lg font-bold text-[#1A1A1A] dark:text-white">
                             <Smartphone className="w-5 h-5 text-[#FF6B35]" />
                             {twoFASetupStep === 3 ? "Backup Codes" : "Enable Two-Factor Authentication"}
                         </DialogTitle>
@@ -558,14 +558,14 @@ export default function Settings() {
                     {twoFASetupStep === 1 && (
                         <div className="space-y-4 mt-4">
                             <div>
-                                <label className="block text-xs font-semibold text-[#4A4A4A] mb-1">Password</label>
+                                <label className="block text-xs font-semibold text-[#4A4A4A] dark:text-slate-400 mb-1">Password</label>
                                 <div className="relative">
                                     <input
                                         type={show2FAPassword ? "text" : "password"}
                                         value={twoFAPassword}
                                         onChange={(e) => setTwoFAPassword(e.target.value)}
                                         placeholder="Enter your password"
-                                        className="w-full px-3 py-2.5 text-sm border-2 border-[#E5E3DF] focus:border-[#1A1A1A] rounded-lg outline-none pr-10"
+                                        className="w-full px-3 py-2.5 text-sm border-2 border-[#E5E3DF] dark:border-[#27272a] focus:border-[#1A1A1A] rounded-lg outline-none pr-10"
                                     />
                                     <button type="button" onClick={() => setShow2FAPassword(!show2FAPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888]">
                                         {show2FAPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -587,27 +587,27 @@ export default function Settings() {
                     {twoFASetupStep === 2 && (
                         <div className="space-y-4 mt-4">
                             <div className="flex flex-col items-center">
-                                <div className="bg-white p-3 rounded-xl border-2 border-[#E5E3DF] mb-3">
+                                <div className="bg-white p-3 rounded-xl border-2 border-[#E5E3DF] dark:border-[#27272a] mb-3">
                                     <img src={twoFAQRCode} alt="2FA QR Code" className="w-48 h-48" />
                                 </div>
                                 <p className="text-xs text-[#888] text-center mb-2">Scan with Google Authenticator, Authy, or similar</p>
                                 <div className="flex items-center gap-2 bg-[#F5F5F5] rounded-lg px-3 py-2 w-full">
-                                    <code className="text-xs font-mono text-[#1A1A1A] flex-1 break-all">{twoFASecret}</code>
-                                    <button onClick={() => copyToClipboard(twoFASecret)} className="shrink-0 text-[#888] hover:text-[#1A1A1A]">
+                                    <code className="text-xs font-mono text-[#1A1A1A] dark:text-white flex-1 break-all">{twoFASecret}</code>
+                                    <button onClick={() => copyToClipboard(twoFASecret)} className="shrink-0 text-[#888] hover:text-[#1A1A1A] dark:text-white">
                                         <Copy className="w-4 h-4" />
                                     </button>
                                 </div>
                                 <p className="text-[10px] text-[#aaa] mt-1">Can't scan? Enter this code manually.</p>
                             </div>
                             <div>
-                                <label className="block text-xs font-semibold text-[#4A4A4A] mb-1">Enter 6-digit code from your app</label>
+                                <label className="block text-xs font-semibold text-[#4A4A4A] dark:text-slate-400 mb-1">Enter 6-digit code from your app</label>
                                 <input
                                     type="text"
                                     value={twoFACode}
                                     onChange={(e) => setTwoFACode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                                     placeholder="000000"
                                     maxLength={6}
-                                    className="w-full px-3 py-2.5 text-sm border-2 border-[#E5E3DF] focus:border-[#1A1A1A] rounded-lg outline-none text-center font-mono text-lg tracking-widest"
+                                    className="w-full px-3 py-2.5 text-sm border-2 border-[#E5E3DF] dark:border-[#27272a] focus:border-[#1A1A1A] rounded-lg outline-none text-center font-mono text-lg tracking-widest"
                                 />
                             </div>
                             <button
@@ -631,20 +631,20 @@ export default function Settings() {
                             <div className="grid grid-cols-2 gap-2">
                                 {backupCodes.map((code, i) => (
                                     <div key={i} className="bg-[#F5F5F5] rounded-lg px-3 py-2 text-center">
-                                        <code className="text-sm font-mono font-bold text-[#1A1A1A]">{code}</code>
+                                        <code className="text-sm font-mono font-bold text-[#1A1A1A] dark:text-white">{code}</code>
                                     </div>
                                 ))}
                             </div>
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => copyToClipboard(backupCodes.join('\n'))}
-                                    className="flex-1 flex items-center justify-center gap-2 py-2.5 border-2 border-[#E5E3DF] text-[#4A4A4A] text-sm font-bold rounded-lg hover:border-[#1A1A1A] transition-colors"
+                                    className="flex-1 flex items-center justify-center gap-2 py-2.5 border-2 border-[#E5E3DF] dark:border-[#27272a] text-[#4A4A4A] dark:text-slate-400 text-sm font-bold rounded-lg hover:border-[#1A1A1A] transition-colors"
                                 >
                                     <Copy className="w-4 h-4" /> Copy
                                 </button>
                                 <button
                                     onClick={downloadBackupCodes}
-                                    className="flex-1 flex items-center justify-center gap-2 py-2.5 border-2 border-[#E5E3DF] text-[#4A4A4A] text-sm font-bold rounded-lg hover:border-[#1A1A1A] transition-colors"
+                                    className="flex-1 flex items-center justify-center gap-2 py-2.5 border-2 border-[#E5E3DF] dark:border-[#27272a] text-[#4A4A4A] dark:text-slate-400 text-sm font-bold rounded-lg hover:border-[#1A1A1A] transition-colors"
                                 >
                                     <Download className="w-4 h-4" /> Download
                                 </button>
@@ -664,7 +664,7 @@ export default function Settings() {
             <Dialog open={show2FADisableModal} onOpenChange={(open) => { setShow2FADisableModal(open); if (!open) { setDisablePassword(""); setDisableCode(""); setDisableError(""); } }}>
                 <DialogContent className="bg-white max-w-md">
                     <DialogHeader>
-                        <DialogTitle className="flex items-center gap-2 text-lg font-bold text-[#1A1A1A]">
+                        <DialogTitle className="flex items-center gap-2 text-lg font-bold text-[#1A1A1A] dark:text-white">
                             <AlertTriangle className="w-5 h-5 text-red-500" />
                             Disable Two-Factor Authentication
                         </DialogTitle>
@@ -684,14 +684,14 @@ export default function Settings() {
 
                     <div className="space-y-4 mt-4">
                         <div>
-                            <label className="block text-xs font-semibold text-[#4A4A4A] mb-1">Password</label>
+                            <label className="block text-xs font-semibold text-[#4A4A4A] dark:text-slate-400 mb-1">Password</label>
                             <div className="relative">
                                 <input
                                     type={showDisablePassword ? "text" : "password"}
                                     value={disablePassword}
                                     onChange={(e) => { setDisablePassword(e.target.value); setDisableError(""); }}
                                     placeholder="Enter your password"
-                                    className={`w-full px-3 py-2.5 text-sm border-2 ${disableError ? 'border-red-300' : 'border-[#E5E3DF]'} focus:border-[#1A1A1A] rounded-lg outline-none pr-10`}
+                                    className={`w-full px-3 py-2.5 text-sm border-2 ${disableError ? 'border-red-300' : 'border-[#E5E3DF] dark:border-[#27272a]'} focus:border-[#1A1A1A] rounded-lg outline-none pr-10`}
                                 />
                                 <button type="button" onClick={() => setShowDisablePassword(!showDisablePassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888]">
                                     {showDisablePassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -699,20 +699,20 @@ export default function Settings() {
                             </div>
                         </div>
                         <div>
-                            <label className="block text-xs font-semibold text-[#4A4A4A] mb-1">2FA Code or Backup Code</label>
+                            <label className="block text-xs font-semibold text-[#4A4A4A] dark:text-slate-400 mb-1">2FA Code or Backup Code</label>
                             <input
                                 type="text"
                                 value={disableCode}
                                 onChange={(e) => { setDisableCode(e.target.value.toUpperCase().slice(0, 8)); setDisableError(""); }}
                                 placeholder="Enter code"
                                 maxLength={8}
-                                className={`w-full px-3 py-2.5 text-sm border-2 ${disableError ? 'border-red-300' : 'border-[#E5E3DF]'} focus:border-[#1A1A1A] rounded-lg outline-none text-center font-mono tracking-widest`}
+                                className={`w-full px-3 py-2.5 text-sm border-2 ${disableError ? 'border-red-300' : 'border-[#E5E3DF] dark:border-[#27272a]'} focus:border-[#1A1A1A] rounded-lg outline-none text-center font-mono tracking-widest`}
                             />
                         </div>
                         <div className="flex gap-2">
                             <button
                                 onClick={() => { setShow2FADisableModal(false); setDisablePassword(""); setDisableCode(""); }}
-                                className="flex-1 py-2.5 border-2 border-[#E5E3DF] text-[#4A4A4A] text-sm font-bold rounded-lg hover:border-[#1A1A1A] transition-colors"
+                                className="flex-1 py-2.5 border-2 border-[#E5E3DF] dark:border-[#27272a] text-[#4A4A4A] dark:text-slate-400 text-sm font-bold rounded-lg hover:border-[#1A1A1A] transition-colors"
                             >
                                 Cancel
                             </button>

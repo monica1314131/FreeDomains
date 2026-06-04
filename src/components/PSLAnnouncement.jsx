@@ -51,7 +51,7 @@ export function PSLAnnouncement() {
             {/* ── Modal ── */}
             {showModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-                    <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto ring-1 ring-slate-200/80">
+                    <div className="bg-white dark:bg-[#111] rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto ring-1 ring-slate-200/80 dark:ring-[#27272a]">
 
                         {/* Header */}
                         <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-blue-600 p-6 rounded-t-2xl flex items-start justify-between">
@@ -85,15 +85,15 @@ export function PSLAnnouncement() {
                                 We've just launched{" "}
                                 <strong className="font-mono text-violet-600">.nx.kg</strong> — our newest domain extension,
                                 joining{" "}
-                                <strong className="font-mono text-slate-900">.indevs.in</strong>,{" "}
-                                <strong className="font-mono text-slate-900">.sryze.cc</strong>, and{" "}
-                                <strong className="font-mono text-slate-900">.ryzedns.org</strong>.
+                                <strong className="font-mono text-slate-900 dark:text-white">.indevs.in</strong>,{" "}
+                                <strong className="font-mono text-slate-900 dark:text-white">.sryze.cc</strong>, and{" "}
+                                <strong className="font-mono text-slate-900 dark:text-white">.ryzedns.org</strong>.
                                 All domains are <strong>free</strong>, instant, and come with full DNS management.
                             </p>
 
                             {/* Domain table */}
-                            <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                <div className="bg-slate-50 px-4 py-3 border-b border-slate-200">
+                            <div className="border border-slate-200 dark:border-[#27272a] rounded-xl overflow-hidden shadow-sm">
+                                <div className="bg-slate-50 px-4 py-3 border-b border-slate-200 dark:border-[#27272a]">
                                     <p className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                                         <Globe className="w-3.5 h-3.5" />
                                         Available Domain Extensions
@@ -103,8 +103,8 @@ export function PSLAnnouncement() {
                                     {DOMAINS.map(({ ext, badge, color, note }) => (
                                         <li key={ext} className="flex items-center justify-between px-4 py-3 gap-3 hover:bg-slate-50/50 transition-colors">
                                             <div>
-                                                <span className="font-mono font-bold text-slate-900 text-sm">{ext}</span>
-                                                <p className="text-xs text-slate-500 mt-0.5">{note}</p>
+                                                <span className="font-mono font-bold text-slate-900 dark:text-white text-sm">{ext}</span>
+                                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{note}</p>
                                             </div>
                                             <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full flex-shrink-0 ${color}`}>
                                                 {badge}
@@ -116,7 +116,7 @@ export function PSLAnnouncement() {
 
                             {/* How to unlock */}
                             <div className="bg-blue-50/50 border border-blue-100 rounded-xl p-5">
-                                <p className="text-xs font-bold text-slate-900 mb-4 flex items-center gap-1.5">
+                                <p className="text-xs font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-1.5">
                                     <Zap className="w-4 h-4 text-amber-500" />
                                     How to unlock .sryze.cc, .ryzedns.org & .nx.kg
                                 </p>
@@ -155,7 +155,7 @@ export function PSLAnnouncement() {
                                 <a
                                     href="/register"
                                     onClick={() => setShowModal(false)}
-                                    className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 border border-slate-200 bg-white text-slate-900 font-bold text-sm rounded-xl hover:bg-slate-50 transition-all shadow-sm hover:shadow-md"
+                                    className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 border border-slate-200 dark:border-[#27272a] bg-white text-slate-900 dark:text-white font-bold text-sm rounded-xl hover:bg-slate-50 transition-all shadow-sm hover:shadow-md"
                                 >
                                     <Github className="w-4 h-4" />
                                     Claim Your Domain →
@@ -164,8 +164,8 @@ export function PSLAnnouncement() {
 
                             {/* Support note */}
                             <div className="bg-slate-50 rounded-xl p-5 text-center">
-                                <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-                                    Stackryze costs <strong className="text-slate-900 font-semibold">~$20/month</strong> to run. I'm a student running this for free.
+                                <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+                                    Stackryze costs <strong className="text-slate-900 dark:text-white font-semibold">~$20/month</strong> to run. I'm a student running this for free.
                                     If it's helped you, a sponsorship means the world. ❤️
                                 </p>
                                 <a
@@ -183,10 +183,10 @@ export function PSLAnnouncement() {
                         </div>
 
                         {/* Footer */}
-                        <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t border-slate-100 p-4 rounded-b-2xl">
+                        <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t border-slate-100 dark:border-[#27272a] p-4 rounded-b-2xl">
                             <button
                                 onClick={() => setShowModal(false)}
-                                className="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 py-3 rounded-xl font-bold text-sm transition-all duration-200"
+                                className="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 dark:text-white py-3 rounded-xl font-bold text-sm transition-all duration-200"
                             >
                                 Got it, thanks! 🚀
                             </button>

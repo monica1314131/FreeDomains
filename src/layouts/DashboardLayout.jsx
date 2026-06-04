@@ -25,8 +25,8 @@ const SidebarItem = ({ to, icon: Icon, label, active, onClick }) => (
         to={to}
         onClick={onClick}
         className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-bold transition-all duration-200 text-sm ${active
-            ? "bg-[#1A1A1A] text-white shadow-md"
-            : "text-[#4A4A4A] hover:bg-[#FAFAFA] hover:text-[#1A1A1A]"
+            ? "bg-[#1A1A1A] dark:bg-slate-800 text-white shadow-md"
+            : "text-[#4A4A4A] dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1A1A1A] dark:hover:text-white"
             }`}
     >
         <Icon className="w-5 h-5 flex-shrink-0" />
@@ -103,7 +103,7 @@ export default function DashboardLayout() {
                     active={isActive("/whois")}
                     onClick={() => setSidebarOpen(false)}
                 />
-                <div className="pt-4 border-t border-[#E5E3DF] my-2"></div>
+                <div className="pt-4 border-t border-[#E5E3DF] dark:border-[#333] my-2"></div>
                 {/* Analytics placeholder */}
                 <div className="opacity-50 pointer-events-none">
                     <SidebarItem to="#" icon={BarChart3} label="Analytics (Soon)" active={false} />
@@ -131,7 +131,7 @@ export default function DashboardLayout() {
                 />
             </div>
 
-            <div className="p-6 border-t border-[#E5E3DF] bg-white">
+            <div className="p-6 border-t border-[#E5E3DF] dark:border-[#333] bg-white dark:bg-[#111]">
                 <button
                     onClick={() => {
                         setSidebarOpen(false);
@@ -148,13 +148,13 @@ export default function DashboardLayout() {
 
     return (
         <DashboardProvider>
-            <div className="min-h-screen bg-[#FAFAFA] font-sans flex flex-col">
+            <div className="min-h-screen bg-transparent font-sans flex flex-col">
                 <Header />
 
                 {/* Mobile Hamburger Button */}
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="md:hidden fixed top-[calc(5rem+var(--incident-height,0px))] left-4 z-50 p-2 bg-white border-2 border-[#E5E3DF] rounded-lg shadow-lg hover:bg-[#FAFAFA] transition-colors"
+                    className="md:hidden fixed top-[calc(5rem+var(--incident-height,0px))] left-4 z-50 p-2 bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-lg shadow-lg hover:bg-slate-100 dark:hover:bg-[#222] transition-colors"
                     aria-label="Toggle menu"
                 >
                     {sidebarOpen ? (
@@ -174,18 +174,18 @@ export default function DashboardLayout() {
 
                 <div className="flex flex-1 pt-[calc(4rem+var(--incident-height,0px))]">
                     {/* Desktop Sidebar */}
-                    <aside className="w-64 bg-white border-r-2 border-[#E5E3DF] hidden md:flex md:flex-col fixed top-[calc(4rem+var(--incident-height,0px))] h-[calc(100vh-4rem-var(--incident-height,0px))] z-10">
+                    <aside className="w-64 bg-white dark:bg-[#111] border-r-2 border-[#E5E3DF] dark:border-[#333] hidden md:flex md:flex-col fixed top-[calc(4rem+var(--incident-height,0px))] h-[calc(100vh-4rem-var(--incident-height,0px))] z-10">
                         <SidebarContent />
                     </aside>
 
                     {/* Mobile Sidebar */}
                     <aside
-                        className={`fixed top-[var(--incident-height,0px)] left-0 h-[calc(100vh-var(--incident-height,0px))] w-64 bg-white border-r-2 border-[#E5E3DF] z-40 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+                        className={`fixed top-[var(--incident-height,0px)] left-0 h-[calc(100vh-var(--incident-height,0px))] w-64 bg-white dark:bg-[#111] border-r-2 border-[#E5E3DF] dark:border-[#333] z-40 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
                             }`}
                     >
                         {/* Mobile sidebar header with close button */}
-                        <div className="flex items-center justify-between p-4 border-b-2 border-[#E5E3DF] mt-16">
-                            <h2 className="text-lg font-bold text-[#1A1A1A]">Menu</h2>
+                        <div className="flex items-center justify-between p-4 border-b-2 border-[#E5E3DF] dark:border-[#333] mt-16">
+                            <h2 className="text-lg font-bold text-[#1A1A1A] dark:text-white">Menu</h2>
                             <button
                                 onClick={() => setSidebarOpen(false)}
                                 className="p-2 hover:bg-[#FAFAFA] rounded-lg transition-colors"

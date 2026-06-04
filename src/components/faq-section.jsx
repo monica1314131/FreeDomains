@@ -36,10 +36,10 @@ export function FAQSection() {
       <div className="max-w-3xl mx-auto px-6 w-full">
 
         <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-slate-500 font-medium">
+          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">
             Everything you need to know about the product and billing.
           </p>
         </div>
@@ -48,13 +48,13 @@ export function FAQSection() {
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="border-b border-slate-200/80 last:border-b-0"
+              className="border-b border-slate-200 dark:border-[#27272a]/80 last:border-b-0"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 className="w-full py-6 flex items-center justify-between text-left group"
               >
-                <span className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors duration-300 pr-8">
+                <span className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors duration-300 pr-8">
                   {faq.question}
                 </span>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === idx ? 'bg-blue-50 text-blue-600' : 'bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600'}`}>
@@ -67,7 +67,7 @@ export function FAQSection() {
                 style={{ maxHeight: openIndex === idx ? "200px" : "0px", opacity: openIndex === idx ? 1 : 0 }}
               >
                 <div className="pb-6 pr-12">
-                  <p className="text-base text-slate-500 leading-relaxed font-medium">
+                  <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
                     {faq.answer}
                   </p>
                 </div>
@@ -78,7 +78,7 @@ export function FAQSection() {
 
         {/* CTA at bottom */}
         <div className="mt-20 text-center">
-          <p className="text-base text-slate-500 mb-6 font-medium">
+          <p className="text-base text-slate-500 dark:text-slate-400 mb-6 font-medium">
             Still have questions? We're on GitHub Discussions.
           </p>
           <a

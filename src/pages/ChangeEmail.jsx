@@ -108,13 +108,14 @@ export default function ChangeEmail() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans" style={{ paddingTop: 'var(--incident-height, 0px)' }}>
             <Link to="/" className="mb-8 flex items-center gap-3 group">
-                <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-12 w-auto" />
-                <span className="text-2xl font-bold text-[#1A1A1A] tracking-tight">Stackryze Domains</span>
+                <img src="/stackryze_logo_black.png" alt="Stackryze Logo" className="h-12 w-auto dark:hidden" />
+                        <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-12 w-auto hidden dark:block" />
+                <span className="text-2xl font-bold text-[#1A1A1A] dark:text-white tracking-tight">Stackryze Domains</span>
             </Link>
 
-            <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-8 md:p-10 rounded-xl">
+            <div className="w-full max-w-md bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] p-8 md:p-10 rounded-xl">
                 <Mail className="w-16 h-16 text-orange-500 mx-auto mb-4" />
-                <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2 text-center">Update Your Email</h1>
+                <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2 text-center">Update Your Email</h1>
 
                 {isRequired && (
                     <div className="mb-6 bg-amber-50 border border-amber-200 text-amber-900 p-4 rounded-lg flex gap-3 text-sm">

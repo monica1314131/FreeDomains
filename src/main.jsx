@@ -9,7 +9,7 @@ import { ErrorBoundary } from './ErrorBoundary';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme" attribute="class">
         <App />
       </ThemeProvider>
     </ErrorBoundary>

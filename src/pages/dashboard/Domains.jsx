@@ -193,7 +193,7 @@ export default function MyDomains() {
             )}
 
             {/* Domain Usage Indicator */}
-            <div className="mb-5 border-[1px] rounded-xl p-4 bg-white border-[#D1D5DB]">
+            <div className="mb-5 border-[1px] rounded-xl p-4 bg-white dark:bg-[#111] border-[#D1D5DB]">
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                         <Info className="w-4 h-4 text-[#6B7280]" />
@@ -240,7 +240,7 @@ export default function MyDomains() {
                                                 href="https://github.com/stackryze/FreeDomains"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1 bg-[#FFD23F] text-[#1A1A1A] px-3 py-1 rounded-md font-bold text-xs hover:bg-[#FFB800] transition-all"
+                                                className="inline-flex items-center gap-1 bg-[#FFD23F] text-[#1A1A1A] dark:text-white px-3 py-1 rounded-md font-bold text-xs hover:bg-[#FFB800] transition-all"
                                             >⭐ Star Repo ↗</a>
                                             <a
                                                 href={`${API_BASE}/github/kyc/start?domain=&root=indevs.in`}
@@ -322,7 +322,7 @@ export default function MyDomains() {
             </div>
 
 
-            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl overflow-hidden">
+            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl overflow-hidden">
                 <table className="w-full text-left border-collapse">
                     <thead className="bg-[#F9FAFB] border-b border-[#E5E7EB]">
                         <tr>
@@ -344,7 +344,7 @@ export default function MyDomains() {
                             <tr key={domain._id} className="group hover:bg-gray-50 transition-colors">
                                 <td className="p-3 md:p-4 overflow-hidden">
                                     <div className="flex flex-col min-w-0">
-                                        <div className="font-bold text-[#1A1A1A] text-sm sm:text-base flex items-center gap-1.5 max-w-full">
+                                        <div className="font-bold text-[#1A1A1A] dark:text-white text-sm sm:text-base flex items-center gap-1.5 max-w-full">
                                             <Globe className="w-3.5 h-3.5 flex-shrink-0" />
                                             <span className="break-words">
                                                 {domain.name}.{domain.domain || 'indevs.in'}
@@ -375,13 +375,13 @@ export default function MyDomains() {
                                     <div className="flex flex-col gap-1">
                                         {domain.recordType === 'NS' && domain.recordValue ? (
                                             domain.recordValue.split(',').map((ns, idx) => (
-                                                <span key={idx} className="text-[#4A4A4A] font-mono text-xs block truncate" title={ns.trim()}>
+                                                <span key={idx} className="text-[#4A4A4A] dark:text-slate-400 font-mono text-xs block truncate" title={ns.trim()}>
                                                     {ns.trim()}
                                                 </span>
                                             ))
                                         ) : domain.nameservers && domain.nameservers.length > 0 ? (
                                             domain.nameservers.map((ns, idx) => (
-                                                <span key={idx} className="text-[#4A4A4A] font-mono text-xs block truncate" title={ns}>
+                                                <span key={idx} className="text-[#4A4A4A] dark:text-slate-400 font-mono text-xs block truncate" title={ns}>
                                                     {ns}
                                                 </span>
                                             ))
@@ -393,7 +393,7 @@ export default function MyDomains() {
                                 <td className="p-3 md:p-4 whitespace-nowrap hidden md:table-cell">
                                     <div className="space-y-1.5">
                                         <StatusBadge status={domain.status} />
-                                        <div className="flex items-center gap-1.5 text-[11px] text-[#4A4A4A] font-medium">
+                                        <div className="flex items-center gap-1.5 text-[11px] text-[#4A4A4A] dark:text-slate-400 font-medium">
                                             <Clock className="w-3.5 h-3.5" />
                                             Expires: <span className="font-mono">{domain.expiresAt ? new Date(domain.expiresAt).toLocaleDateString('en-GB') : 'N/A'}</span>
                                         </div>
@@ -412,7 +412,7 @@ export default function MyDomains() {
                                         </button>
                                         <Link
                                             to={`/domains/${domain._id}`}
-                                            className="inline-flex items-center justify-center h-7 md:h-8 px-2.5 font-bold border border-[#D1D5DB] hover:border-black bg-white text-[#4A4A4A] hover:text-black hover:shadow-[3px_3px_0px_0px_rgba(0,0,0)] transition-all duration-200 text-[10px] md:text-xs whitespace-nowrap cursor-pointer rounded"
+                                            className="inline-flex items-center justify-center h-7 md:h-8 px-2.5 font-bold border border-[#D1D5DB] hover:border-black bg-white text-[#4A4A4A] dark:text-slate-400 hover:text-black hover:shadow-[3px_3px_0px_0px_rgba(0,0,0)] transition-all duration-200 text-[10px] md:text-xs whitespace-nowrap cursor-pointer rounded"
                                         >
                                             <SettingsIcon className="w-3 h-3 md:w-3.5 md:h-3.5 mr-1.5" />
                                             Manage
@@ -428,8 +428,8 @@ export default function MyDomains() {
                                         <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
                                             <Globe className="w-10 h-10 text-[#FF6B35]" />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">No Domains Yet</h3>
-                                        <p className="text-[#4A4A4A] mb-6 max-w-md mx-auto">
+                                        <h3 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-3">No Domains Yet</h3>
+                                        <p className="text-[#4A4A4A] dark:text-slate-400 mb-6 max-w-md mx-auto">
                                             You haven't registered any domains yet. Get started by claiming your first domain!
                                         </p>
                                         <Button
@@ -450,7 +450,7 @@ export default function MyDomains() {
             </div >
 
             <Dialog open={manageOpen} onOpenChange={setManageOpen}>
-                <DialogContent className="bg-white border-[1px] border-[#D1D5DB] max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] max-w-2xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle className="text-2xl font-bold flex items-center gap-2">
                             <Globe className="w-6 h-6" />
@@ -462,15 +462,15 @@ export default function MyDomains() {
                     <div className="py-4 space-y-8">
                         {/* Status Overview */}
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-lg p-4">
-                                <h5 className="font-bold text-[#1A1A1A] text-sm mb-1">HTTPS Security</h5>
+                            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-lg p-4">
+                                <h5 className="font-bold text-[#1A1A1A] dark:text-white text-sm mb-1">HTTPS Security</h5>
                                 <div className="flex items-center gap-2 text-xs font-medium text-[#1e8e3e]">
                                     <div className="w-2 h-2 rounded-full bg-[#1e8e3e] animate-pulse"></div>
                                     Active (Let's Encrypt)
                                 </div>
                             </div>
-                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-lg p-4">
-                                <h5 className="font-bold text-[#1A1A1A] text-sm mb-1">Expiration</h5>
+                            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-lg p-4">
+                                <h5 className="font-bold text-[#1A1A1A] dark:text-white text-sm mb-1">Expiration</h5>
                                 <div className="flex items-center gap-2 text-xs font-medium text-[#b06000]">
                                     <Clock className="w-3 h-3" />
                                     {selectedDomain?.expiresAt ? new Date(selectedDomain.expiresAt).toLocaleDateString('en-GB') : 'N/A'}
@@ -481,14 +481,14 @@ export default function MyDomains() {
                         {/* Nameserver Configuration */}
                         <div>
                             <div className="flex items-center justify-between mb-4">
-                                <h4 className="font-bold text-[#1A1A1A] flex items-center gap-2">
+                                <h4 className="font-bold text-[#1A1A1A] dark:text-white flex items-center gap-2">
                                     <SettingsIcon className="w-4 h-4" /> Nameserver Configuration
                                 </h4>
                                 <span className="text-[10px] uppercase font-bold px-2 py-0.5 bg-gray-100 rounded text-gray-500">Advanced</span>
                             </div>
 
                             <div className="border-[1px] border-[#D1D5DB] rounded-xl p-5 space-y-4 hover:border-[#aaa] transition-colors focus-within:border-[#1A1A1A]">
-                                <p className="text-sm text-[#4A4A4A]">
+                                <p className="text-sm text-[#4A4A4A] dark:text-slate-400">
                                     Custom nameservers allow you to manage your DNS records via external providers.
                                     Leave blank to use default <b>Stackryze</b> nameservers.
                                 </p>
@@ -528,11 +528,11 @@ export default function MyDomains() {
 
                         {/* Usage Log */}
                         <div>
-                            <h4 className="font-bold text-[#1A1A1A] mb-4 flex items-center gap-2">
+                            <h4 className="font-bold text-[#1A1A1A] dark:text-white mb-4 flex items-center gap-2">
                                 <RefreshCw className="w-4 h-4" /> Usage Logs
                             </h4>
-                            <div className="bg-white border rounded-lg border-[#E5E3DF] overflow-hidden">
-                                <div className="p-3 bg-gray-50 border-b border-[#E5E3DF]">
+                            <div className="bg-white dark:bg-[#111] border rounded-lg border-[#E5E3DF] dark:border-[#27272a] overflow-hidden">
+                                <div className="p-3 bg-gray-50 border-b border-[#E5E3DF] dark:border-[#27272a]">
                                     <div className="flex gap-2">
                                         <Input
                                             value={logInput}
@@ -554,8 +554,8 @@ export default function MyDomains() {
                                         <tbody className="divide-y divide-[#E5E3DF]">
                                             {selectedDomain?.logs?.map((log, i) => (
                                                 <tr key={i}>
-                                                    <td className="p-3 text-[#888] font-mono whitespace-nowrap align-top text-xs w-24 border-r border-dashed border-[#E5E3DF]">{log.date}</td>
-                                                    <td className="p-3 text-[#1A1A1A]">{log.text}</td>
+                                                    <td className="p-3 text-[#888] font-mono whitespace-nowrap align-top text-xs w-24 border-r border-dashed border-[#E5E3DF] dark:border-[#27272a]">{log.date}</td>
+                                                    <td className="p-3 text-[#1A1A1A] dark:text-white">{log.text}</td>
                                                 </tr>
                                             ))}
                                             {(!selectedDomain?.logs || selectedDomain.logs.length === 0) && (
@@ -588,7 +588,7 @@ export default function MyDomains() {
             </Dialog>
 
             <AlertDialog open={!!deleteId} onOpenChange={(open) => !open && setDeleteId(null)}>
-                <AlertDialogContent className="bg-white border-[1px] border-[#D1D5DB]">
+                <AlertDialogContent className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB]">
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>

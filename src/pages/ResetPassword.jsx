@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { subdomainAPI } from "../lib/api";
 import { useToast } from "../hooks/use-toast";
-import { Loader2, KeyRound } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import { Header } from "../components/header";
 
 export default function ResetPassword() {
     const [searchParams] = useSearchParams();
@@ -66,73 +67,89 @@ export default function ResetPassword() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans" style={{ paddingTop: 'var(--incident-height, 0px)' }}>
-            <Link to="/" className="mb-8 flex items-center gap-3 group">
-                <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-12 w-auto" />
-                <span className="text-2xl font-bold text-[#1A1A1A] tracking-tight">Stackryze Domains</span>
-            </Link>
-
-            <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-8 md:p-10 rounded-xl text-center">
-                <KeyRound className="w-16 h-16 text-orange-500 mx-auto mb-4" />
-                <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2">Enter Reset Code</h1>
-                <p className="text-[#4A4A4A] mb-6">
-                    We sent a 6-digit code to <strong>{email}</strong>
-                </p>
-
-                <form onSubmit={handleReset} className="space-y-4 text-left">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Reset Code</label>
-                        <input
-                            type="text"
-                            required
-                            maxLength={6}
-                            value={otp}
-                            onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                            className="w-full text-center text-2xl tracking-[0.5em] px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black font-mono"
-                            placeholder="000000"
-                        />
+        <>
+            <Header />
+            <div className="min-h-screen flex flex-col items-center justify-center bg-transparent px-4 py-10" style={{ paddingTop: 'calc(4rem + var(--incident-height, 0px) + 2.5rem)' }}>
+                <div className="w-full max-w-md bg-white dark:bg-transparent rounded-[24px] border border-slate-200/80 dark:border-white/5 p-8 md:p-10 relative overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/10"></div>
+                    
+                    {/* Header */}
+                    <div className="mb-8 flex items-start justify-between">
+                        <div>
+                            <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-1">Enter Reset Code</h1>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Sent to <strong>{email}</strong></p>
+                        </div>
+                        <Link to="/" className="flex items-center gap-2 shrink-0">
+                            <img src="/stackryze_logo_black.png" alt="Stackryze Logo" className="h-8 w-auto dark:hidden" />
+                            <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-8 w-auto hidden dark:block" />
+                        </Link>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
-                        <input
-                            type="password"
-                            required
-                            minLength={8}
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                            placeholder="Minimum 8 characters"
-                        />
+                    <form onSubmit={handleReset} className="space-y-5 text-left">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">Reset Code</label>
+                            <input
+                                type="text"
+                                required
+                                maxLength={6}
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                                className="w-full text-center text-2xl tracking-[0.5em] px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent font-mono transition-all dark:text-white dark:placeholder-slate-500"
+                                placeholder="000000"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">New Password</label>
+                            <input
+                                type="password"
+                                required
+                                minLength={8}
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500"
+                                placeholder="Minimum 8 characters"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">Confirm Password</label>
+                            <input
+                                type="password"
+                                required
+                                minLength={8}
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent transition-all dark:text-white dark:placeholder-slate-500"
+                                placeholder="Confirm password"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={isLoading || otp.length < 6}
+                            className="w-full bg-black text-white dark:bg-white dark:text-black py-3 rounded-xl font-medium text-sm hover:bg-neutral-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-sm disabled:opacity-50"
+                        >
+                            {isLoading ? <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> Resetting...</span> : "Reset Password"}
+                        </button>
+                    </form>
+
+                    <div className="mt-6 pt-5 border-t border-slate-100 dark:border-white/5 text-center">
+                        <p className="text-xs text-slate-500 mb-2">Code expires in 10 minutes.</p>
+                        <Link to="/login" className="text-sm font-medium text-slate-900 dark:text-white hover:underline">
+                            Back to Login
+                        </Link>
                     </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                        <input
-                            type="password"
-                            required
-                            minLength={8}
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                            placeholder="Confirm password"
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        disabled={isLoading || otp.length < 6}
-                        className="w-full bg-[#1A1A1A] text-white py-3 rounded-lg font-bold hover:shadow-[4px_4px_0px_0px_#FFD23F] transition-all duration-200 disabled:opacity-50"
-                    >
-                        {isLoading ? <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> Resetting...</span> : "Reset Password"}
-                    </button>
-                </form>
-
-                <div className="mt-6">
-                    <p className="text-xs text-gray-500">Code expires in 10 minutes.</p>
-                    <Link to="/login" className="text-sm text-gray-600 hover:underline mt-2 inline-block">Back to Login</Link>
                 </div>
+
+                <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+                    Need help? <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="text-slate-900 dark:text-white font-medium hover:underline">Join our Discord</a> or email <a href="mailto:support@stackryze.com" className="text-slate-900 dark:text-white font-medium hover:underline">support@stackryze.com</a>
+                </div>
+
+                <p className="mt-8 text-xs text-slate-400">
+                    &copy; 2026 Stackryze domains
+                </p>
             </div>
-        </div>
+        </>
     );
 }

@@ -27,7 +27,7 @@ export function IncidentAnnouncement() {
     return (
         <>
             {/* Clean Light Banner */}
-            <div ref={bannerRef} className="bg-white border-b border-gray-200 w-full fixed top-0 left-0 right-0 z-[100] shadow-sm">
+            <div ref={bannerRef} className="bg-white dark:bg-[#111] border-b border-gray-200 w-full fixed top-0 left-0 right-0 z-[100] shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between flex-wrap gap-3">
                         <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -35,7 +35,7 @@ export function IncidentAnnouncement() {
                                 <Rocket className="w-4 h-4 text-[#FF6B35]" />
                             </div>
                             <p className="text-sm font-medium text-gray-700">
-                                <span className="font-bold text-[#1A1A1A]">New: .nx.kg extension</span> is live!{" "}
+                                <span className="font-bold text-[#1A1A1A] dark:text-white">New: .nx.kg extension</span> is live!{" "}
                                 <button
                                     onClick={() => setShowModal(true)}
                                     className="font-bold ml-2 text-[#FF6B35] hover:text-[#d95526] hover:underline transition-colors"
@@ -67,7 +67,7 @@ export function IncidentAnnouncement() {
                                     <ShieldCheck className="w-6 h-6 text-[#FF6B35]" />
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-extrabold text-[#1A1A1A]">Expanded Domain Portfolio</h2>
+                                    <h2 className="text-xl font-extrabold text-[#1A1A1A] dark:text-white">Expanded Domain Portfolio</h2>
                                     <p className="text-sm text-gray-500 mt-1">
                                         We've added new extensions. Claim your domains today.
                                     </p>
@@ -112,7 +112,7 @@ export function IncidentAnnouncement() {
                                         <div key={i} className="flex items-center justify-between p-4 rounded-xl border border-gray-200 bg-[#F9FAFB]">
                                             <div className="flex items-center gap-3">
                                                 <Globe className="w-5 h-5 text-gray-400" />
-                                                <span className="font-mono font-bold text-[#1A1A1A] text-base">{item.ext}</span>
+                                                <span className="font-mono font-bold text-[#1A1A1A] dark:text-white text-base">{item.ext}</span>
                                             </div>
                                             {item.isNew ? (
                                                 <span className="px-2.5 py-1 text-xs font-bold bg-[#FFD23F]/20 text-[#d95526] rounded-full border border-[#FFD23F]/50">

@@ -84,11 +84,12 @@ export default function CompleteProfile() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans py-10" style={{ paddingTop: 'var(--incident-height, 0px)' }}>
             <Link to="/" className="mb-8 flex items-center gap-3 group">
-                <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-12 w-auto" />
-                <span className="text-2xl font-bold text-[#1A1A1A] tracking-tight">Stackryze Domains</span>
+                <img src="/stackryze_logo_black.png" alt="Stackryze Logo" className="h-12 w-auto dark:hidden" />
+                        <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-12 w-auto hidden dark:block" />
+                <span className="text-2xl font-bold text-[#1A1A1A] dark:text-white tracking-tight">Stackryze Domains</span>
             </Link>
 
-            <div className="w-full max-w-2xl bg-white border-2 border-[#E5E3DF] p-8 md:p-10 rounded-xl">
+            <div className="w-full max-w-2xl bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] p-8 md:p-10 rounded-xl">
                 <div className="mb-6 bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-lg flex gap-3 text-sm">
                     <AlertCircle className="w-5 h-5 flex-shrink-0 text-yellow-600" />
                     <div>
@@ -98,8 +99,8 @@ export default function CompleteProfile() {
                 </div>
 
                 <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2">Complete Your Profile</h1>
-                    <p className="text-[#4A4A4A]">Please provide the missing details below</p>
+                    <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Complete Your Profile</h1>
+                    <p className="text-[#4A4A4A] dark:text-slate-400">Please provide the missing details below</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">

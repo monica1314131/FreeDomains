@@ -70,7 +70,7 @@ export default function History() {
                 <button
                     onClick={fetchActivities}
                     disabled={loading}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white border-[1px] border-[#D1D5DB] text-[#374151] font-semibold text-sm rounded-lg hover:border-[#9CA3AF] transition-colors disabled:opacity-50 self-start sm:self-auto"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] text-[#374151] font-semibold text-sm rounded-lg hover:border-[#9CA3AF] transition-colors disabled:opacity-50 self-start sm:self-auto"
                 >
                     <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                     {loading ? 'Refreshing…' : 'Refresh'}
@@ -97,7 +97,7 @@ export default function History() {
 
             {/* Empty */}
             {!loading && !error && activities.length === 0 && (
-                <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-12 text-center">
+                <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-12 text-center">
                     <Clock className="w-10 h-10 text-[#D1D5DB] mx-auto mb-3" />
                     <p className="font-semibold text-[#374151] text-sm mb-1">No Activity Yet</p>
                     <p className="text-[#6B7280] text-sm">Your account history will appear here.</p>
@@ -107,7 +107,7 @@ export default function History() {
             {/* Table */}
             {!loading && !error && activities.length > 0 && (
                 <>
-                    <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl overflow-hidden">
+                    <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl overflow-hidden">
                         <table className="w-full">
                             <thead className="bg-[#F9FAFB] border-b border-[#E5E7EB]">
                                 <tr>

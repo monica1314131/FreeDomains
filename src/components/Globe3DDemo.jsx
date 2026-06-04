@@ -84,7 +84,7 @@ const sampleMarkers = [
 export function Globe3DDemoThird() {
   return (
     <div
-      className="relative mx-auto h-[450px] w-full max-w-4xl overflow-hidden rounded-xl bg-white border border-slate-200 shadow-xl flex flex-col items-center pt-8 md:pt-12">
+      className="relative mx-auto h-[450px] w-full max-w-4xl overflow-hidden rounded-xl bg-white dark:bg-[#111] border border-slate-200 dark:border-[#27272a] shadow-xl flex flex-col items-center pt-8 md:pt-12">
       <div className="relative z-10 text-center px-6">
         <h2
           className="mb-2 text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">

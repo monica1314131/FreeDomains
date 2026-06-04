@@ -85,12 +85,12 @@ export function Whois() {
                         <Globe className="w-3 h-3 text-[#FF6B35]" />
                         <span>Domain WHOIS</span>
                     </div>
-                    <h1 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A] mb-2 leading-tight">
+                    <h1 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A] dark:text-white mb-2 leading-tight">
                         WHOIS Lookup
                     </h1>
-                    <p className="text-sm text-[#4A4A4A] max-w-xl mx-auto">
+                    <p className="text-sm text-[#4A4A4A] dark:text-slate-400 max-w-xl mx-auto">
                         Look up registration details for any domain on the{" "}
-                        <span className="font-bold text-[#1A1A1A]">Stackryze</span> free
+                        <span className="font-bold text-[#1A1A1A] dark:text-white">Stackryze</span> free
                         domain registry.
                     </p>
                 </div>
@@ -99,13 +99,13 @@ export function Whois() {
             {/* Search Bar */}
             <section className="pb-8 px-6">
                 <div className="max-w-2xl mx-auto">
-                    <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3 bg-white p-2 border-2 border-[#E5E3DF] rounded-2xl shadow-sm focus-within:border-[#1A1A1A] focus-within:shadow-[3px_3px_0px_0px_#1A1A1A] transition-all">
+                    <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3 bg-white p-2 border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-2xl shadow-sm focus-within:border-[#1A1A1A] focus-within:shadow-[3px_3px_0px_0px_#1A1A1A] transition-all">
                         <input
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder="e.g. myproject.indevs.in or mybrand.sryze.cc or myapp.ryzedns.org or myapp.nx.kg"
-                            className="flex-1 px-4 py-3 text-[#1A1A1A] bg-transparent font-mono text-sm outline-none placeholder:text-[#aaa] w-full"
+                            className="flex-1 px-4 py-3 text-[#1A1A1A] dark:text-white bg-transparent font-mono text-sm outline-none placeholder:text-[#aaa] w-full"
                             disabled={loading}
                             autoFocus
                         />
@@ -125,11 +125,11 @@ export function Whois() {
 
                     {/* Supported domains hint */}
                     <p className="text-xs text-[#888] mt-2 text-center">
-                        Supported: <span className="font-mono font-bold text-[#4A4A4A]">.indevs.in</span> &amp;{" "}
-                        <span className="font-mono font-bold text-[#4A4A4A]">.sryze.cc</span> &amp;{" "}
-                        <span className="font-mono font-bold text-[#4A4A4A]">.ryzedns.org</span>
+                        Supported: <span className="font-mono font-bold text-[#4A4A4A] dark:text-slate-400">.indevs.in</span> &amp;{" "}
+                        <span className="font-mono font-bold text-[#4A4A4A] dark:text-slate-400">.sryze.cc</span> &amp;{" "}
+                        <span className="font-mono font-bold text-[#4A4A4A] dark:text-slate-400">.ryzedns.org</span>
                         <span className="text-[#888]">·</span>
-                        <span className="font-mono font-bold text-[#4A4A4A]">.nx.kg</span>
+                        <span className="font-mono font-bold text-[#4A4A4A] dark:text-slate-400">.nx.kg</span>
                     </p>
                 </div>
             </section>
@@ -152,12 +152,12 @@ export function Whois() {
                     <div className="max-w-2xl mx-auto">
                         {/* Result header */}
                         <div className="flex items-center justify-between mb-2">
-                            <h2 className="text-sm font-bold uppercase tracking-widest text-[#4A4A4A]">
+                            <h2 className="text-sm font-bold uppercase tracking-widest text-[#4A4A4A] dark:text-slate-400">
                                 WHOIS Record
                             </h2>
                             <button
                                 onClick={handleCopy}
-                                className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 bg-white border-2 border-[#E5E3DF] rounded-xl text-[#4A4A4A] hover:border-[#1A1A1A] hover:text-[#1A1A1A] transition-all"
+                                className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl text-[#4A4A4A] dark:text-slate-400 hover:border-[#1A1A1A] hover:text-[#1A1A1A] dark:text-white transition-all"
                             >
                                 {copied ? (
                                     <>
@@ -222,18 +222,18 @@ export function Whois() {
 
             {/* Terms of Use */}
             <section className="pb-10 px-6">
-                <div className="max-w-2xl mx-auto border-2 border-[#E5E3DF] bg-white rounded-2xl p-4">
+                <div className="max-w-2xl mx-auto border-2 border-[#E5E3DF] dark:border-[#27272a] bg-white dark:bg-[#111] rounded-2xl p-4">
                     <h3 className="text-xs font-bold uppercase tracking-widest text-[#888] mb-3">
                         Terms of Use
                     </h3>
-                    <p className="text-xs text-[#4A4A4A] leading-relaxed">
+                    <p className="text-xs text-[#4A4A4A] dark:text-slate-400 leading-relaxed">
                         Access to Stackryze FreeDomain WHOIS information is provided to assist
                         users in understanding the registration details of domain names managed
                         by the Stackryze registry. This data is made available for informational
                         purposes only. This service is intended solely for manual, query-based
                         access.
                     </p>
-                    <p className="text-xs text-[#4A4A4A] leading-relaxed mt-2">
+                    <p className="text-xs text-[#4A4A4A] dark:text-slate-400 leading-relaxed mt-2">
                         By accessing this data, you agree that it shall be used only for lawful
                         purposes and not to (a) enable or support unsolicited commercial
                         messages; or (b) automate high-volume queries. Use of this system for

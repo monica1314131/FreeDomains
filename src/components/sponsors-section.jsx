@@ -32,7 +32,7 @@ export function SponsorsSection() {
     ];
 
     return (
-        <section className="w-full pt-6 md:pt-10 pb-4 bg-white">
+        <section className="w-full pt-6 md:pt-10 pb-4 bg-transparent">
             <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
                 <div className="mb-8 text-center">
                     <h2 className="text-sm md:text-base font-semibold text-slate-400 tracking-wider uppercase">
@@ -53,7 +53,7 @@ export function SponsorsSection() {
                             <img
                                 src={sponsor.logo}
                                 alt={sponsor.name}
-                                className="h-full w-auto object-contain"
+                                className="h-full w-auto object-contain dark:brightness-0 dark:invert"
                             />
                         </a>
                     ))}

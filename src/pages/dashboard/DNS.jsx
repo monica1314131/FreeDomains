@@ -13,7 +13,7 @@ export default function DNSRecords() {
             </div>
 
             {/* Managed DNS CTA */}
-            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-lg bg-[#F9FAFB] border-[1px] border-[#E5E7EB] flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Server className="w-5 h-5 text-[#4B5563]" />
@@ -40,7 +40,7 @@ export default function DNSRecords() {
             </div>
 
             {/* How it works (Delegation model) */}
-            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-5">
+            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-5">
                 <div className="flex items-center gap-2 mb-4">
                     <Settings className="w-4 h-4 text-[#6B7280]" />
                     <h2 className="font-semibold text-sm text-[#111827]">Current DNS Model: Delegation</h2>
@@ -56,7 +56,7 @@ export default function DNSRecords() {
                     <p className="text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-3">How it works</p>
                     <ol className="space-y-2 text-sm text-[#4B5563] list-decimal list-inside">
                         <li>Register your subdomain on Indevs</li>
-                        <li>Provide your DNS provider's nameservers (e.g., <code className="bg-white border-[1px] border-[#E5E7EB] px-1.5 py-0.5 rounded font-mono text-xs">ns1.cloudflare.com</code>)</li>
+                        <li>Provide your DNS provider's nameservers (e.g., <code className="bg-white dark:bg-[#111] border-[1px] border-[#E5E7EB] px-1.5 py-0.5 rounded font-mono text-xs">ns1.cloudflare.com</code>)</li>
                         <li>We create an NS delegation record pointing to your nameservers</li>
                         <li>Manage all your DNS records (A, CNAME, TXT, etc.) at your DNS provider</li>
                     </ol>

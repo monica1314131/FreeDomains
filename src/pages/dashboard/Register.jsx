@@ -277,7 +277,7 @@ export default function Register() {
 
             {/* Domain Usage Indicator */}
             <div className={`mb-5 border-[1px] rounded-xl p-4 ${
-                !canRegisterMore ? 'bg-red-50 border-red-200' : 'bg-white border-[#D1D5DB]'
+                !canRegisterMore ? 'bg-red-50 border-red-200' : 'bg-white dark:bg-[#111] border-[#D1D5DB]'
             }`}>
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -345,7 +345,7 @@ export default function Register() {
                 {/* Domain Input */}
                 <div className="space-y-6">
                     <div>
-                        <label className="text-sm font-bold text-[#1A1A1A] mb-3 block flex items-center gap-2">
+                        <label className="text-sm font-bold text-[#1A1A1A] dark:text-white mb-3 block flex items-center gap-2">
                             <Globe className="w-4 h-4" />
                             Choose Your Domain Name
                         </label>
@@ -388,7 +388,7 @@ export default function Register() {
                                                 className={`w-full text-left px-4 py-3 font-mono font-bold text-sm transition-colors ${
                                                     d === rootDomain
                                                         ? 'bg-[#1A1A1A] text-white'
-                                                        : 'bg-white text-[#1A1A1A] hover:bg-gray-50'
+                                                        : 'bg-white text-[#1A1A1A] dark:text-white hover:bg-gray-50'
                                                 }`}
                                             >
                                                 .{d}
@@ -442,20 +442,20 @@ export default function Register() {
 
                         const isSryzeOrRyzeDns = rootDomain === 'sryze.cc' || rootDomain === 'ryzedns.org' || rootDomain === 'nx.kg';
                         return (
-                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-6">
+                            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-6">
                                 <div className="flex items-start gap-4">
                                     <div className="w-10 h-10 rounded-full bg-[#FFD23F]/20 border-2 border-[#FFD23F] flex items-center justify-center flex-shrink-0 mt-0.5">
                                         <Shield className="w-5 h-5 text-[#FFD23F]" />
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className="text-[#1A1A1A] font-extrabold text-lg mb-1">
+                                        <h3 className="text-[#1A1A1A] dark:text-white font-extrabold text-lg mb-1">
                                             GitHub Verification Required
                                         </h3>
-                                        <p className="text-[#4A4A4A] text-sm mb-1">
+                                        <p className="text-[#4A4A4A] dark:text-slate-400 text-sm mb-1">
                                             You must verify your GitHub account to register domains.
                                         </p>
                                         <p className="text-[#6B6B6B] text-xs mb-4">
-                                            Verification helps us prevent abuse and keeps these domains <span className="font-semibold text-[#1A1A1A]">free for everyone</span>.
+                                            Verification helps us prevent abuse and keeps these domains <span className="font-semibold text-[#1A1A1A] dark:text-white">free for everyone</span>.
                                         </p>
                                         <ol className="text-[#6B6B6B] text-xs space-y-1 mb-5 ml-1">
                                             <li>1. Click "Verify with GitHub" below to authenticate</li>
@@ -507,7 +507,7 @@ export default function Register() {
                             </div>
 
                             {/* Terms Acceptance */}
-                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-6">
+                            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-6">
                                 <div className="flex items-start gap-4">
                                     <Checkbox
                                         id="tos"
@@ -515,7 +515,7 @@ export default function Register() {
                                         onCheckedChange={(checked) => setAcceptedToS(checked)}
                                         className="mt-1 h-5 w-5"
                                     />
-                                    <label htmlFor="tos" className="text-sm text-[#1A1A1A] leading-relaxed cursor-pointer flex-1">
+                                    <label htmlFor="tos" className="text-sm text-[#1A1A1A] dark:text-white leading-relaxed cursor-pointer flex-1">
                                         I have read and agree to the{" "}
                                         <a href="/terms" target="_blank" className="font-bold underline hover:text-[#FF6B35] transition-colors">
                                             Terms of Service
@@ -554,7 +554,7 @@ export default function Register() {
                             !isAvailable || !acceptedToS || !captchaToken || isSubmitting || !canRegisterMore ||
                             !user?.githubVerified
                         }
-                        className="w-full bg-[#FFD23F] text-[#1A1A1A] font-extrabold py-4 text-lg border-2 border-black rounded-xl hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:translate-x-0 disabled:translate-y-0 cursor-pointer flex items-center justify-center"
+                        className="w-full bg-[#FFD23F] text-[#1A1A1A] dark:text-white font-extrabold py-4 text-lg border-2 border-black rounded-xl hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:translate-x-0 disabled:translate-y-0 cursor-pointer flex items-center justify-center"
                     >
                         {isSubmitting ? (
                             <>

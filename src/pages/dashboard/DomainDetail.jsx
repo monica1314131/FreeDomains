@@ -131,8 +131,8 @@ export default function DomainDetail() {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center py-20">
                     <Loader2 className="w-16 h-16 text-gray-300 mx-auto mb-4 animate-spin" />
-                    <h2 className="text-2xl font-bold text-[#1A1A1A] mb-2">Loading Domain...</h2>
-                    <p className="text-[#4A4A4A]">Please wait while we fetch your domain details.</p>
+                    <h2 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Loading Domain...</h2>
+                    <p className="text-[#4A4A4A] dark:text-slate-400">Please wait while we fetch your domain details.</p>
                 </div>
             </div>
         );
@@ -144,8 +144,8 @@ export default function DomainDetail() {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center py-20">
                     <AlertCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                    <h2 className="text-2xl font-bold text-[#1A1A1A] mb-2">Domain Not Found</h2>
-                    <p className="text-[#4A4A4A] mb-6">This domain doesn't exist or you don't have access to it.</p>
+                    <h2 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Domain Not Found</h2>
+                    <p className="text-[#4A4A4A] dark:text-slate-400 mb-6">This domain doesn't exist or you don't have access to it.</p>
                     <Link
                         to="/my-domains"
                         className="inline-flex items-center justify-center px-4 py-2 border border-black bg-white text-black text-sm hover:shadow-[3px_3px_0px_0px_rgba(0,0,0)] transition duration-200 cursor-pointer font-semibold rounded-lg"
@@ -196,7 +196,7 @@ export default function DomainDetail() {
 
             {/* Status Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 space-y-2">
+                <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 space-y-2">
                     <div className="flex justify-between items-center">
                         <p className="text-[10px] font-bold text-[#888] uppercase">Status</p>
                         <p className={`text-base font-extrabold ${domain.status === 'Active' ? 'text-[#1e8e3e]' :
@@ -212,25 +212,25 @@ export default function DomainDetail() {
                         </p>
                     )}
 
-                    <div className="border-t border-[#E5E3DF] pt-2 flex justify-between items-center">
+                    <div className="border-t border-[#E5E3DF] dark:border-[#27272a] pt-2 flex justify-between items-center">
                         <p className="text-[10px] font-bold text-[#888] uppercase">Registered On</p>
-                        <p className="text-sm text-[#1A1A1A] font-medium">
+                        <p className="text-sm text-[#1A1A1A] dark:text-white font-medium">
                             {domain.createdAt ? new Date(domain.createdAt).toLocaleDateString('en-GB') : 'N/A'}
                         </p>
                     </div>
 
-                    <div className="border-t border-[#E5E3DF] pt-2 flex justify-between items-center">
+                    <div className="border-t border-[#E5E3DF] dark:border-[#27272a] pt-2 flex justify-between items-center">
                         <p className="text-[10px] font-bold text-[#888] uppercase">Registration Period</p>
-                        <p className="text-sm text-[#1A1A1A] font-medium">1 Year (Fixed)</p>
+                        <p className="text-sm text-[#1A1A1A] dark:text-white font-medium">1 Year (Fixed)</p>
                     </div>
                 </div>
 
                 {/* Right Column - Expiry Info */}
-                <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 flex flex-col justify-center">
+                <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 flex flex-col justify-center">
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-[10px] font-bold text-[#888] uppercase">Expires On</p>
-                            <p className="text-xl font-extrabold text-[#1A1A1A]">
+                            <p className="text-xl font-extrabold text-[#1A1A1A] dark:text-white">
                                 {domain.expiresAt ? new Date(domain.expiresAt).toLocaleDateString('en-GB') : 'Never'}
                             </p>
                         </div>
@@ -316,12 +316,12 @@ export default function DomainDetail() {
             )}
 
             {/* DNS Configuration */}
-            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 sm:p-5 md:p-6 mb-4">
+            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 sm:p-5 md:p-6 mb-4">
                 <div className="flex flex-col gap-2 mb-4">
                     <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2 min-w-0 flex-1">
-                            <Globe className="w-5 h-5 text-[#1A1A1A] flex-shrink-0" />
-                            <h2 className="text-lg sm:text-xl font-bold text-[#1A1A1A] truncate">DNS Configuration</h2>
+                            <Globe className="w-5 h-5 text-[#1A1A1A] dark:text-white flex-shrink-0" />
+                            <h2 className="text-lg sm:text-xl font-bold text-[#1A1A1A] dark:text-white truncate">DNS Configuration</h2>
                         </div>
                         {domain.status !== 'Pending Deletion' && domain.status !== 'Suspended' && (
                             <button
@@ -360,9 +360,9 @@ export default function DomainDetail() {
                 </div>
 
                 <div className="space-y-6">
-                    <div className={`border rounded-lg p-6 transition-colors ${isEditingDNS ? 'bg-blue-50 border-blue-200' : 'bg-white border-[#E5E3DF]'}`}>
-                        <h3 className="font-bold text-[#1A1A1A] mb-2">Nameservers (NS Records)</h3>
-                        <p className="text-sm text-[#4A4A4A] mb-4">
+                    <div className={`border rounded-lg p-6 transition-colors ${isEditingDNS ? 'bg-blue-50 border-blue-200' : 'bg-white dark:bg-[#111] border-[#E5E3DF] dark:border-[#27272a]'}`}>
+                        <h3 className="font-bold text-[#1A1A1A] dark:text-white mb-2">Nameservers (NS Records)</h3>
+                        <p className="text-sm text-[#4A4A4A] dark:text-slate-400 mb-4">
                             Custom nameservers allow you to manage your DNS records via external providers like Cloudflare or Route53.
                             NS1 and NS2 are required. You can add up to {MAX_NS} nameservers total.
                         </p>
@@ -385,7 +385,7 @@ export default function DomainDetail() {
                                                 placeholder={`e.g. ns${idx + 1}.example.com`}
                                                 className={`font-mono transition-all ${
                                                     isEditingDNS
-                                                        ? 'bg-white border-blue-300 focus:border-blue-500'
+                                                        ? 'bg-white dark:bg-[#111] border-blue-300 focus:border-blue-500'
                                                         : 'bg-gray-100 cursor-not-allowed'
                                                 }`}
                                                 readOnly={!isEditingDNS}
@@ -487,14 +487,14 @@ export default function DomainDetail() {
             </div>
 
             {/* DNS Verification Section */}
-            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 sm:p-5 md:p-6 mb-4">
+            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 sm:p-5 md:p-6 mb-4">
                 <div className="flex items-center gap-2 mb-4">
                     <KeyRound className="w-5 h-5 text-[#F59E0B]" />
-                    <h2 className="text-lg sm:text-xl font-bold text-[#1A1A1A]">DNS Verification</h2>
+                    <h2 className="text-lg sm:text-xl font-bold text-[#1A1A1A] dark:text-white">DNS Verification</h2>
                 </div>
                 
                 <div className="bg-amber-50 border-[1px] border-amber-200 rounded-lg p-4 space-y-3">
-                    <p className="text-xs sm:text-sm text-[#4A4A4A]">
+                    <p className="text-xs sm:text-sm text-[#4A4A4A] dark:text-slate-400">
                         If you want to manage this domain's DNS records on <a href="https://dns.stackryze.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">dns.stackryze.com</a>, 
                         you need to verify ownership. Add the zone on the DNS platform, copy the verification code it gives you, and paste it here.
                     </p>
@@ -506,7 +506,7 @@ export default function DomainDetail() {
                                     <CheckCircle className="w-4 h-4 text-green-600" />
                                     <span className="text-sm font-bold text-green-800">Ownership verified ✅</span>
                                 </div>
-                                <p className="text-xs text-[#4A4A4A]">
+                                <p className="text-xs text-[#4A4A4A] dark:text-slate-400">
                                     This domain is verified on dns.stackryze.com. You can manage its DNS records there.
                                 </p>
                             </div>
@@ -516,7 +516,7 @@ export default function DomainDetail() {
                                     <CheckCircle className="w-4 h-4 text-amber-500" />
                                     <span className="text-sm font-bold text-amber-800">Code set — awaiting verification</span>
                                 </div>
-                                <p className="text-xs text-[#4A4A4A]">
+                                <p className="text-xs text-[#4A4A4A] dark:text-slate-400">
                                     Now go to <strong>dns.stackryze.com</strong> and click "Verify Ownership" to complete.
                                 </p>
                             </div>
@@ -541,7 +541,7 @@ export default function DomainDetail() {
 
             {/* DNS Verification Dialog */}
             <AlertDialog open={dnsVerifyOpen} onOpenChange={setDnsVerifyOpen}>
-                <AlertDialogContent className="bg-white border-[1px] border-[#D1D5DB]">
+                <AlertDialogContent className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB]">
                     <AlertDialogHeader>
                         <AlertDialogTitle className="flex items-center gap-2">
                             <KeyRound className="w-5 h-5 text-[#F59E0B]" />
@@ -587,7 +587,7 @@ export default function DomainDetail() {
             {/* Danger Zone - Only show if not already pending deletion or suspended */}
             {
                 domain.status !== 'Pending Deletion' && (
-                    <div className="bg-white border-[1px] border-red-200 rounded-xl p-4 sm:p-5 md:p-6 mb-6">
+                    <div className="bg-white dark:bg-[#111] border-[1px] border-red-200 rounded-xl p-4 sm:p-5 md:p-6 mb-6">
                         <div className="flex items-center gap-2 mb-4">
                             <AlertCircle className="w-5 h-5 text-red-500" />
                             <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wider">Danger Zone</h2>
@@ -613,7 +613,7 @@ export default function DomainDetail() {
 
             {/* Delete Confirmation Dialog */}
             <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-                <AlertDialogContent className="bg-white border-[1px] border-[#D1D5DB]">
+                <AlertDialogContent className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB]">
                     <AlertDialogHeader>
                         <AlertDialogTitle>Delete Domain?</AlertDialogTitle>
                         <AlertDialogDescription>

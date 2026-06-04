@@ -40,7 +40,7 @@ export function LiveStatsSection() {
   return (
     <div className="w-full relative flex flex-col justify-center h-full">
       <div className="mb-8 md:mb-12 space-y-2 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           Trusted by developers <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">worldwide</span>
         </h2>
       </div>
@@ -49,16 +49,16 @@ export function LiveStatsSection() {
         {statItems.map((stat, idx) => (
           <div
             key={idx}
-            className="group bg-white border border-slate-200/50 rounded-2xl md:rounded-[2rem] px-4 py-3 md:px-5 md:py-3.5 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-2 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out cursor-default ring-1 ring-slate-900/5 hover:ring-slate-900/10"
+            className="group bg-white dark:bg-[#2A2A2A] border border-slate-200 dark:border-[#444]/50 rounded-2xl md:rounded-[2rem] px-4 py-3 md:px-5 md:py-3.5 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-2 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out cursor-default ring-1 ring-slate-900/5 hover:ring-slate-900/10"
           >
             <div className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full ${stat.iconBg} shadow-sm transition-transform duration-500 ease-out group-hover:scale-110 shrink-0`}>
               <stat.icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2.5} />
             </div>
             <div className="flex flex-col md:flex-row items-center md:items-baseline gap-0.5 md:gap-1.5">
-              <span className="text-lg md:text-xl font-black text-slate-900 tracking-tight leading-none">
+              <span className="text-lg md:text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
                 {stat.value}
               </span>
-              <span className="text-slate-500 text-[10px] md:text-xs font-semibold uppercase tracking-wider">
+              <span className="text-slate-500 dark:text-slate-400 text-[10px] md:text-xs font-semibold uppercase tracking-wider">
                 {stat.label}
               </span>
             </div>

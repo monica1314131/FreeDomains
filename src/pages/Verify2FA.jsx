@@ -68,13 +68,13 @@ export default function Verify2FA() {
     return (
         <div className="min-h-screen bg-[#FFFCF5] flex items-center justify-center p-4">
             <div className="w-full max-w-md">
-                <div className="bg-white border-2 border-[#E5E3DF] rounded-2xl p-8 shadow-[4px_4px_0px_0px_#1A1A1A]">
+                <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-2xl p-8 shadow-[4px_4px_0px_0px_#1A1A1A]">
                     {/* Header */}
                     <div className="text-center mb-6">
-                        <div className="w-16 h-16 bg-[#FFF8F0] rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#E5E3DF]">
+                        <div className="w-16 h-16 bg-[#FFF8F0] rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#E5E3DF] dark:border-[#27272a]">
                             <Shield className="w-8 h-8 text-[#FF6B35]" />
                         </div>
-                        <h1 className="text-2xl font-bold text-[#1A1A1A] mb-2">Two-Factor Authentication</h1>
+                        <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Two-Factor Authentication</h1>
                         <p className="text-sm text-[#888]">
                             Enter the code from your authenticator app
                         </p>
@@ -94,7 +94,7 @@ export default function Verify2FA() {
                     {/* Form */}
                     <form onSubmit={handleVerify} className="space-y-5">
                         <div>
-                            <label className="block text-xs font-bold text-[#4A4A4A] mb-2 uppercase tracking-wider">
+                            <label className="block text-xs font-bold text-[#4A4A4A] dark:text-slate-400 mb-2 uppercase tracking-wider">
                                 Verification Code
                             </label>
                             <input
@@ -104,7 +104,7 @@ export default function Verify2FA() {
                                 placeholder="Enter 6-digit code or backup code"
                                 maxLength={8}
                                 autoFocus
-                                className={`w-full px-4 py-3 text-lg border-2 ${error ? 'border-red-300' : 'border-[#E5E3DF]'} focus:border-[#1A1A1A] rounded-xl outline-none text-center font-mono tracking-[0.5em] transition-colors`}
+                                className={`w-full px-4 py-3 text-lg border-2 ${error ? 'border-red-300' : 'border-[#E5E3DF] dark:border-[#27272a]'} focus:border-[#1A1A1A] rounded-xl outline-none text-center font-mono tracking-[0.5em] transition-colors`}
                             />
                             <p className="text-xs text-[#888] mt-2 text-center">
                                 You can also use a backup code
@@ -129,7 +129,7 @@ export default function Verify2FA() {
                     <div className="mt-6 text-center">
                         <button
                             onClick={() => navigate("/login")}
-                            className="inline-flex items-center gap-2 text-sm text-[#888] hover:text-[#1A1A1A] transition-colors"
+                            className="inline-flex items-center gap-2 text-sm text-[#888] hover:text-[#1A1A1A] dark:text-white transition-colors"
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Back to login

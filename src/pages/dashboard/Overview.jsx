@@ -49,7 +49,7 @@ export default function Overview() {
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
                 <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B35] mb-1">Dashboard</p>
-                    <h1 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A] leading-tight">
+                    <h1 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A] dark:text-white leading-tight">
                         {greeting()}, {user?.name?.split(" ")[0] || "there"} 👋
                     </h1>
                     <p className="text-sm text-[#888] mt-1">
@@ -181,7 +181,7 @@ export default function Overview() {
             {recentDomains.length > 0 && (
                 <div>
                     <div className="flex items-center justify-between mb-3">
-                        <h2 className="text-sm font-bold uppercase tracking-widest text-[#4A4A4A]">Recent Domains</h2>
+                        <h2 className="text-sm font-bold uppercase tracking-widest text-[#4A4A4A] dark:text-slate-400">Recent Domains</h2>
                         <Link to="/my-domains" className="text-xs font-bold text-[#888] hover:text-[#FF6B35] flex items-center gap-1 transition-colors">
                             View all <ArrowRight className="w-3 h-3" />
                         </Link>
@@ -191,7 +191,7 @@ export default function Overview() {
                             <Link
                                 key={d._id}
                                 to={`/domains/${d._id}`}
-                                className="flex items-center justify-between px-4 py-3 bg-white border-[1px] border-[#D1D5DB] rounded-xl hover:border-[#9CA3AF] transition-colors group"
+                                className="flex items-center justify-between px-4 py-3 bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl hover:border-[#9CA3AF] transition-colors group"
                             >
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="w-8 h-8 rounded-lg bg-[#F9FAFB] border-[1px] border-[#E5E7EB] flex items-center justify-center flex-shrink-0">
@@ -217,8 +217,8 @@ export default function Overview() {
                     <div className="w-14 h-14 bg-[#FF6B35] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_0px_#1A1A1A]">
                         <Globe className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-xl font-extrabold text-[#1A1A1A] mb-2">Register your first domain 🎉</h3>
-                    <p className="text-sm text-[#4A4A4A] mb-5 max-w-sm mx-auto">
+                    <h3 className="text-xl font-extrabold text-[#1A1A1A] dark:text-white mb-2">Register your first domain 🎉</h3>
+                    <p className="text-sm text-[#4A4A4A] dark:text-slate-400 mb-5 max-w-sm mx-auto">
                         It's free, instant, and takes under a minute. Get a personal <strong>.indevs.in</strong>, <strong>.sryze.cc</strong>, <strong>.ryzedns.org</strong>, or <strong>.nx.kg</strong> subdomain.
                     </p>
                     <Link
@@ -238,7 +238,7 @@ function StatCard({ value, label, sub, accent, dot, to, warn }) {
     return (
         <Link
             to={to}
-            className={`bg-white border-[1px] border-[#D1D5DB] rounded-2xl p-4 md:p-5 hover:border-[#9CA3AF] transition-colors group ${warn ? "border-amber-300" : ""}`}
+            className={`bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-2xl p-4 md:p-5 hover:border-[#9CA3AF] transition-colors group ${warn ? "border-amber-300" : ""}`}
         >
             <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
@@ -257,7 +257,7 @@ function ActionCard({ to, icon: Icon, iconBg, iconColor, title, desc }) {
     return (
         <Link
             to={to}
-            className="bg-white border-[1px] border-[#D1D5DB] rounded-2xl p-5 flex items-center gap-4 hover:border-[#9CA3AF] transition-colors group"
+            className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-2xl p-5 flex items-center gap-4 hover:border-[#9CA3AF] transition-colors group"
         >
             <div className={`w-12 h-12 rounded-xl ${iconBg} flex items-center justify-center flex-shrink-0`}>
                 <Icon className={`w-6 h-6 ${iconColor}`} />

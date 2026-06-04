@@ -9,20 +9,20 @@ const mapMarkers = [
 
 export function NetworkMapSection() {
   return (
-    <section className="w-full py-10 md:py-16 bg-white relative border-b border-slate-100 overflow-hidden">
+    <section className="w-full py-10 md:py-16 bg-white relative border-b border-slate-100 dark:border-[#27272a] overflow-hidden">
       <div className="w-full px-4 sm:px-6 md:px-12 lg:px-16 mb-12 max-w-[1600px] mx-auto relative z-10">
         
         <div className="mb-12 space-y-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Globally Distributed Name Servers
           </h2>
-          <p className="max-w-2xl mx-auto text-base md:text-lg text-slate-500 leading-relaxed font-medium">
+          <p className="max-w-2xl mx-auto text-base md:text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
             Lightning-fast resolution from edge nodes worldwide, ensuring your domain resolves instantly anywhere on the planet.
           </p>
         </div>
 
         <div className="w-full max-w-5xl mx-auto">
-          <div className="w-full relative rounded-2xl border border-slate-200/60 bg-slate-50/50 p-6 sm:p-12 shadow-xl ring-1 ring-black/[0.02]">
+          <div className="w-full relative rounded-2xl border border-slate-200 dark:border-[#27272a]/60 bg-slate-50/50 p-6 sm:p-12 shadow-xl ring-1 ring-black/[0.02]">
             <DottedMap
               markers={mapMarkers}
               markerColor="#10B981"

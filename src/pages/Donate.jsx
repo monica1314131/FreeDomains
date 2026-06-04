@@ -52,7 +52,7 @@ export function Donate() {
                     {/* Secondary ways to help */}
                     <div className="grid grid-cols-2 gap-3">
                         {ways.map(({ icon: Icon, label, href, desc }) => {
-                            const cls = "bg-white border-[1px] border-[#D1D5DB] rounded-xl p-4 flex flex-col gap-2 hover:border-[#9CA3AF] transition-colors text-left";
+                            const cls = "bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-4 flex flex-col gap-2 hover:border-[#9CA3AF] transition-colors text-left";
                             const inner = (
                                 <>
                                     <div className="w-8 h-8 rounded-lg bg-[#F9FAFB] border-[1px] border-[#E5E7EB] flex items-center justify-center">

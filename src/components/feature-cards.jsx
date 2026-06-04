@@ -33,21 +33,21 @@ export function FeatureCards() {
   ];
 
   return (
-    <section className="w-full bg-[#FAFAFA] relative min-h-screen flex items-center">
+    <section className="w-full bg-transparent relative min-h-screen flex items-center">
       <div className="w-full px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto py-16 md:py-20">
 
         <div className="mb-16 md:mb-20 space-y-6 text-center max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
             The price of admission <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">is zero.</span>
           </h2>
 
-          <div className="space-y-4 text-base md:text-lg text-slate-500 leading-relaxed font-medium">
+          <div className="space-y-4 text-base md:text-lg text-slate-500 dark:text-white leading-relaxed font-medium">
             <p>
               For too long, gatekeepers have put a price tag on your identity. We believe your first
               idea, your tenth side project, and your portfolio deserve a home, not a monthly bill.
             </p>
             <p>
-              <span className="font-semibold text-slate-900">Stackryze Domains</span> is our contribution to the chaotic, beautiful mess that is the open web.
+              <span className="font-semibold text-slate-900 dark:text-white">Stackryze Domains</span> is our contribution to the chaotic, beautiful mess that is the open web.
               Claim your domain, point it anywhere, and deploy. No strings attached.
             </p>
           </div>
@@ -57,11 +57,11 @@ export function FeatureCards() {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white border border-slate-200/50 rounded-[2rem] p-8 h-full shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col justify-between group ring-1 ring-slate-900/5 hover:ring-slate-900/10"
+              className="bg-white dark:bg-[#2A2A2A] border border-slate-200 dark:border-[#444]/50 rounded-[2rem] p-8 h-full shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col justify-between group ring-1 ring-slate-900/5 hover:ring-slate-900/10"
             >
               <div>
                 <div className="flex items-start justify-between mb-8">
-                  <span className="text-4xl lg:text-5xl font-black text-slate-100 transition-colors duration-500 group-hover:text-slate-200">
+                  <span className="text-4xl lg:text-5xl font-black text-slate-100 dark:text-white/20 transition-colors duration-500 group-hover:text-slate-200 dark:group-hover:text-white/40">
                     {feature.number}
                   </span>
                   <div
@@ -72,10 +72,10 @@ export function FeatureCards() {
                   </div>
                 </div>
 
-                <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-4 tracking-tight">
+                <h3 className="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                   {feature.title}
                 </h3>
-                <p className="text-slate-500 text-base leading-relaxed font-medium">
+                <p className="text-slate-500 dark:text-white text-base leading-relaxed font-medium">
                   {feature.description}
                 </p>
               </div>
