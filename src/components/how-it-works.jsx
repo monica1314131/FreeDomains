@@ -4,7 +4,7 @@ export function HowItWorksSection() {
   const extensions = [
     {
       ext: ".indevs.in",
-      description: "The classic choice. Perfect for portfolios, personal sites, and developer identities.",
+      description: "Empowering innovation with accessible, secure, and trusted digital identities for developers, organizations, and communities.",
       icon: Globe2,
       accent: "from-blue-500 to-indigo-500",
       iconColor: "text-blue-500",
@@ -12,7 +12,7 @@ export function HowItWorksSection() {
     },
     {
       ext: ".sryze.cc",
-      description: "Short and memorable. Great for link shorteners, startups, and quick projects.",
+      description: "A modern namespace for creators, entrepreneurs, and digital-first brands seeking memorable online identities.",
       icon: Sparkles,
       accent: "from-orange-400 to-red-500",
       iconColor: "text-orange-500",
@@ -20,7 +20,7 @@ export function HowItWorksSection() {
     },
     {
       ext: ".ryzedns.org",
-      description: "Built for infrastructure. Ideal for nameservers, APIs, and backend services.",
+      description: "Supporting self-hosted infrastructure, open-source ecosystems, and network services with dependable naming solutions.",
       icon: Server,
       accent: "from-emerald-400 to-teal-500",
       iconColor: "text-emerald-500",
@@ -28,7 +28,7 @@ export function HowItWorksSection() {
     },
     {
       ext: ".nx.kg",
-      description: "The ultimate short domain. Grab it before it's gone for your most unique ideas.",
+      description: "A concise namespace built for the next generation of applications, platforms, and internet services.",
       icon: Zap,
       accent: "from-purple-500 to-pink-500",
       iconColor: "text-purple-500",
@@ -37,13 +37,13 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="w-full py-10 md:py-16 bg-white relative z-30 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.02)]">
+    <section className="w-full py-16 md:py-24 bg-[#FAFAFA] relative z-30 overflow-hidden">
       {/* Background ambient blur */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-[600px] h-[600px] bg-slate-100 blur-[100px] rounded-full pointer-events-none opacity-50"></div>
 
-      <div className="w-full px-4 sm:px-6 md:px-12 lg:px-16 mb-12 max-w-[1600px] mx-auto relative z-10">
+      <div className="w-full px-4 sm:px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto relative z-10">
 
-        <div className="mb-16 space-y-4 text-center">
+        <div className="mb-12 md:mb-16 space-y-3 text-center">
           <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
             Available Namespaces
           </h2>
@@ -52,30 +52,17 @@ export function HowItWorksSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
           {extensions.map((item, idx) => (
             <div
               key={idx}
-              className={`group relative h-full rounded-2xl bg-white border border-slate-200/60 p-8 ${item.bgHover} transition-all duration-500 overflow-hidden ring-1 ring-black/[0.02] hover:shadow-xl hover:shadow-slate-200/40 hover:-translate-y-1`}
+              title={item.description}
+              className={`group flex items-center gap-3 bg-white border border-slate-200/50 px-6 py-3.5 md:px-8 md:py-4 rounded-[2rem] shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out ring-1 ring-slate-900/5 hover:ring-slate-900/10 cursor-help ${item.bgHover}`}
             >
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <div className={`w-12 h-12 flex items-center justify-center rounded-xl mb-8 bg-white ring-1 ring-slate-200 shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-                    <item.icon className={`w-6 h-6 ${item.iconColor}`} strokeWidth={2} />
-                  </div>
-
-                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 tracking-tight">
-                    {item.ext}
-                  </h3>
-                  <p className="text-slate-500 leading-relaxed text-sm md:text-base font-medium">
-                    {item.description}
-                  </p>
-                </div>
-                
-                <div className="mt-8">
-                  <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${item.accent} transition-all duration-500 group-hover:w-full`}></div>
-                </div>
-              </div>
+              <item.icon className={`w-5 h-5 md:w-6 md:h-6 ${item.iconColor} transition-transform duration-300 group-hover:scale-110`} strokeWidth={2.5} />
+              <span className="text-lg md:text-xl font-extrabold text-slate-900 tracking-tight">
+                {item.ext}
+              </span>
             </div>
           ))}
         </div>

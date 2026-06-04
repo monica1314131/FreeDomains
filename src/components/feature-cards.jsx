@@ -33,10 +33,10 @@ export function FeatureCards() {
   ];
 
   return (
-    <section className="w-full py-8 md:py-12 bg-[#FAFAFA] relative">
-      <div className="w-full px-6 md:px-12 lg:px-16 mb-16 max-w-[1600px] mx-auto">
+    <section className="w-full py-16 md:py-24 bg-[#FAFAFA] relative">
+      <div className="w-full px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto">
 
-        <div className="mb-20 space-y-6 text-center max-w-3xl mx-auto">
+        <div className="mb-16 md:mb-24 space-y-6 text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
             The price of admission <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">is zero.</span>
           </h2>
@@ -57,12 +57,7 @@ export function FeatureCards() {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className={`
-                bg-white border border-slate-200/60 rounded-2xl p-8 h-full
-                hover:shadow-xl hover:shadow-slate-200/40 hover:-translate-y-1
-                transition-all duration-500 flex flex-col justify-between group
-                ring-1 ring-black/[0.02]
-              `}
+              className="bg-white border border-slate-200/50 rounded-[2rem] p-8 h-full shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col justify-between group ring-1 ring-slate-900/5 hover:ring-slate-900/10"
             >
               <div>
                 <div className="flex items-start justify-between mb-8">

@@ -89,8 +89,8 @@ export function Globe3D({
   useEffect(() => {
     if (!containerRef.current || !canvasRef.current) return;
 
-    const width = containerRef.current.clientWidth;
-    const height = containerRef.current.clientHeight;
+    const width = containerRef.current.clientWidth || 1;
+    const height = containerRef.current.clientHeight || 1;
 
     // 1. Create Scene
     const scene = new THREE.Scene();
@@ -286,16 +286,6 @@ export function Globe3D({
 
     animate();
 
-    // 9. Resize Handler
-    const handleResize = () => {
-      if (!containerRef.current) return;
-      const w = containerRef.current.clientWidth;
-      const h = containerRef.current.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    };
-
     // 9. Resize Observer
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
@@ -315,7 +305,7 @@ export function Globe3D({
     // 10. Cleanups
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
+      resizeObserver.disconnect();
       controls.dispose();
       renderer.dispose();
 
@@ -338,43 +328,6 @@ export function Globe3D({
     >
       <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full" />
       
-      {/* 2D HTML Overlays */}
-      {markers.map((marker, index) => (
-        <div
-          key={`marker-${index}`}
-          ref={(el) => (avatarRefs.current[index] = el)}
-          className={cn(
-            "absolute pointer-events-auto rounded-full border border-white/50 shadow-md overflow-hidden bg-neutral-900 transition-all duration-200 cursor-pointer select-none",
-            hoveredIndex === index ? "scale-110 border-orange-500 z-50 ring-2 ring-orange-500/25" : "z-20 border-white/50"
-          )}
-          style={{
-            width: "24px",
-            height: "24px",
-            left: 0,
-            top: 0,
-            opacity: 0,
-            transform: "translate(-50%, -50%)",
-          }}
-          onMouseEnter={() => {
-            setHoveredIndex(index);
-            onMarkerHover?.(marker);
-          }}
-          onMouseLeave={() => {
-            setHoveredIndex(null);
-            onMarkerHover?.(null);
-          }}
-          onClick={() => {
-            onMarkerClick?.(marker);
-          }}
-        >
-          <img
-            src={marker.src}
-            alt={marker.label || "Marker"}
-            className="w-full h-full object-cover"
-            draggable={false}
-          />
-        </div>
-      ))}
     </div>
   );
 }

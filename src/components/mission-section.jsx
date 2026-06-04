@@ -3,17 +3,128 @@ import { Terminal, ShieldCheck, Eye, Users, Key, Server, Database, Globe } from 
 import { Globe3D } from "./ui/3d-globe";
 
 const sampleMarkers = [
-  { lat: 40.7128, lng: -74.006, src: "https://assets.aceternity.com/avatars/1.webp", label: "New York" },
-  { lat: 51.5074, lng: -0.1278, src: "https://assets.aceternity.com/avatars/2.webp", label: "London" },
-  { lat: 35.6762, lng: 139.6503, src: "https://assets.aceternity.com/avatars/3.webp", label: "Tokyo" },
-  { lat: -33.8688, lng: 151.2093, src: "https://assets.aceternity.com/avatars/4.webp", label: "Sydney" },
-  { lat: 48.8566, lng: 2.3522, src: "https://assets.aceternity.com/avatars/5.webp", label: "Paris" },
-  { lat: 28.6139, lng: 77.209, src: "https://assets.aceternity.com/avatars/6.webp", label: "New Delhi" },
-  { lat: 55.7558, lng: 37.6173, src: "https://assets.aceternity.com/avatars/7.webp", label: "Moscow" },
-  { lat: -22.9068, lng: -43.1729, src: "https://assets.aceternity.com/avatars/8.webp", label: "Rio de Janeiro" },
-  { lat: 31.2304, lng: 121.4737, src: "https://assets.aceternity.com/avatars/9.webp", label: "Shanghai" },
-  { lat: 25.2048, lng: 55.2708, src: "https://assets.aceternity.com/avatars/10.webp", label: "Dubai" },
-  { lat: 1.3521, lng: 103.8198, src: "https://assets.aceternity.com/avatars/12.webp", label: "Singapore" }
+  // North America
+  { lat: 40.7128, lng: -74.006, label: "New York" },
+  { lat: 34.0522, lng: -118.2437, label: "Los Angeles" },
+  { lat: 41.8781, lng: -87.6298, label: "Chicago" },
+  { lat: 47.6062, lng: -122.3321, label: "Seattle" },
+  { lat: 43.6532, lng: -79.3832, label: "Toronto" },
+  { lat: 37.7749, lng: -122.4194, label: "San Francisco" },
+  { lat: 25.7617, lng: -80.1918, label: "Miami" },
+  { lat: 38.9072, lng: -77.0369, label: "Washington DC" },
+  { lat: 42.3601, lng: -71.0589, label: "Boston" },
+  { lat: 32.7767, lng: -96.7970, label: "Dallas" },
+  { lat: 29.7604, lng: -95.3698, label: "Houston" },
+  { lat: 39.7392, lng: -104.9903, label: "Denver" },
+  { lat: 33.4484, lng: -112.0740, label: "Phoenix" },
+  { lat: 19.4326, lng: -99.1332, label: "Mexico City" },
+  { lat: 49.2827, lng: -123.1207, label: "Vancouver" },
+  { lat: 45.5017, lng: -73.5673, label: "Montreal" },
+  { lat: 33.7490, lng: -84.3880, label: "Atlanta" },
+
+  // Europe
+  { lat: 51.5074, lng: -0.1278, label: "London" },
+  { lat: 48.8566, lng: 2.3522, label: "Paris" },
+  { lat: 50.1109, lng: 8.6821, label: "Frankfurt" },
+  { lat: 52.3676, lng: 4.9041, label: "Amsterdam" },
+  { lat: 41.9028, lng: 12.4964, label: "Rome" },
+  { lat: 40.4168, lng: -3.7038, label: "Madrid" },
+  { lat: 55.7558, lng: 37.6173, label: "Moscow" },
+  { lat: 52.5200, lng: 13.4050, label: "Berlin" },
+  { lat: 48.1351, lng: 11.5820, label: "Munich" },
+  { lat: 48.2082, lng: 16.3738, label: "Vienna" },
+  { lat: 47.3769, lng: 8.5417, label: "Zurich" },
+  { lat: 45.4642, lng: 9.1900, label: "Milan" },
+  { lat: 37.9838, lng: 23.7275, label: "Athens" },
+  { lat: 52.2297, lng: 21.0122, label: "Warsaw" },
+  { lat: 50.0755, lng: 14.4378, label: "Prague" },
+  { lat: 59.3293, lng: 18.0686, label: "Stockholm" },
+  { lat: 59.9139, lng: 10.7522, label: "Oslo" },
+  { lat: 55.6761, lng: 12.5683, label: "Copenhagen" },
+  { lat: 38.7223, lng: -9.1393, label: "Lisbon" },
+  { lat: 41.3851, lng: 2.1734, label: "Barcelona" },
+  { lat: 53.3498, lng: -6.2603, label: "Dublin" },
+  { lat: 55.9533, lng: -3.1883, label: "Edinburgh" },
+  { lat: 50.4501, lng: 30.5234, label: "Kyiv" },
+
+  // Asia - India (Densely populated)
+  { lat: 28.6139, lng: 77.209, label: "New Delhi" },
+  { lat: 19.0760, lng: 72.8777, label: "Mumbai" },
+  { lat: 12.9716, lng: 77.5946, label: "Bangalore" },
+  { lat: 17.3850, lng: 78.4867, label: "Hyderabad" },
+  { lat: 13.0827, lng: 80.2707, label: "Chennai" },
+  { lat: 22.5726, lng: 88.3639, label: "Kolkata" },
+  { lat: 18.5204, lng: 73.8567, label: "Pune" },
+  { lat: 23.0225, lng: 72.5714, label: "Ahmedabad" },
+  { lat: 26.9124, lng: 75.7873, label: "Jaipur" },
+  { lat: 21.1702, lng: 72.8311, label: "Surat" },
+  { lat: 26.8467, lng: 80.9462, label: "Lucknow" },
+  { lat: 26.4499, lng: 80.3319, label: "Kanpur" },
+  { lat: 21.1458, lng: 79.0882, label: "Nagpur" },
+  { lat: 22.7196, lng: 75.8577, label: "Indore" },
+  { lat: 23.2599, lng: 77.4126, label: "Bhopal" },
+  { lat: 17.6868, lng: 83.2185, label: "Visakhapatnam" },
+  { lat: 25.5941, lng: 85.1376, label: "Patna" },
+  { lat: 22.3072, lng: 73.1812, label: "Vadodara" },
+  { lat: 28.6692, lng: 77.4538, label: "Ghaziabad" },
+  { lat: 30.9010, lng: 75.8573, label: "Ludhiana" },
+  { lat: 27.1767, lng: 78.0081, label: "Agra" },
+  { lat: 25.3176, lng: 82.9739, label: "Varanasi" },
+  { lat: 15.2993, lng: 74.1240, label: "Goa" },
+  { lat: 11.0168, lng: 76.9558, label: "Coimbatore" },
+  { lat: 9.9312, lng: 76.2673, label: "Kochi" },
+
+  // Asia - Other
+  { lat: 35.6762, lng: 139.6503, label: "Tokyo" },
+  { lat: 31.2304, lng: 121.4737, label: "Shanghai" },
+  { lat: 22.3193, lng: 114.1694, label: "Hong Kong" },
+  { lat: 37.5665, lng: 126.9780, label: "Seoul" },
+  { lat: 1.3521, lng: 103.8198, label: "Singapore" },
+  { lat: 13.7563, lng: 100.5018, label: "Bangkok" },
+  { lat: 25.2048, lng: 55.2708, label: "Dubai" },
+  { lat: 39.9042, lng: 116.4074, label: "Beijing" },
+  { lat: 22.5431, lng: 114.0579, label: "Shenzhen" },
+  { lat: 25.0330, lng: 121.5654, label: "Taipei" },
+  { lat: 34.6937, lng: 135.5023, label: "Osaka" },
+  { lat: 14.5995, lng: 120.9842, label: "Manila" },
+  { lat: 10.8231, lng: 106.6297, label: "Ho Chi Minh City" },
+  { lat: 3.1390, lng: 101.6869, label: "Kuala Lumpur" },
+  { lat: 23.8103, lng: 90.4125, label: "Dhaka" },
+  { lat: 24.8607, lng: 67.0011, label: "Karachi" },
+  { lat: 24.7136, lng: 46.6753, label: "Riyadh" },
+  { lat: 25.2854, lng: 51.5310, label: "Doha" },
+  { lat: 32.0853, lng: 34.7818, label: "Tel Aviv" },
+
+  // South America
+  { lat: -23.5505, lng: -46.6333, label: "Sao Paulo" },
+  { lat: -22.9068, lng: -43.1729, label: "Rio de Janeiro" },
+  { lat: -34.6037, lng: -58.3816, label: "Buenos Aires" },
+  { lat: -33.4489, lng: -70.6693, label: "Santiago" },
+  { lat: 4.7110, lng: -74.0721, label: "Bogota" },
+  { lat: -12.0464, lng: -77.0428, label: "Lima" },
+  { lat: 10.4806, lng: -66.9036, label: "Caracas" },
+  { lat: -15.8267, lng: -47.9218, label: "Brasilia" },
+  { lat: -0.1807, lng: -78.4678, label: "Quito" },
+
+  // Africa
+  { lat: -33.9249, lng: 18.4241, label: "Cape Town" },
+  { lat: 30.0444, lng: 31.2357, label: "Cairo" },
+  { lat: -1.2921, lng: 36.8219, label: "Nairobi" },
+  { lat: 6.5244, lng: 3.3792, label: "Lagos" },
+  { lat: -26.2041, lng: 28.0473, label: "Johannesburg" },
+  { lat: 5.6037, lng: -0.1870, label: "Accra" },
+  { lat: 33.5731, lng: -7.5898, label: "Casablanca" },
+  { lat: 9.0227, lng: 38.7468, label: "Addis Ababa" },
+  { lat: 36.8065, lng: 10.1815, label: "Tunis" },
+
+  // Oceania
+  { lat: -33.8688, lng: 151.2093, label: "Sydney" },
+  { lat: -37.8136, lng: 144.9631, label: "Melbourne" },
+  { lat: -36.8485, lng: 174.7633, label: "Auckland" },
+  { lat: -27.4698, lng: 153.0251, label: "Brisbane" },
+  { lat: -31.9505, lng: 115.8605, label: "Perth" },
+  { lat: -41.2865, lng: 174.7762, label: "Wellington" },
+  { lat: -43.5321, lng: 172.6362, label: "Christchurch" }
 ];
 
 const features = [
@@ -77,26 +188,26 @@ const features = [
 
 export function MissionSection() {
   return (
-    <section className="w-full bg-white border-b border-slate-100 [clip-path:inset(0)]">
+    <section className="w-full bg-[#FAFAFA]" style={{ overflow: 'clip' }}>
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 pt-8 pb-10 md:pt-10 md:pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start relative">
 
           {/* Left: Scrollable Stacked Content */}
           <div className="relative pb-0">
 
-            {[ 
+            {[
               { isIntro: true },
               ...features.map(f => ({ isIntro: false, ...f }))
             ].map((block, idx, arr) => (
               <Fragment key={idx}>
                 <div
-                  className="sticky w-full bg-white pt-8 pb-8 min-h-[65vh]"
-                  style={{ 
-                    zIndex: 10 + idx, 
+                  className="sticky w-full bg-[#FAFAFA] pt-8 pb-8 min-h-[65vh]"
+                  style={{
+                    zIndex: 10 + idx,
                     top: "35vh"
                   }}
                 >
-                  <div className="relative z-10 bg-white pr-4">
+                  <div className="relative z-10 bg-[#FAFAFA] pr-4">
                     {block.isIntro ? (
                       <>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight mb-6">
@@ -135,7 +246,9 @@ export function MissionSection() {
                     )}
                   </div>
                   {/* White Tail to hide previous content */}
-                  <div className="absolute top-full left-0 right-0 h-[150vh] bg-white pointer-events-none z-0"></div>
+                  {idx < arr.length - 1 && (
+                    <div className="absolute top-full left-0 right-0 h-[150vh] bg-[#FAFAFA] pointer-events-none z-0"></div>
+                  )}
                 </div>
                 {idx < arr.length - 1 && (
                   <div className="h-[50vh] w-full pointer-events-none" />
@@ -146,14 +259,21 @@ export function MissionSection() {
           </div>
 
           {/* Right: Floating Globe Illustration (Sticky) */}
-          <div 
-            className="flex items-center justify-center lg:justify-end w-full lg:sticky pb-32 lg:pb-0"
-            style={{ 
+          <div
+            className="hidden lg:flex flex-col items-center lg:items-end justify-center w-full lg:sticky pb-32 lg:pb-0"
+            style={{
               top: "35vh",
               height: "65vh"
             }}
           >
-            <div className="relative w-full max-w-[600px] h-[600px] flex items-center justify-center">
+            {/* Heading above the globe */}
+            <div className="w-full max-w-[600px] text-center mb-4 lg:mb-8 relative z-50">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Connecting the world
+              </h2>
+            </div>
+
+            <div className="relative w-full max-w-[600px] h-[600px] flex items-center justify-center mt-[-40px]">
               {/* Subtle background glow */}
               <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
@@ -172,11 +292,32 @@ export function MissionSection() {
                 />
               </div>
 
-              {/* Floating Badge */}
-              <div className="absolute top-12 right-12 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40">
+              {/* Floating Badges */}
+              <div className="absolute top-12 right-8 md:right-12 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform">
                 <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
                   Connected World
+                </p>
+              </div>
+
+              <div className="absolute top-1/3 -left-2 md:left-8 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform delay-100">
+                <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  120+ Countries
+                </p>
+              </div>
+
+              <div className="absolute bottom-32 -right-4 md:right-4 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform delay-200">
+                <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-fuchsia-500 animate-pulse"></span>
+                  100% Uptime
+                </p>
+              </div>
+
+              <div className="absolute bottom-16 left-4 md:left-16 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform delay-300">
+                <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                  20+ Edge Nodes
                 </p>
               </div>
             </div>

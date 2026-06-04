@@ -3,7 +3,6 @@ import { HeroSection } from "@/components/hero-section";
 import { SponsorsSection } from "@/components/sponsors-section";
 import { MissionSection } from "@/components/mission-section";
 import { FeatureCards } from "@/components/feature-cards";
-import { FAQSection } from "@/components/faq-section";
 import { Footer } from "@/components/footer-section";
 import { PSLAnnouncement } from "@/components/PSLAnnouncement";
 import { HowItWorksSection } from "@/components/how-it-works";
@@ -24,7 +23,6 @@ export function Landing() {
                 <FeatureCards />
                 <LiveStatsSection />
 
-                <FAQSection />
             </main>
             <Footer />
         </div>
