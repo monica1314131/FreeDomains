@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+
 import { useAuth } from "../context/auth-context";
 import { LayoutDashboard, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export function Header() {
-  const location = useLocation();
+
   const { user } = useAuth();
   const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);

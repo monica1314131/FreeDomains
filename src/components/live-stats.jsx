@@ -22,7 +22,7 @@ export function LiveStatsSection() {
             totalUsers: data.totalUsers > 25000 ? `${data.totalUsers.toLocaleString()}+` : "25,000+",
           }));
         }
-      } catch (err) {
+      } catch {
         // Keep defaults
       }
     };

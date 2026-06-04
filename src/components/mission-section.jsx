@@ -1,6 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, lazy, Suspense } from "react";
 import { Terminal, ShieldCheck, Eye, Users, Key, Server, Database, Globe } from "lucide-react";
-import { Globe3D } from "./ui/3d-globe";
+
+const Globe3D = lazy(() => import('./ui/3d-globe').then(m => ({ default: m.Globe3D })));
 
 const sampleMarkers = [
   // North America
@@ -285,19 +286,21 @@ export function MissionSection() {
 
               {/* The Globe */}
               <div className="relative z-10 w-full h-full">
-                <Globe3D
-                  className="h-full w-full"
-                  markers={sampleMarkers}
-                  config={{
-                    textureUrl: "https://unpkg.com/three-globe@2.31.0/example/img/earth-blue-marble.jpg",
-                    showAtmosphere: false,
-                    bumpScale: 1.0,
-                    autoRotateSpeed: 0.4,
-                  }}
-                  onMarkerClick={(marker) => {
-                    if (import.meta.env.DEV) console.log("Clicked:", marker.label);
-                  }}
-                />
+                <Suspense fallback={<div className="w-full h-full animate-pulse bg-slate-200/50 dark:bg-white/5 rounded-full" />}>
+                  <Globe3D
+                    className="h-full w-full"
+                    markers={sampleMarkers}
+                    config={{
+                      textureUrl: "https://unpkg.com/three-globe@2.31.0/example/img/earth-blue-marble.jpg",
+                      showAtmosphere: false,
+                      bumpScale: 1.0,
+                      autoRotateSpeed: 0.4,
+                    }}
+                    onMarkerClick={(marker) => {
+                      if (import.meta.env.DEV) console.log("Clicked:", marker.label);
+                    }}
+                  />
+                </Suspense>
               </div>
 
             </div>

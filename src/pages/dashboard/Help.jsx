@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     Mail, Shield, Scale, LifeBuoy, AlertTriangle, MessageCircle,
     FileText, ChevronDown, ChevronUp, ExternalLink, Book, Zap,
