@@ -37,36 +37,30 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-[#FAFAFA] relative z-30 overflow-hidden">
-      {/* Background ambient blur */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-[600px] h-[600px] bg-slate-100 blur-[100px] rounded-full pointer-events-none opacity-50"></div>
-
-      <div className="w-full px-4 sm:px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto relative z-10">
-
-        <div className="mb-12 md:mb-16 space-y-3 text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Available Namespaces
-          </h2>
-          <p className="max-w-2xl mx-auto text-base md:text-lg text-slate-500 leading-relaxed font-medium">
-            Four unique extensions. Infinite possibilities. Claim yours instantly.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-          {extensions.map((item, idx) => (
-            <div
-              key={idx}
-              title={item.description}
-              className={`group flex items-center gap-3 bg-white border border-slate-200/50 px-6 py-3.5 md:px-8 md:py-4 rounded-[2rem] shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out ring-1 ring-slate-900/5 hover:ring-slate-900/10 cursor-help ${item.bgHover}`}
-            >
-              <item.icon className={`w-5 h-5 md:w-6 md:h-6 ${item.iconColor} transition-transform duration-300 group-hover:scale-110`} strokeWidth={2.5} />
-              <span className="text-lg md:text-xl font-extrabold text-slate-900 tracking-tight">
-                {item.ext}
-              </span>
-            </div>
-          ))}
-        </div>
+    <div className="w-full relative z-10 flex flex-col justify-center h-full">
+      <div className="mb-8 md:mb-12 space-y-2 text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Available Namespaces
+        </h2>
+        <p className="max-w-xl mx-auto text-sm md:text-base text-slate-500 leading-relaxed font-medium">
+          Four unique extensions. Infinite possibilities. Claim yours instantly.
+        </p>
       </div>
-    </section>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 w-full xl:w-fit mx-auto">
+        {extensions.map((item, idx) => (
+          <div
+            key={idx}
+            title={item.description}
+            className={`group flex items-center justify-center md:justify-start gap-2 md:gap-3 bg-white border border-slate-200/50 px-4 py-3 md:px-6 md:py-3.5 rounded-2xl md:rounded-[2rem] shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out ring-1 ring-slate-900/5 hover:ring-slate-900/10 cursor-help ${item.bgHover}`}
+          >
+            <item.icon className={`w-4 h-4 md:w-5 md:h-5 ${item.iconColor} transition-transform duration-300 group-hover:scale-110 shrink-0`} strokeWidth={2.5} />
+            <span className="text-base md:text-lg font-extrabold text-slate-900 tracking-tight">
+              {item.ext}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

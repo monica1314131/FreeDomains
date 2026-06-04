@@ -38,36 +38,33 @@ export function LiveStatsSection() {
   ];
 
   return (
-    <section className="w-full pt-8 pb-16 md:pt-12 md:pb-24 bg-[#FAFAFA] relative">
-      <div className="w-full px-4 sm:px-6 md:px-12 lg:px-16 mb-8 max-w-[1600px] mx-auto">
-        
-        <div className="mb-12 md:mb-16 space-y-2 text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Trusted by developers <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">worldwide</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center items-center gap-4 md:gap-6">
-          {statItems.map((stat, idx) => (
-            <div
-              key={idx}
-              className="group bg-white border border-slate-200/50 rounded-[2rem] px-4 py-4 md:px-6 md:py-3.5 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-2 md:gap-3 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-default ring-1 ring-slate-900/5 hover:ring-slate-900/10"
-            >
-              <div className={`w-10 h-10 flex items-center justify-center rounded-full ${stat.iconBg} shadow-sm transition-transform duration-500 ease-out group-hover:scale-110 shrink-0`}>
-                <stat.icon className="w-5 h-5" strokeWidth={2.5} />
-              </div>
-              <div className="flex flex-col md:flex-row items-center md:items-baseline gap-1 md:gap-2">
-                <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight leading-none">
-                  {stat.value}
-                </span>
-                <span className="text-slate-500 text-[10px] md:text-xs font-semibold uppercase tracking-wider">
-                  {stat.label}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="w-full relative flex flex-col justify-center h-full">
+      <div className="mb-8 md:mb-12 space-y-2 text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Trusted by developers <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">worldwide</span>
+        </h2>
       </div>
-    </section>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 w-full xl:w-fit mx-auto">
+        {statItems.map((stat, idx) => (
+          <div
+            key={idx}
+            className="group bg-white border border-slate-200/50 rounded-2xl md:rounded-[2rem] px-4 py-3 md:px-5 md:py-3.5 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-2 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out cursor-default ring-1 ring-slate-900/5 hover:ring-slate-900/10"
+          >
+            <div className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full ${stat.iconBg} shadow-sm transition-transform duration-500 ease-out group-hover:scale-110 shrink-0`}>
+              <stat.icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2.5} />
+            </div>
+            <div className="flex flex-col md:flex-row items-center md:items-baseline gap-0.5 md:gap-1.5">
+              <span className="text-lg md:text-xl font-black text-slate-900 tracking-tight leading-none">
+                {stat.value}
+              </span>
+              <span className="text-slate-500 text-[10px] md:text-xs font-semibold uppercase tracking-wider">
+                {stat.label}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

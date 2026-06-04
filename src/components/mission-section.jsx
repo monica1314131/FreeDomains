@@ -292,34 +292,6 @@ export function MissionSection() {
                 />
               </div>
 
-              {/* Floating Badges */}
-              <div className="absolute top-12 right-8 md:right-12 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform">
-                <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                  Connected World
-                </p>
-              </div>
-
-              <div className="absolute top-1/3 -left-2 md:left-8 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform delay-100">
-                <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  120+ Countries
-                </p>
-              </div>
-
-              <div className="absolute bottom-32 -right-4 md:right-4 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform delay-200">
-                <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-fuchsia-500 animate-pulse"></span>
-                  100% Uptime
-                </p>
-              </div>
-
-              <div className="absolute bottom-16 left-4 md:left-16 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-2 rounded-full shadow-lg z-40 transform hover:scale-105 transition-transform delay-300">
-                <p className="font-semibold text-slate-700 text-xs flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                  20+ Edge Nodes
-                </p>
-              </div>
             </div>
           </div>
 

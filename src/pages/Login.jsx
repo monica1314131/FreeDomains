@@ -3,8 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { subdomainAPI } from "../lib/api";
 import { useToast } from "../hooks/use-toast";
-
 import { useAuth } from "../context/auth-context";
+import { Header } from "../components/header";
 
 export default function Login() {
     const { login, checkAuth } = useAuth(); // Assuming checkAuth is exposed, or we reload
@@ -83,7 +83,7 @@ export default function Login() {
         setIsLoading(true);
         try {
             const res = await subdomainAPI.post('/auth/email/login', { email, password });
-            
+
             // Check if 2FA is required
             if (res.requires2FA) {
                 toast({
@@ -93,7 +93,7 @@ export default function Login() {
                 window.location.href = `/verify-2fa?email=${encodeURIComponent(res.email || email)}`;
                 return;
             }
-            
+
             if (res.success) {
                 // Force full page reload to refresh auth context
                 window.location.href = '/dashboard';
@@ -130,7 +130,9 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans" style={{ paddingTop: 'var(--incident-height, 0px)' }}>
+        <>
+        <Header />
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans" style={{ paddingTop: 'calc(4rem + var(--incident-height, 0px) + 2.5rem)' }}>
             {/* Logo */}
             <Link to="/" className="mb-8 flex items-center gap-3 group">
                 <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-12 w-auto" />
@@ -276,5 +278,6 @@ export default function Login() {
                 &copy; 2026 Stackryze domains
             </p>
         </div>
+        </>
     );
 }

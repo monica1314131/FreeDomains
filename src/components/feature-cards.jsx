@@ -33,11 +33,11 @@ export function FeatureCards() {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-[#FAFAFA] relative">
-      <div className="w-full px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto">
+    <section className="w-full bg-[#FAFAFA] relative min-h-screen flex items-center">
+      <div className="w-full px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto py-16 md:py-20">
 
-        <div className="mb-16 md:mb-24 space-y-6 text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+        <div className="mb-16 md:mb-20 space-y-6 text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
             The price of admission <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">is zero.</span>
           </h2>
 

@@ -88,7 +88,7 @@ export function Header() {
           {user ? (
             <a
               href="/overview"
-              className="px-4 py-2 sm:px-5 sm:py-2 md:px-5 md:py-2.5 rounded-lg border border-black bg-[#FFD23F] text-black font-extrabold text-sm tracking-wide hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200 shadow-sm flex items-center gap-2 cursor-pointer"
+              className="px-4 py-2 sm:px-5 sm:py-2 md:px-5 md:py-2.5 rounded-full bg-black text-white font-bold text-sm tracking-tight hover:bg-neutral-800 transition-all duration-300 shadow-md flex items-center gap-2 cursor-pointer"
               title="Dashboard"
             >
               <LayoutDashboard className="w-4 h-4" />
@@ -97,7 +97,7 @@ export function Header() {
           ) : (
             <a
               href="/login"
-              className="px-5 py-2 md:px-6 md:py-2.5 rounded-lg border border-black bg-[#FFD23F] text-black font-extrabold text-sm tracking-wide hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200 shadow-sm flex items-center justify-center cursor-pointer"
+              className="px-5 py-2 md:px-6 md:py-2.5 rounded-full bg-black text-white font-bold text-sm tracking-tight hover:bg-neutral-800 transition-all duration-300 shadow-md flex items-center justify-center cursor-pointer"
             >
               Get Started
             </a>

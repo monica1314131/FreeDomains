@@ -4,6 +4,7 @@ import { useToast } from "../hooks/use-toast";
 import { subdomainAPI } from "../lib/api";
 import { Loader2, CheckCircle, Info, Check, X, Eye, EyeOff } from "lucide-react";
 import { Turnstile } from '@marsidev/react-turnstile';
+import { Header } from "../components/header";
 
 // Allowed email domains
 const ALLOWED_EMAIL_DOMAINS = [
@@ -196,198 +197,159 @@ export default function Signup() {
     }
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 py-8 font-sans" style={{ paddingTop: 'var(--incident-height, 0px)' }}>
-            <Link to="/" className="mb-6 md:mb-8 flex items-center gap-2 md:gap-3 group">
-                <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-10 md:h-12 w-auto" />
-                <span className="text-xl md:text-2xl font-bold text-[#1A1A1A] tracking-tight">Stackryze Domains</span>
-            </Link>
+        <>
+        <Header />
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAFAFA] px-4 py-10" style={{ paddingTop: 'calc(4rem + var(--incident-height, 0px) + 2.5rem)' }}>
+            <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl ring-1 ring-slate-200/80 p-8 md:p-10">
 
-            <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-6 md:p-10 rounded-xl text-center">
-                <h1 className="text-xl md:text-2xl font-bold text-[#1A1A1A] mb-2">Create Account</h1>
-                <p className="text-sm md:text-base text-[#4A4A4A] mb-6 md:mb-8">Sign up to register domains</p>
-
-                <form onSubmit={handleSignup} className="space-y-4 text-left">
+                {/* Header */}
+                <div className="mb-8 flex items-start justify-between">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Username (Unique Identifier)</label>
-                        <div className="relative">
+                        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-1">Create Account</h1>
+                        <p className="text-slate-500 text-sm">Sign up to register your free subdomains</p>
+                    </div>
+                    <Link to="/" className="flex items-center gap-2 shrink-0">
+                        <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-8 w-auto" />
+                    </Link>
+                </div>
+
+                <form onSubmit={handleSignup} className="space-y-5">
+                    {/* Row 1: Username + Legal Name */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Username <span className="text-slate-400 font-normal">(Unique ID)</span></label>
+                            <div className="relative">
+                                <input
+                                    type="text" required value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    className={`w-full px-4 py-2.5 pr-10 bg-white border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all ${usernameError ? 'border-red-400' : usernameAvailable === true ? 'border-emerald-400' : 'border-slate-200'}`}
+                                    placeholder="johndoe123"
+                                />
+                                <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                                    {usernameChecking && <Loader2 className="w-4 h-4 animate-spin text-slate-400" />}
+                                    {!usernameChecking && usernameAvailable === true && <Check className="w-4 h-4 text-emerald-500" />}
+                                    {!usernameChecking && (usernameAvailable === false || usernameError) && <X className="w-4 h-4 text-red-500" />}
+                                </div>
+                            </div>
+                            {usernameError && <p className="text-xs text-red-500 mt-1">{usernameError}</p>}
+                            {usernameAvailable === true && <p className="text-xs text-emerald-600 mt-1">Username available!</p>}
+                            {usernameAvailable === false && !usernameError && <p className="text-xs text-red-500 mt-1">Username already taken</p>}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Legal Name</label>
                             <input
-                                type="text"
-                                required
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                                className={`w-full px-3 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black ${usernameError ? 'border-red-500' :
-                                    usernameAvailable === true ? 'border-green-500' :
-                                        'border-gray-300'
-                                    }`}
-                                placeholder="johndoe123"
+                                type="text" required value={legalName}
+                                onChange={(e) => setLegalName(e.target.value)}
+                                className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all"
+                                placeholder="John Michael Doe"
                             />
-                            <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                                {usernameChecking && <Loader2 className="w-4 h-4 animate-spin text-gray-400" />}
-                                {!usernameChecking && usernameAvailable === true && <Check className="w-4 h-4 text-green-500" />}
-                                {!usernameChecking && (usernameAvailable === false || usernameError) && <X className="w-4 h-4 text-red-500" />}
+                        </div>
+                    </div>
+
+                    {/* Row 2: Email + Password */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+                            <input
+                                type="email" required value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className={`w-full px-4 py-2.5 bg-white border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all ${emailError ? 'border-red-400' : 'border-slate-200'}`}
+                                placeholder="name@example.com"
+                            />
+                            {emailError && <p className="text-xs text-red-500 mt-1">{emailError}</p>}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"} required minLength={8}
+                                    value={password} onChange={(e) => setPassword(e.target.value)}
+                                    className="w-full px-4 py-2.5 pr-10 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all"
+                                    placeholder="Minimum 8 characters"
+                                />
+                                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                </button>
                             </div>
                         </div>
-                        {usernameError && <p className="text-xs text-red-500 mt-1">{usernameError}</p>}
-                        {usernameAvailable === true && <p className="text-xs text-green-600 mt-1">Username available!</p>}
-                        {usernameAvailable === false && !usernameError && <p className="text-xs text-red-500 mt-1">Username already taken</p>}
                     </div>
 
+                    {/* Row 3: Address */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Legal Name</label>
-                        <input
-                            type="text"
-                            required
-                            value={legalName}
-                            onChange={(e) => setLegalName(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                            placeholder="John Michael Doe"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input
-                            type="email"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black ${emailError ? 'border-red-500' : 'border-gray-300'
-                                }`}
-                            placeholder="name@example.com"
-                        />
-                        {emailError && <p className="text-xs text-red-500 mt-1">{emailError}</p>}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <div className="relative">
+                        <label className="block text-sm font-medium text-slate-700 mb-2">Full Address</label>
+                        <div className="space-y-3">
                             <input
-                                type={showPassword ? "text" : "password"}
-                                required
-                                minLength={8}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                placeholder="Minimum 8 characters"
+                                type="text" required value={address.street}
+                                onChange={(e) => setAddress({ ...address, street: e.target.value })}
+                                className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all"
+                                placeholder="Street Address"
                             />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                            >
-                                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                            </button>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <input type="text" required value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="City" />
+                                <input type="text" required value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="State" />
+                                <input type="text" required value={address.postalCode} onChange={(e) => setAddress({ ...address, postalCode: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="Postal Code" />
+                                <input type="text" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all" placeholder="Country" />
+                            </div>
                         </div>
                     </div>
 
-                    <div className="space-y-3">
-                        <label className="block text-sm font-medium text-gray-700">Full Address</label>
+                    {/* Terms */}
+                    <div className="flex items-start gap-3 py-2">
                         <input
-                            type="text"
-                            required
-                            value={address.street}
-                            onChange={(e) => setAddress({ ...address, street: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                            placeholder="Street Address"
-                        />
-                        <div className="grid grid-cols-2 gap-3">
-                            <input
-                                type="text"
-                                required
-                                value={address.city}
-                                onChange={(e) => setAddress({ ...address, city: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                placeholder="City"
-                            />
-                            <input
-                                type="text"
-                                required
-                                value={address.state}
-                                onChange={(e) => setAddress({ ...address, state: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                placeholder="State/Province"
-                            />
-                        </div>
-                        <div className="grid grid-cols-2 gap-3">
-                            <input
-                                type="text"
-                                required
-                                value={address.postalCode}
-                                onChange={(e) => setAddress({ ...address, postalCode: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                placeholder="Postal Code"
-                            />
-                            <input
-                                type="text"
-                                required
-                                value={address.country}
-                                onChange={(e) => setAddress({ ...address, country: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                placeholder="Country"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="flex items-start gap-2 py-3">
-                        <input
-                            type="checkbox"
-                            id="agreedToTerms"
-                            checked={agreedToTerms}
+                            type="checkbox" id="agreedToTerms" checked={agreedToTerms}
                             onChange={(e) => setAgreedToTerms(e.target.checked)}
-                            className="mt-1 w-4 h-4 border-gray-300 rounded focus:ring-2 focus:ring-black"
-                            required
+                            className="mt-0.5 w-4 h-4 rounded border-slate-300 focus:ring-2 focus:ring-slate-900 shrink-0" required
                         />
-                        <label htmlFor="agreedToTerms" className="text-sm text-gray-700">
+                        <label htmlFor="agreedToTerms" className="text-sm text-slate-600 leading-relaxed">
                             I agree to the{" "}
-                            <Link to="/terms" target="_blank" className="text-black font-medium hover:underline">
-                                Terms of Service
-                            </Link>
-                            ,{" "}
-                            <Link to="/privacy" target="_blank" className="text-black font-medium hover:underline">
-                                Privacy Policy
-                            </Link>
-                            ,{" "}
-                            <Link to="/aup" target="_blank" className="text-black font-medium hover:underline">
-                                Acceptable Use Policy
-                            </Link>
-                            , and I confirm that all the details I have provided are correct and accurate.
+                            <Link to="/terms" target="_blank" className="text-slate-900 font-semibold hover:underline">Terms</Link>,{" "}
+                            <Link to="/privacy" target="_blank" className="text-slate-900 font-semibold hover:underline">Privacy Policy</Link>,{" "}
+                            <Link to="/aup" target="_blank" className="text-slate-900 font-semibold hover:underline">AUP</Link>,
+                            and confirm all details are correct.
                         </label>
                     </div>
 
-                    <div className="flex justify-center my-4 min-h-[65px]">
+                    {/* Captcha */}
+                    <div className="flex justify-center py-2">
                         <Turnstile
                             siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
                             onSuccess={(token) => setCaptchaToken(token)}
                             onError={(error) => {
                                 console.error('Turnstile error:', error);
-                                toast({
-                                    variant: "destructive",
-                                    title: "CAPTCHA Error",
-                                    description: "Unable to load verification. Please refresh the page or contact support if this persists.",
-                                });
+                                toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification. Please refresh the page or contact support if this persists." });
                             }}
                             options={{ theme: 'light' }}
                         />
                     </div>
 
+                    {/* Button */}
                     <button
                         type="submit"
                         disabled={isLoading || !captchaToken}
-                        className="w-full bg-[#1A1A1A] text-white py-3 rounded-lg font-bold hover:shadow-[4px_4px_0px_0px_#FFD23F] transition-all duration-200 disabled:opacity-50"
+                        className="w-full bg-slate-900 text-white py-3 rounded-xl font-bold text-sm hover:bg-slate-700 transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-50"
                     >
-                        {isLoading ? <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> creating...</span> : "Create Account"}
+                        {isLoading ? <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> Creating Account...</span> : "Create Account"}
                     </button>
                 </form>
 
-                <div className="mt-6 pt-6 border-t border-[#E5E3DF]">
-                    <p className="text-sm text-[#4A4A4A]">
+                <div className="mt-6 pt-5 border-t border-slate-100 text-center">
+                    <p className="text-sm text-slate-500">
                         Already have an account?{" "}
-                        <Link to="/login" className="font-bold text-[#1A1A1A] hover:underline">
-                            Login
-                        </Link>
+                        <Link to="/login" className="font-semibold text-slate-900 hover:underline">Log in</Link>
                     </p>
                 </div>
             </div>
+
+            <div className="mt-6 text-center text-sm text-slate-500">
+                Need help? <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="text-slate-900 font-medium hover:underline">Join our Discord</a> or email <a href="mailto:support@stackryze.com" className="text-slate-900 font-medium hover:underline">support@stackryze.com</a>
+            </div>
+
+            <p className="mt-8 text-xs text-slate-400">
+                &copy; 2026 Stackryze domains
+            </p>
         </div>
+        </>
     );
 }
