@@ -141,7 +141,7 @@ const DiscordPill = () => (
     href="https://discord.gg/wr7s97cfM7"
     target="_blank"
     rel="noreferrer"
-    className="fixed bottom-24 right-6 z-50 flex items-center gap-2.5 bg-black dark:bg-white text-white dark:text-black px-4 py-2.5 rounded-full font-bold text-sm shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:scale-105 hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-all duration-300 group"
+    className="fixed bottom-24 right-6 z-50 hidden md:flex items-center gap-2.5 bg-black dark:bg-white text-white dark:text-black px-4 py-2.5 rounded-full font-bold text-sm shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:scale-105 hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-all duration-300 group"
   >
     <div className="bg-white/20 dark:bg-black/10 p-1.5 rounded-full text-white dark:text-black flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 127.14 96.36" fill="currentColor">
