@@ -75,14 +75,14 @@ export function Globe3D({
   markers = [],
   config = {},
   className,
-  onMarkerClick,
-  onMarkerHover,
+  onMarkerClick: _onMarkerClick,
+  onMarkerHover: _onMarkerHover,
 }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const avatarRefs = useRef([]);
   const markerTipObjects = useRef([]);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [_hoveredIndex, _setHoveredIndex] = useState(null);
 
   const mergedConfig = { ...defaultConfig, ...config };
 

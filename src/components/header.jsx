@@ -8,7 +8,6 @@ export function Header() {
   const location = useLocation();
   const { user } = useAuth();
   const { theme, setTheme } = useTheme();
-  const isDashboard = location.pathname.startsWith("/dashboard");
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -88,7 +87,7 @@ export function Header() {
               href="https://github.com/stackryze/FreeDomains"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1A1A1A] dark:text-white dark:text-slate-200 hover:text-[#FF6B35] dark:hover:text-[#FF6B35] transition-colors duration-150 font-bold text-sm lg:text-sm"
+              className="text-[#1A1A1A] dark:text-slate-200 hover:text-[#FF6B35] dark:hover:text-[#FF6B35] transition-colors duration-150 font-bold text-sm lg:text-sm"
             >
               GitHub
             </a>
@@ -101,6 +100,7 @@ export function Header() {
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             title="Toggle theme"
+            aria-label="Toggle theme"
           >
             <Sun className="h-5 w-5 hidden dark:block text-slate-200" />
             <Moon className="h-5 w-5 block dark:hidden text-slate-700" />
