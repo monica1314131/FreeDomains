@@ -3,7 +3,7 @@ import { Activity, Globe2, ShieldCheck, Users } from "lucide-react";
 
 export function LiveStatsSection() {
   const [stats, setStats] = useState({
-    activeDomains: "46,000",
+    activeDomains: "46,000+",
     totalUsers: "25,000+",
     countries: "120+",
     nameservers: "3"
@@ -18,7 +18,7 @@ export function LiveStatsSection() {
           const data = await response.json();
           setStats(prev => ({
             ...prev,
-            activeDomains: data.totalDomains > 46000 ? data.totalDomains.toLocaleString() : "46,000",
+            activeDomains: data.totalDomains > 46000 ? data.totalDomains.toLocaleString() : "46,000+",
             totalUsers: data.totalUsers > 25000 ? `${data.totalUsers.toLocaleString()}+` : "25,000+",
           }));
         }
@@ -26,7 +26,7 @@ export function LiveStatsSection() {
         // Keep defaults
       }
     };
-    
+
     fetchStats();
   }, []);
 
@@ -45,7 +45,7 @@ export function LiveStatsSection() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 w-full xl:w-fit mx-auto">
+      <div className="grid grid-cols-2 gap-3 md:gap-4 w-full xl:w-fit mx-auto">
         {statItems.map((stat, idx) => (
           <div
             key={idx}

@@ -5,28 +5,28 @@ export function FeatureCards() {
     {
       number: "01",
       title: "Forever Free",
-      description: "Zero cost. Zero strings. Just claim your subdomain and it's yours. No subscriptions, no upsells.",
+      description: "We believe a great idea shouldn't come with a price tag. There are no hidden fees or subscriptions—your domain is completely free, forever.",
       icon: Globe,
       bg: "#FFD23F"
     },
     {
       number: "02",
       title: "Full DNS Control",
-      description: "Point to anywhere. A records, CNAME records, TXT records. Your subdomain, your rules.",
+      description: "Take the wheel with complete DNS management. Whether you need A, CNAME, or TXT records, you have the flexibility to point your domain exactly where you need it.",
       icon: Code,
       bg: "#FF6B35"
     },
     {
       number: "03",
       title: "Growing Community",
-      description: "Join a community of builders, makers, and creators. The perfect home for your personal projects.",
+      description: "You're in good company. Join thousands of developers, makers, and students who have already found the perfect home for their personal projects.",
       icon: Users,
       bg: "#2D5016"
     },
     {
       number: "04",
       title: "Instant Setup",
-      description: "Login with GitHub. Pick a name. Done in 30 seconds. No verification emails. No waiting.",
+      description: "Get up and running in seconds. Just log in with GitHub, pick your favorite name, and let our reliable, lightning-fast infrastructure handle the rest.",
       icon: Zap,
       bg: "#FFD23F"
     }

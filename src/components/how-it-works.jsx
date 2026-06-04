@@ -47,7 +47,7 @@ export function HowItWorksSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 w-full xl:w-fit mx-auto">
+      <div className="grid grid-cols-2 gap-3 md:gap-4 w-full xl:w-fit mx-auto">
         {extensions.map((item, idx) => (
           <div
             key={idx}

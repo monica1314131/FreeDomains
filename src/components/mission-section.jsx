@@ -197,14 +197,16 @@ export function MissionSection() {
 
             {[
               { isIntro: true },
-              ...features.map(f => ({ isIntro: false, ...f }))
+              ...Array.from({ length: Math.ceil(features.length / 2) }, (_, i) => ({
+                isIntro: false,
+                items: features.slice(i * 2, i * 2 + 2)
+              }))
             ].map((block, idx, arr) => (
               <Fragment key={idx}>
                 <div
-                  className="sticky w-full bg-[#FAFAFA] pt-8 pb-8 min-h-[65vh]"
+                  className="sticky w-full bg-[#FAFAFA] pt-8 pb-8 min-h-[65vh] top-[15vh] lg:top-[35vh]"
                   style={{
-                    zIndex: 10 + idx,
-                    top: "35vh"
+                    zIndex: 10 + idx
                   }}
                 >
                   <div className="relative z-10 bg-[#FAFAFA] pr-4">
@@ -226,22 +228,26 @@ export function MissionSection() {
                         </div>
                       </>
                     ) : (
-                      <div className="flex gap-6 items-start">
-                        <div
-                          className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 ring-1 ring-slate-100 shadow-sm mt-1"
-                          style={{ backgroundColor: `${block.accent}15`, color: block.accent }}
-                        >
-                          <block.icon className="w-8 h-8" strokeWidth={2} />
-                        </div>
-                        <div className="space-y-2 flex-1">
-                          <div>
-                            <h3 className="text-slate-900 font-extrabold text-2xl md:text-3xl tracking-tight">{block.title}</h3>
-                            <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mt-1">{block.subtitle}</p>
+                      <div className="flex flex-col gap-10">
+                        {block.items.map((f, i) => (
+                          <div key={i} className="flex gap-6 items-start">
+                            <div
+                              className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 ring-1 ring-slate-100 shadow-sm mt-1"
+                              style={{ backgroundColor: `${f.accent}15`, color: f.accent }}
+                            >
+                              <f.icon className="w-8 h-8" strokeWidth={2} />
+                            </div>
+                            <div className="space-y-2 flex-1">
+                              <div>
+                                <h3 className="text-slate-900 font-extrabold text-2xl md:text-3xl tracking-tight">{f.title}</h3>
+                                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mt-1">{f.subtitle}</p>
+                              </div>
+                              <p className="text-slate-600 text-base md:text-lg leading-relaxed font-medium">
+                                {f.description}
+                              </p>
+                            </div>
                           </div>
-                          <p className="text-slate-600 text-base md:text-lg leading-relaxed font-medium">
-                            {block.description}
-                          </p>
-                        </div>
+                        ))}
                       </div>
                     )}
                   </div>

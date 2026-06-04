@@ -2,23 +2,39 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { subdomainAPI } from "../lib/api";
 import { useToast } from "../hooks/use-toast";
-import { Loader2, Mail } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import { Header } from "../components/header";
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function ForgotPassword() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState("");
     const { toast } = useToast();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        if (!captchaToken) {
+            toast({
+                variant: "destructive",
+                title: "Verification Required",
+                description: "Please complete the CAPTCHA verification.",
+            });
+            return;
+        }
+
         setIsLoading(true);
         try {
-            await subdomainAPI.post('/auth/email/forgot-password', { email });
+            await subdomainAPI.post('/auth/email/forgot-password', { 
+                email,
+                captchaToken 
+            });
 
             // Show success toast
             toast({
-                title: "Email Sent!",
+                title: "Code Sent!",
                 description: "Check your inbox for the reset code.",
             });
 
@@ -28,7 +44,7 @@ export default function ForgotPassword() {
             toast({
                 variant: "destructive",
                 title: "Error",
-                description: err.response?.data?.error || "Failed to send reset email.",
+                description: err.response?.data?.error || "Failed to send reset code.",
             });
         } finally {
             setIsLoading(false);
@@ -36,35 +52,71 @@ export default function ForgotPassword() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFF8F0] px-4 font-sans" style={{ paddingTop: 'var(--incident-height, 0px)' }}>
-            <div className="w-full max-w-md bg-white border-2 border-[#E5E3DF] p-8 rounded-xl text-center">
-                <h1 className="text-2xl font-bold mb-2">Reset Password</h1>
-                <p className="text-gray-600 mb-6">Enter your email to receive a reset link</p>
-
-                <form onSubmit={handleSubmit} className="text-left space-y-4">
+        <>
+        <Header />
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAFAFA] px-4 py-10" style={{ paddingTop: 'calc(4rem + var(--incident-height, 0px) + 2.5rem)' }}>
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-xl ring-1 ring-slate-200/80 p-8 md:p-10">
+                
+                {/* Header */}
+                <div className="mb-8 flex items-start justify-between">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight mb-1">Reset Password</h1>
+                        <p className="text-slate-500 text-sm">Enter your email to receive a reset code</p>
+                    </div>
+                    <Link to="/" className="flex items-center gap-2 shrink-0">
+                        <img src="/stackryze_logo1.png" alt="Stackryze Logo" className="h-8 w-auto" />
+                    </Link>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
                         <input
                             type="email"
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                            className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all"
                             placeholder="name@example.com"
                         />
                     </div>
+                    
+                    <div className="flex justify-center py-2">
+                        <Turnstile
+                            siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                            onSuccess={(token) => setCaptchaToken(token)}
+                            onError={(error) => {
+                                console.error('Turnstile error:', error);
+                                toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification." });
+                            }}
+                            options={{ theme: 'light' }}
+                        />
+                    </div>
+
                     <button
                         type="submit"
-                        disabled={isLoading}
-                        className="w-full bg-[#1A1A1A] text-white py-3 rounded-lg font-bold hover:shadow-md transition-all disabled:opacity-50"
+                        disabled={isLoading || !captchaToken}
+                        className="w-full bg-slate-900 text-white py-3 rounded-xl font-bold text-sm hover:bg-slate-700 transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-50"
                     >
-                        {isLoading ? <Loader2 className="animate-spin w-4 h-4 mx-auto" /> : "Send Reset Link"}
+                        {isLoading ? <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> Sending...</span> : "Send Reset Code"}
                     </button>
                 </form>
-                <div className="mt-6 text-center">
-                    <Link to="/login" className="text-sm text-gray-500 hover:underline">Back to Login</Link>
+
+                <div className="mt-6 pt-5 border-t border-slate-100 text-center">
+                    <Link to="/login" className="text-sm font-semibold text-slate-900 hover:underline">
+                        Back to Login
+                    </Link>
                 </div>
             </div>
+
+            <div className="mt-6 text-center text-sm text-slate-500">
+                Need help? <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="text-slate-900 font-medium hover:underline">Join our Discord</a> or email <a href="mailto:support@stackryze.com" className="text-slate-900 font-medium hover:underline">support@stackryze.com</a>
+            </div>
+
+            <p className="mt-8 text-xs text-slate-400">
+                &copy; 2026 Stackryze domains
+            </p>
         </div>
+        </>
     );
 }
