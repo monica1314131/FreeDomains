@@ -58,7 +58,7 @@ export function LiveStatsSection() {
               <span className="text-lg md:text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
                 {stat.value}
               </span>
-              <span className="text-slate-500 dark:text-slate-400 text-[10px] md:text-xs font-semibold uppercase tracking-wider">
+              <span className="text-slate-900 dark:text-white opacity-60 text-[10px] md:text-xs font-bold uppercase tracking-wider">
                 {stat.label}
               </span>
             </div>

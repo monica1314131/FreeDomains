@@ -215,7 +215,7 @@ export function MissionSection() {
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-6">
                           Who are we?
                         </h2>
-                        <div className="space-y-4 text-slate-600 dark:text-white text-base md:text-lg leading-relaxed font-medium">
+                        <div className="space-y-4 text-slate-900 dark:text-white opacity-90 text-base md:text-lg leading-relaxed font-medium">
                           <p>
                             We are a small team of passionate developers building an open, accessible, and community-driven namespace for the modern internet.
                           </p>
@@ -240,9 +240,9 @@ export function MissionSection() {
                             <div className="space-y-2 flex-1">
                               <div>
                                 <h3 className="text-slate-900 dark:text-white font-extrabold text-2xl md:text-3xl tracking-tight">{f.title}</h3>
-                                <p className="text-slate-400 dark:text-slate-300 text-xs font-bold uppercase tracking-wider mt-1">{f.subtitle}</p>
+                                <p className="text-slate-900 dark:text-white opacity-60 text-xs font-bold uppercase tracking-wider mt-1">{f.subtitle}</p>
                               </div>
-                              <p className="text-slate-600 dark:text-white text-base md:text-lg leading-relaxed font-medium">
+                              <p className="text-slate-900 dark:text-white opacity-80 text-base md:text-lg leading-relaxed font-medium">
                                 {f.description}
                               </p>
                             </div>

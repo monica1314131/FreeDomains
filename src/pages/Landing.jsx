@@ -4,7 +4,6 @@ import { SponsorsSection } from "@/components/sponsors-section";
 import { MissionSection } from "@/components/mission-section";
 import { FeatureCards } from "@/components/feature-cards";
 import { Footer } from "@/components/footer-section";
-import { PSLAnnouncement } from "@/components/PSLAnnouncement";
 import { HowItWorksSection } from "@/components/how-it-works";
 import { LiveStatsSection } from "@/components/live-stats";
 
@@ -64,7 +63,7 @@ export function Landing() {
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 max-w-4xl">
                             Launch your next project today.
                         </h2>
-                        <p className="text-lg md:text-xl text-slate-500 dark:text-slate-300 max-w-2xl mx-auto mb-10 font-medium">
+                        <p className="text-lg md:text-xl text-slate-900 dark:text-white opacity-80 max-w-2xl mx-auto mb-10 font-medium">
                             Claim a free subdomain, configure your DNS, and deploy anywhere. Trusted by developers for fast, flexible, and reliable domain management.
                         </p>
                         <a 

@@ -42,7 +42,7 @@ export function HowItWorksSection() {
         <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           Available Namespaces
         </h2>
-        <p className="max-w-xl mx-auto text-sm md:text-base text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
+        <p className="max-w-xl mx-auto text-sm md:text-base text-slate-900 dark:text-white opacity-80 leading-relaxed font-medium">
           Four unique extensions. Infinite possibilities. Claim yours instantly.
         </p>
       </div>

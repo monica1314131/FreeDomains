@@ -41,7 +41,7 @@ export function FeatureCards() {
             The price of admission <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">is zero.</span>
           </h2>
 
-          <div className="space-y-4 text-base md:text-lg text-slate-500 dark:text-white leading-relaxed font-medium">
+          <div className="space-y-4 text-base md:text-lg text-slate-900 dark:text-white opacity-90 leading-relaxed font-medium">
             <p>
               For too long, gatekeepers have put a price tag on your identity. We believe your first
               idea, your tenth side project, and your portfolio deserve a home, not a monthly bill.
@@ -61,7 +61,7 @@ export function FeatureCards() {
             >
               <div>
                 <div className="flex items-start justify-between mb-8">
-                  <span className="text-4xl lg:text-5xl font-black text-slate-200/80 dark:text-white/20 transition-colors duration-500 group-hover:text-slate-300 dark:group-hover:text-white/40">
+                  <span className="text-4xl lg:text-5xl font-black text-slate-200 dark:text-white/20 transition-colors duration-500 group-hover:text-slate-300 dark:group-hover:text-white/40">
                     {feature.number}
                   </span>
                   <div
@@ -75,7 +75,7 @@ export function FeatureCards() {
                 <h3 className="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                   {feature.title}
                 </h3>
-                <p className="text-slate-500 dark:text-white text-base leading-relaxed font-medium">
+                <p className="text-slate-900 dark:text-white opacity-80 text-base leading-relaxed font-medium">
                   {feature.description}
                 </p>
               </div>
