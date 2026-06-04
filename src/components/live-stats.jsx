@@ -31,10 +31,10 @@ export function LiveStatsSection() {
   }, []);
 
   const statItems = [
-    { label: "Users", value: stats.totalUsers, icon: Users, iconBg: "bg-emerald-50 text-emerald-600" },
-    { label: "Domains", value: stats.activeDomains, icon: Globe2, iconBg: "bg-blue-50 text-blue-600" },
-    { label: "Countries", value: stats.countries, icon: Activity, iconBg: "bg-amber-50 text-amber-600" },
-    { label: "Global Nameservers", value: stats.nameservers, icon: ShieldCheck, iconBg: "bg-indigo-50 text-indigo-600" }
+    { label: "Users", value: stats.totalUsers, icon: Users, iconColor: "text-emerald-600 dark:text-emerald-400", iconBg: "bg-emerald-50 dark:bg-emerald-500/10" },
+    { label: "Domains", value: stats.activeDomains, icon: Globe2, iconColor: "text-blue-600 dark:text-blue-400", iconBg: "bg-blue-50 dark:bg-blue-500/10" },
+    { label: "Countries", value: stats.countries, icon: Activity, iconColor: "text-amber-600 dark:text-amber-400", iconBg: "bg-amber-50 dark:bg-amber-500/10" },
+    { label: "Global Nameservers", value: stats.nameservers, icon: ShieldCheck, iconColor: "text-indigo-600 dark:text-indigo-400", iconBg: "bg-indigo-50 dark:bg-indigo-500/10" }
   ];
 
   return (
@@ -51,14 +51,14 @@ export function LiveStatsSection() {
             key={idx}
             className="group bg-white/60 dark:bg-white/5 backdrop-blur-lg border border-slate-200/60 dark:border-white/10 rounded-2xl md:rounded-[2rem] px-4 py-3 md:px-5 md:py-3.5 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-2 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out cursor-default"
           >
-            <div className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full ${stat.iconBg} shadow-sm transition-transform duration-500 ease-out group-hover:scale-110 shrink-0`}>
+            <div className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full ${stat.iconBg} ${stat.iconColor} shadow-sm transition-transform duration-500 ease-out group-hover:scale-110 shrink-0`}>
               <stat.icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2.5} />
             </div>
             <div className="flex flex-col md:flex-row items-center md:items-baseline gap-0.5 md:gap-1.5">
               <span className="text-lg md:text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
                 {stat.value}
               </span>
-              <span className="text-slate-900 dark:text-white opacity-60 text-[10px] md:text-xs font-bold uppercase tracking-wider">
+              <span className={`${stat.iconColor} text-[10px] md:text-xs font-extrabold uppercase tracking-wider`}>
                 {stat.label}
               </span>
             </div>

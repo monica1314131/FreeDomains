@@ -311,9 +311,9 @@ export default function Register() {
             </div>
 
             {/* Registration Card */}
-            <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-xl border border-slate-200/80 dark:border-white/10">
+            <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md p-5 md:p-6 rounded-xl border border-slate-200/80 dark:border-white/10">
                 {!canRegisterMore && (
-                    <div className="mb-6 flex items-start gap-3 p-4 bg-red-50/90 dark:bg-red-500/10 border border-red-200/50 dark:border-red-500/20 rounded-lg">
+                    <div className="mb-5 flex items-start gap-3 p-4 bg-red-50/90 dark:bg-red-500/10 border border-red-200/50 dark:border-red-500/20 rounded-lg">
                         <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                         <div>
                             <p className="text-sm font-bold text-red-900 dark:text-red-400 mb-1">
@@ -345,27 +345,27 @@ export default function Register() {
                                     value={domain}
                                     onChange={(e) => setDomain(e.target.value)}
                                     placeholder="your-awesome-project"
-                                    className="font-mono text-xl h-14 pr-12 rounded-t-lg rounded-b-none sm:rounded-l-lg sm:rounded-r-none border-b-0 sm:border-b sm:border-r-0 focus:z-10 w-full bg-white/50 dark:bg-black/40 border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white"
+                                    className="font-mono text-sm h-11 pr-10 rounded-t-lg rounded-b-none sm:rounded-l-lg sm:rounded-r-none border-b-0 sm:border-b sm:border-r-0 focus:z-10 w-full bg-white/50 dark:bg-black/40 border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white"
                                 />
                                 {isChecking && (
-                                    <Loader2 className="w-5 h-5 text-slate-400 animate-spin absolute right-3 top-1/2 -translate-y-1/2" />
+                                    <Loader2 className="w-4 h-4 text-slate-400 animate-spin absolute right-3 top-1/2 -translate-y-1/2" />
                                 )}
                                 {!isChecking && isAvailable === true && (
-                                    <CheckCircle className="w-5 h-5 text-green-500 absolute right-3 top-1/2 -translate-y-1/2" />
+                                    <CheckCircle className="w-4 h-4 text-green-500 absolute right-3 top-1/2 -translate-y-1/2" />
                                 )}
                                 {!isChecking && isAvailable === false && domain.length >= 3 && (
-                                    <XCircle className="w-5 h-5 text-red-500 absolute right-3 top-1/2 -translate-y-1/2" />
+                                    <XCircle className="w-4 h-4 text-red-500 absolute right-3 top-1/2 -translate-y-1/2" />
                                 )}
                             </div>
-                            <div className="relative h-12 sm:h-14 -mt-[1px] sm:mt-0 min-w-[155px]">
+                            <div className="relative h-11 -mt-[1px] sm:mt-0 min-w-[130px]">
                                 <button
                                     type="button"
                                     onClick={() => setDropdownOpen(o => !o)}
                                     onBlur={() => setTimeout(() => setDropdownOpen(false), 150)}
-                                    className="w-full h-full flex items-center justify-between gap-2 px-4 bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-base font-bold focus:outline-none cursor-pointer rounded-b-lg rounded-t-none sm:rounded-r-lg sm:rounded-l-none border border-transparent shadow-sm"
+                                    className="w-full h-full flex items-center justify-between gap-2 px-3 bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-sm font-bold focus:outline-none cursor-pointer rounded-b-lg rounded-t-none sm:rounded-r-lg sm:rounded-l-none border border-transparent shadow-sm"
                                 >
                                     <span className="font-mono">.{rootDomain}</span>
-                                    <svg className={`w-4 h-4 text-white dark:text-slate-900 flex-shrink-0 transition-transform duration-150 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
+                                    <svg className={`w-3.5 h-3.5 text-white dark:text-slate-900 flex-shrink-0 transition-transform duration-150 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 {dropdownOpen && (
                                     <div className="absolute top-[calc(100%+4px)] left-0 right-0 z-50 border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden shadow-lg bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-xl">
@@ -430,44 +430,36 @@ export default function Register() {
 
                         const isSryzeOrRyzeDns = rootDomain === 'sryze.cc' || rootDomain === 'ryzedns.org' || rootDomain === 'nx.kg';
                         return (
-                            <div className="bg-amber-50/50 dark:bg-amber-500/10 border border-amber-200/50 dark:border-amber-500/20 rounded-xl p-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-500/20 border border-amber-200 dark:border-amber-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <Shield className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                            <div className="bg-amber-50/50 dark:bg-amber-500/10 border border-amber-200/50 dark:border-amber-500/20 rounded-xl p-4 sm:p-5">
+                                <div className="flex items-start gap-3">
+                                    <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-500/20 border border-amber-200 dark:border-amber-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <Shield className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className="text-slate-900 dark:text-white font-extrabold text-lg mb-1">
+                                        <h3 className="text-slate-900 dark:text-white font-extrabold text-base mb-1">
                                             GitHub Verification Required
                                         </h3>
-                                        <p className="text-slate-900 dark:text-white text-sm mb-1">
-                                            You must verify your GitHub account to register domains.
+                                        <p className="text-slate-900 dark:text-white opacity-80 text-xs mb-3">
+                                            Star our repo and verify to prevent abuse and keep domains free.
                                         </p>
-                                        <p className="text-slate-900 dark:text-white text-xs mb-4">
-                                            Verification helps us prevent abuse and keeps these domains <span className="font-semibold text-slate-900 dark:text-white">free for everyone</span>.
-                                        </p>
-                                        <ol className="text-slate-900 dark:text-white font-medium text-xs space-y-1 mb-5 ml-1">
-                                            <li>1. Star our GitHub repository</li>
-                                            <li>2. Click "Verify with GitHub" below to authenticate</li>
-                                            <li>3. You'll be instantly unlocked — no admin wait!</li>
-                                        </ol>
-                                        <div className="flex flex-col sm:flex-row gap-3">
+                                        <div className="flex flex-col sm:flex-row gap-2">
                                             {/* Step 1: Star Repo */}
                                             <a
                                                 href="https://github.com/stackryze/FreeDomains"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold text-sm border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 shadow-sm transition duration-200 cursor-pointer rounded-lg"
+                                                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold text-xs border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 shadow-sm transition duration-200 cursor-pointer rounded-lg"
                                             >
-                                                <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-                                                Star our Repo
+                                                <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                                                Star Repo
                                             </a>
                                             {/* Step 2: Verify */}
                                             <a
                                                 href={`${API_BASE}/github/kyc/start?domain=${encodeURIComponent(domain)}&root=${encodeURIComponent(rootDomain)}`}
-                                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold text-sm hover:bg-slate-800 dark:hover:bg-slate-200 shadow-sm transition duration-200 cursor-pointer rounded-lg"
+                                                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold text-xs hover:bg-slate-800 dark:hover:bg-slate-200 shadow-sm transition duration-200 cursor-pointer rounded-lg"
                                             >
-                                                <Github className="w-4 h-4" />
-                                                Verify with GitHub
+                                                <Github className="w-3.5 h-3.5" />
+                                                Verify
                                             </a>
                                         </div>
                                     </div>
@@ -481,15 +473,15 @@ export default function Register() {
                         user?.githubVerified && (
                             <>
                                 {/* Registration Period Info */}
-                                <div className="bg-slate-50 dark:bg-black/40 border border-slate-200/80 dark:border-white/10 rounded-xl p-4">
-                                    <div className="space-y-3">
+                                <div className="bg-slate-50 dark:bg-black/40 border border-slate-200/80 dark:border-white/10 rounded-lg p-3">
+                                    <div className="space-y-2">
                                         <div className="flex items-center justify-between">
-                                            <span className="text-sm font-semibold text-slate-900 dark:text-white">Registration Period:</span>
-                                            <span className="text-sm font-bold text-slate-900 dark:text-white">1 Year</span>
+                                            <span className="text-xs font-semibold text-slate-900 dark:text-white opacity-80">Registration Period:</span>
+                                            <span className="text-xs font-bold text-slate-900 dark:text-white">1 Year (Renewable)</span>
                                         </div>
-                                        <div className="flex items-center justify-between border-t border-slate-200 dark:border-white/10 pt-3">
-                                            <span className="text-sm font-semibold text-slate-900 dark:text-white">Expires On:</span>
-                                            <span className="text-sm font-mono font-bold text-slate-900 dark:text-white">
+                                        <div className="flex items-center justify-between border-t border-slate-200 dark:border-white/10 pt-2">
+                                            <span className="text-xs font-semibold text-slate-900 dark:text-white opacity-80">Expires On:</span>
+                                            <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">
                                                 {new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB', {
                                                     year: 'numeric',
                                                     month: 'short',
@@ -497,25 +489,20 @@ export default function Register() {
                                                 })}
                                             </span>
                                         </div>
-                                        <div className="border-t border-blue-200 dark:border-blue-500/20 pt-3">
-                                            <p className="text-xs text-blue-700 dark:text-blue-400 font-medium">
-                                                ✓ Renewable 60 days before expiry • Email reminders included
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
 
                                 {/* Terms Acceptance */}
-                                <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-xl p-6">
-                                    <div className="flex items-start gap-4">
+                                <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-lg p-4">
+                                    <div className="flex items-start gap-3">
                                         <Checkbox
                                             id="tos"
                                             checked={acceptedToS}
                                             onCheckedChange={(checked) => setAcceptedToS(checked)}
-                                            className="mt-1 h-5 w-5 bg-white dark:bg-black/40 border-slate-300 dark:border-white/20"
+                                            className="mt-0.5 h-4 w-4 bg-white dark:bg-black/40 border-slate-300 dark:border-white/20"
                                         />
-                                        <label htmlFor="tos" className="text-sm text-slate-900 dark:text-white leading-relaxed cursor-pointer flex-1 font-medium">
-                                            I have read and agree to the{" "}
+                                        <label htmlFor="tos" className="text-xs text-slate-900 dark:text-white leading-tight cursor-pointer flex-1 font-medium opacity-90">
+                                            I agree to the{" "}
                                             <a href="/terms" target="_blank" className="font-bold underline hover:text-orange-500 transition-colors">
                                                 Terms of Service
                                             </a>
@@ -553,31 +540,30 @@ export default function Register() {
                             !isAvailable || !acceptedToS || !captchaToken || isSubmitting || !canRegisterMore ||
                             !user?.githubVerified
                         }
-                        className="w-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-extrabold py-4 text-lg rounded-xl shadow-sm hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
+                        className="w-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-extrabold py-3 text-sm rounded-lg shadow-sm hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
                     >
                         {isSubmitting ? (
                             <>
-                                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                                 Registering Your Domain...
                             </>
                         ) : (
                             <>
-                                <Globe className="w-5 h-5 mr-2" />
+                                <Globe className="w-4 h-4 mr-2" />
                                 Register Domain
                             </>
                         )}
                     </button>
 
                     {/* Info Notice */}
-                    <div className="bg-blue-50/50 dark:bg-blue-500/10 border border-blue-200/50 dark:border-blue-500/20 p-5 rounded-lg">
-                        <div className="flex gap-3">
-                            <Info className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                            <div className="text-sm text-blue-700 dark:text-blue-400">
-                                <p className="font-bold mb-2">What happens next?</p>
-                                <ul className="space-y-1 font-medium">
+                    <div className="bg-blue-50/50 dark:bg-blue-500/10 border border-blue-200/50 dark:border-blue-500/20 p-4 rounded-lg">
+                        <div className="flex gap-2">
+                            <Info className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                            <div className="text-xs text-blue-700 dark:text-blue-400">
+                                <p className="font-bold mb-1">What happens next?</p>
+                                <ul className="space-y-0.5 font-medium opacity-90">
                                     <li>• Your domain will be registered instantly</li>
                                     <li>• Configure DNS nameservers from the management page</li>
-                                    <li>• Domain is valid for 1 year (renewable 60 days before expiry)</li>
                                 </ul>
                             </div>
                         </div>

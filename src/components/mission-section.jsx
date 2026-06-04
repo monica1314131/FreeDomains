@@ -240,7 +240,7 @@ export function MissionSection() {
                             <div className="space-y-2 flex-1">
                               <div>
                                 <h3 className="text-slate-900 dark:text-white font-extrabold text-2xl md:text-3xl tracking-tight">{f.title}</h3>
-                                <p className="text-slate-900 dark:text-white opacity-60 text-xs font-bold uppercase tracking-wider mt-1">{f.subtitle}</p>
+                                <p className="text-xs font-extrabold uppercase tracking-wider mt-1" style={{ color: f.accent }}>{f.subtitle}</p>
                               </div>
                               <p className="text-slate-900 dark:text-white opacity-80 text-base md:text-lg leading-relaxed font-medium">
                                 {f.description}

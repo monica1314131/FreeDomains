@@ -29,7 +29,7 @@ export function IncidentAnnouncement() {
     return (
         <>
             {/* Minimalist Thin Banner */}
-            <div ref={bannerRef} className="bg-white/90 dark:bg-[#111]/90 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/10 w-full fixed top-0 left-0 right-0 z-[100] shadow-sm">
+            <div ref={bannerRef} className="bg-white/70 dark:bg-white/5 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/10 w-full fixed top-0 left-0 right-0 z-[100] shadow-sm">
                 <div className="max-w-[1600px] mx-auto px-4 py-2 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between flex-wrap gap-2">
                         <div className="flex items-center gap-2 flex-1 min-w-0">
@@ -51,7 +51,7 @@ export function IncidentAnnouncement() {
                             className="flex-shrink-0 p-1 hover:bg-slate-900/5 dark:hover:bg-white/10 rounded-lg transition-colors"
                             aria-label="Dismiss announcement"
                         >
-                            <X className="w-3.5 h-3.5 text-slate-900 dark:text-white opacity-60 hover:opacity-100" />
+                            <X className="w-3.5 h-3.5 text-slate-900 dark:text-white hover:text-orange-500 transition-colors" />
                         </button>
                     </div>
                 </div>
@@ -60,10 +60,10 @@ export function IncidentAnnouncement() {
             {/* Compact Modal */}
             {showModal && (
                 <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-                    <div className="bg-white/80 dark:bg-[#111]/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-[24px] shadow-2xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
+                    <div className="bg-white/90 dark:bg-[#1A1A1A]/95 backdrop-blur-2xl border border-slate-200/80 dark:border-white/10 rounded-[24px] shadow-2xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
 
                         {/* Header */}
-                        <div className="bg-white/60 dark:bg-black/40 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/10 p-5 flex items-start justify-between">
+                        <div className="bg-white/60 dark:bg-white/5 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/10 p-5 flex items-start justify-between">
                             <div className="flex items-center gap-3">
                                 <div className="p-2 bg-orange-500/10 rounded-xl border border-orange-500/20 shadow-sm flex-shrink-0">
                                     <Rocket className="w-5 h-5 text-orange-500" />
@@ -85,7 +85,7 @@ export function IncidentAnnouncement() {
 
                         {/* Content */}
                         <div className="p-6 space-y-6">
-                            <p className="text-sm leading-relaxed text-slate-900 dark:text-white opacity-90 font-medium">
+                            <p className="text-sm leading-relaxed text-slate-900 dark:text-white font-medium">
                                 We've just launched{" "}
                                 <strong className="font-mono font-bold text-orange-500">.nx.kg</strong> — our newest domain extension,
                                 joining{" "}
@@ -97,7 +97,7 @@ export function IncidentAnnouncement() {
                             </p>
 
                             <div className="bg-orange-500/5 border border-orange-500/20 rounded-xl p-4">
-                                <p className="text-xs font-medium text-slate-900 dark:text-white opacity-80 text-center">
+                                <p className="text-xs font-bold text-slate-900 dark:text-white text-center">
                                     Star our GitHub repo to instantly unlock all premium extensions.
                                 </p>
                             </div>

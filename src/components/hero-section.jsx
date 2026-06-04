@@ -160,8 +160,8 @@ export function HeroSection() {
                           type="button"
                           onClick={() => { setSelectedTld(d); setDropdownOpen(false); setIsAvailable(null); setErrorMsg(''); }}
                           className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg font-mono text-sm transition-all duration-200 ${selectedTld.tld === d.tld
-                              ? 'text-white bg-white/15 font-semibold shadow-sm'
-                              : 'text-white/70 hover:text-white hover:bg-white/10'
+                            ? 'text-white bg-white/15 font-semibold shadow-sm'
+                            : 'text-white/70 hover:text-white hover:bg-white/10'
                             }`}
                         >
                           {d.label}

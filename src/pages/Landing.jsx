@@ -16,7 +16,7 @@ export function Landing() {
 
             <main className="flex-1 w-full flex flex-col bg-transparent">
                 <HeroSection />
-                
+
                 {/* Divider */}
                 <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 py-8">
                     <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
@@ -57,7 +57,7 @@ export function Landing() {
                 {/* Final CTA Section */}
                 <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 py-8">
                     <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-16 md:mb-24"></div>
-                    
+
                     <div className="flex flex-col items-center justify-center text-center pb-24 md:pb-32 px-4 relative z-10">
                         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.02)_0%,transparent_70%)]"></div>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 max-w-4xl">
@@ -66,8 +66,8 @@ export function Landing() {
                         <p className="text-lg md:text-xl text-slate-900 dark:text-white opacity-80 max-w-2xl mx-auto mb-10 font-medium">
                             Claim a free subdomain, configure your DNS, and deploy anywhere. Trusted by developers for fast, flexible, and reliable domain management.
                         </p>
-                        <a 
-                            href="/login" 
+                        <a
+                            href="/login"
                             className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white dark:bg-white dark:text-black font-bold text-lg hover:bg-neutral-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1"
                         >
                             Get Started
