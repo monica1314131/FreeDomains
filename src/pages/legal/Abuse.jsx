@@ -29,18 +29,18 @@ export function Abuse() {
             </p>
 
             <h3>2. How to Report Abuse</h3>
-            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg my-8">
-                <p className="font-bold text-red-900 mb-2 text-lg">Primary Abuse Contact:</p>
-                <a href="mailto:reportabuse@stackryze.com" className="text-2xl font-bold text-red-700 hover:underline block mb-4">
+            <div className="bg-red-50 dark:bg-red-950/30 border-l-4 border-red-500 p-6 rounded-r-lg my-8">
+                <p className="font-bold text-red-900 dark:text-red-200 mb-2 text-lg">Primary Abuse Contact:</p>
+                <a href="mailto:reportabuse@stackryze.com" className="text-2xl font-bold text-red-700 dark:text-red-400 hover:underline block mb-4">
                     reportabuse@stackryze.com
                 </a>
-                <p className="text-red-800 text-sm mb-4">
-                    <strong>Response Time:</strong> All abuse reports are reviewed within <span className="font-bold">24 hours</span>. Critical threats (active phishing, malware) are escalated immediately.
+                <p className="text-red-800 dark:text-red-200 text-sm mb-4">
+                    <strong className="dark:text-white">Response Time:</strong> All abuse reports are reviewed within <span className="font-bold dark:text-white">24 hours</span>. Critical threats (active phishing, malware) are escalated immediately.
                 </p>
-                <p className="text-red-800 text-sm font-bold">
+                <p className="text-red-800 dark:text-red-200 text-sm font-bold">
                     When reporting, please include:
                 </p>
-                <ul className="text-red-800 text-sm list-disc pl-6 mt-2">
+                <ul className="text-red-800 dark:text-red-200 text-sm list-disc pl-6 mt-2">
                     <li>Full subdomain URL (e.g., example.stackryze.com)</li>
                     <li>Description of the violation or harmful content</li>
                     <li>Evidence (screenshots, logs, or relevant links)</li>

@@ -4,6 +4,7 @@ import { subdomainAPI } from "../lib/api";
 import { useToast } from "../hooks/use-toast";
 import { Loader2, MailCheck, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../components/ui/input-otp";
 
 export default function VerifyEmail() {
     const [searchParams] = useSearchParams();
@@ -154,16 +155,17 @@ export default function VerifyEmail() {
                         </p>
 
                         <form onSubmit={handleVerify} className="space-y-4">
-                            <div>
-                                <input
-                                    type="text"
-                                    required
-                                    maxLength={6}
-                                    value={otp}
-                                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))} // Numeric only
-                                    className="w-full text-center text-2xl tracking-[0.5em] px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black font-mono"
-                                    placeholder="000000"
-                                />
+                            <div className="flex flex-col items-center">
+                                <InputOTP maxLength={6} value={otp} onChange={setOtp} required>
+                                    <InputOTPGroup>
+                                        <InputOTPSlot index={0} />
+                                        <InputOTPSlot index={1} />
+                                        <InputOTPSlot index={2} />
+                                        <InputOTPSlot index={3} />
+                                        <InputOTPSlot index={4} />
+                                        <InputOTPSlot index={5} />
+                                    </InputOTPGroup>
+                                </InputOTP>
                             </div>
 
                             <button

@@ -11,7 +11,7 @@ const ToastViewport = React.forwardRef(({ className, ...props }, ref) => (
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "fixed top-4 right-4 z-[100] flex max-h-screen w-full flex-col gap-2 p-4 md:max-w-[420px]",
+      "fixed bottom-4 right-4 z-[9999] flex max-h-screen w-full flex-col-reverse sm:flex-col gap-2 p-4 md:max-w-[420px]",
       className
     )}
     {...props}
@@ -20,13 +20,13 @@ const ToastViewport = React.forwardRef(({ className, ...props }, ref) => (
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
 const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-start gap-4 overflow-hidden rounded-xl border p-5 shadow-xl dark:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full",
+  "group pointer-events-auto relative flex w-full items-start gap-4 overflow-hidden rounded-xl border p-5 shadow-xl dark:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-bottom-full",
   {
     variants: {
       variant: {
-        default: "bg-white dark:bg-[#1A1A1A] border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white",
-        destructive: "border-red-500/30 dark:border-red-500/20 bg-red-50 dark:bg-red-500/10 text-red-900 dark:text-red-400",
-        success: "border-emerald-500/30 dark:border-emerald-500/20 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-900 dark:text-emerald-400",
+        default: "bg-white/90 dark:bg-[#1A1A1A]/80 border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white",
+        destructive: "border-red-500/30 dark:border-red-500/30 bg-red-50/90 dark:bg-red-950/80 text-red-900 dark:text-red-400",
+        success: "border-emerald-500/30 dark:border-emerald-500/30 bg-emerald-50/90 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-400",
       },
     },
     defaultVariants: {

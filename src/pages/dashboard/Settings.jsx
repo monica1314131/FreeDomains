@@ -23,9 +23,9 @@ function Toggle({ enabled, onChange, loading }) {
             type="button"
             onClick={() => !loading && onChange(!enabled)}
             disabled={loading}
-            className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${enabled ? "bg-[#1A1A1A]" : "bg-[#D1D5DB]"} ${loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+            className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${enabled ? "bg-slate-900 dark:bg-white" : "bg-slate-200 dark:bg-white/20"} ${loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
         >
-            <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${enabled ? "translate-x-6" : "translate-x-1"}`} />
+            <span className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-slate-900 shadow transition-transform ${enabled ? "translate-x-6" : "translate-x-1"}`} />
         </button>
     );
 }
@@ -33,7 +33,7 @@ function Toggle({ enabled, onChange, loading }) {
 function PwField({ label, value, onChange, show, onToggle, placeholder, error }) {
     return (
         <div>
-            <label className="block text-xs font-semibold text-[#4A4A4A] dark:text-slate-400 mb-1">{label}</label>
+            <label className="block text-xs font-bold text-slate-900 dark:text-white mb-1">{label}</label>
             <div className="relative">
                 <input
                     type={show ? "text" : "password"}
@@ -41,13 +41,13 @@ function PwField({ label, value, onChange, show, onToggle, placeholder, error })
                     onChange={onChange}
                     placeholder={placeholder}
                     required
-                    className={`w-full px-3 py-2.5 text-sm border-2 rounded-lg outline-none pr-9 transition-colors ${error ? "border-red-400" : "border-[#E5E3DF] dark:border-[#27272a] focus:border-[#1A1A1A]"}`}
+                    className={`w-full px-3 py-2.5 text-sm border rounded-lg outline-none pr-9 transition-colors bg-white/50 dark:bg-black/40 text-slate-900 dark:text-white ${error ? "border-red-400" : "border-slate-200/80 dark:border-white/10 focus:border-slate-900 dark:focus:border-white"}`}
                 />
-                <button type="button" onClick={onToggle} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999] hover:text-[#1A1A1A] dark:text-white">
+                <button type="button" onClick={onToggle} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-900 dark:text-white hover:opacity-70 transition-opacity">
                     {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
             </div>
-            {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+            {error && <p className="text-xs font-bold text-red-500 mt-1">{error}</p>}
         </div>
     );
 }
@@ -265,93 +265,93 @@ export default function Settings() {
 
     return (
         <div className="max-w-4xl">
-            <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-6">Settings & Profile</h1>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Settings & Profile</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
 
                 {/* ── LEFT: Profile sidebar ── */}
                 <div className="space-y-4">
                     {/* Avatar + name card */}
-                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5 text-center">
+                    <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-xl p-5 text-center shadow-sm">
                         <div className="relative inline-block mb-3">
                             <img
                                 src={user?.avatarUrl || "https://github.com/shadcn.png"}
                                 alt="Avatar"
-                                className="w-20 h-20 rounded-full border-4 border-[#FFD23F] shadow-[3px_3px_0px_0px_#1A1A1A]"
+                                className="w-20 h-20 rounded-full border-4 border-white dark:border-slate-800 shadow-md"
                             />
                             {user?.githubVerified && (
-                                <span title="GitHub Verified" className="absolute bottom-0 right-0 w-5 h-5 bg-[#1A1A1A] rounded-full flex items-center justify-center text-[10px]">✓</span>
+                                <span title="GitHub Verified" className="absolute bottom-0 right-0 w-6 h-6 bg-slate-900 text-white dark:bg-white dark:text-slate-900 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white dark:border-slate-800">✓</span>
                             )}
                         </div>
-                        <h2 className="text-base font-bold text-[#1A1A1A] dark:text-white leading-tight">{user?.name || "User"}</h2>
-                        <p className="text-xs text-[#888] font-mono mt-0.5">@{user?.username || "—"}</p>
-                        {user?.bio && <p className="text-xs text-[#4A4A4A] dark:text-slate-400 italic mt-2 leading-relaxed">"{user.bio}"</p>}
+                        <h2 className="text-base font-bold text-slate-900 dark:text-white leading-tight">{user?.name || "User"}</h2>
+                        <p className="text-xs text-slate-900 dark:text-white font-mono mt-0.5">@{user?.username || "—"}</p>
+                        {user?.bio && <p className="text-xs text-slate-900 dark:text-white italic mt-2 leading-relaxed">"{user.bio}"</p>}
                     </div>
 
                     {/* Details card */}
-                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5 space-y-2.5">
+                    <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-xl p-5 space-y-2.5 shadow-sm">
                         {user?.location && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
-                                <MapPin className="w-3.5 h-3.5 text-[#888] shrink-0" />
+                            <div className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                                <MapPin className="w-4 h-4 text-slate-900 dark:text-white shrink-0" />
                                 <span>{user.location}</span>
                             </div>
                         )}
                         {user?.company && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
-                                <Building2 className="w-3.5 h-3.5 text-[#888] shrink-0" />
+                            <div className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                                <Building2 className="w-4 h-4 text-slate-900 dark:text-white shrink-0" />
                                 <span>{user.company}</span>
                             </div>
                         )}
                         {user?.blog && (
-                            <div className="flex items-center gap-2 text-sm">
-                                <Link2 className="w-3.5 h-3.5 text-[#888] shrink-0" />
-                                <a href={user.blog.startsWith("http") ? user.blog : `https://${user.blog}`} target="_blank" rel="noreferrer" className="text-[#1A1A1A] dark:text-white hover:text-[#FF6B35] hover:underline truncate">
+                            <div className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                                <Link2 className="w-4 h-4 text-slate-900 dark:text-white shrink-0" />
+                                <a href={user.blog.startsWith("http") ? user.blog : `https://${user.blog}`} target="_blank" rel="noreferrer" className="hover:text-orange-500 hover:underline truncate">
                                     {user.blog.replace(/^https?:\/\//, "")}
                                 </a>
                             </div>
                         )}
                         {user?.twitterUsername && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
-                                <Twitter className="w-3.5 h-3.5 text-[#888] shrink-0" />
+                            <div className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                                <Twitter className="w-4 h-4 text-slate-900 dark:text-white shrink-0" />
                                 <span>@{user.twitterUsername}</span>
                             </div>
                         )}
                         {memberSince && (
-                            <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
-                                <Calendar className="w-3.5 h-3.5 text-[#888] shrink-0" />
+                            <div className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                                <Calendar className="w-4 h-4 text-slate-900 dark:text-white shrink-0" />
                                 <span>Joined {memberSince}</span>
                             </div>
                         )}
-                        <div className="flex items-center gap-2 text-sm text-[#4A4A4A] dark:text-slate-400">
-                            <User2 className="w-3.5 h-3.5 text-[#888] shrink-0" />
+                        <div className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                            <User2 className="w-4 h-4 text-slate-900 dark:text-white shrink-0" />
                             <span>{user?.githubId ? "GitHub account" : "Email account"}</span>
                         </div>
                     </div>
 
                     {/* Account stats */}
-                    <div className="bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-xl p-5">
-                        <p className="text-xs font-bold uppercase tracking-widest text-[#888] mb-3">Domain Limits</p>
+                    <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-xl p-5 shadow-sm">
+                        <p className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white mb-3">Domain Limits</p>
                         <div className="space-y-2">
                             <div className="flex justify-between items-center text-sm">
-                                <span className="text-[#4A4A4A] dark:text-slate-400">indevs.in</span>
-                                <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.domainLimit || 1} domain{(user?.domainLimit || 1) > 1 ? "s" : ""}</span>
+                                <span className="font-medium text-slate-900 dark:text-white">indevs.in</span>
+                                <span className="font-bold text-slate-900 dark:text-white">{user?.domainLimit || 1} domain{(user?.domainLimit || 1) > 1 ? "s" : ""}</span>
                             </div>
                             {user?.githubVerified && (
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-[#4A4A4A] dark:text-slate-400">sryze.cc</span>
-                                    <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.sryzeDomainsLimit || 1} domain{(user?.sryzeDomainsLimit || 1) > 1 ? "s" : ""}</span>
+                                    <span className="font-medium text-slate-900 dark:text-white">sryze.cc</span>
+                                    <span className="font-bold text-slate-900 dark:text-white">{user?.sryzeDomainsLimit || 1} domain{(user?.sryzeDomainsLimit || 1) > 1 ? "s" : ""}</span>
                                 </div>
                             )}
                             {user?.githubVerified && (
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-[#4A4A4A] dark:text-slate-400">ryzedns.org</span>
-                                    <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.ryzeDnsDomainsLimit || 1} domain{(user?.ryzeDnsDomainsLimit || 1) > 1 ? "s" : ""}</span>
+                                    <span className="font-medium text-slate-900 dark:text-white">ryzedns.org</span>
+                                    <span className="font-bold text-slate-900 dark:text-white">{user?.ryzeDnsDomainsLimit || 1} domain{(user?.ryzeDnsDomainsLimit || 1) > 1 ? "s" : ""}</span>
                                 </div>
                             )}
                             {user?.githubVerified && (
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-[#4A4A4A] dark:text-slate-400">nx.kg</span>
-                                    <span className="font-bold text-[#1A1A1A] dark:text-white">{user?.nxKgDomainsLimit || 1} domain{(user?.nxKgDomainsLimit || 1) > 1 ? "s" : ""}</span>
+                                    <span className="font-medium text-slate-900 dark:text-white">nx.kg</span>
+                                    <span className="font-bold text-slate-900 dark:text-white">{user?.nxKgDomainsLimit || 1} domain{(user?.nxKgDomainsLimit || 1) > 1 ? "s" : ""}</span>
                                 </div>
                             )}
                         </div>

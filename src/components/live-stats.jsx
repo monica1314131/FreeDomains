@@ -49,7 +49,7 @@ export function LiveStatsSection() {
         {statItems.map((stat, idx) => (
           <div
             key={idx}
-            className="group bg-white dark:bg-[#2A2A2A] border border-slate-200 dark:border-[#444]/50 rounded-2xl md:rounded-[2rem] px-4 py-3 md:px-5 md:py-3.5 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-2 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out cursor-default ring-1 ring-slate-900/5 hover:ring-slate-900/10"
+            className="group bg-white/60 dark:bg-white/5 backdrop-blur-lg border border-slate-200/60 dark:border-white/10 rounded-2xl md:rounded-[2rem] px-4 py-3 md:px-5 md:py-3.5 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-2 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out cursor-default"
           >
             <div className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full ${stat.iconBg} shadow-sm transition-transform duration-500 ease-out group-hover:scale-110 shrink-0`}>
               <stat.icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2.5} />

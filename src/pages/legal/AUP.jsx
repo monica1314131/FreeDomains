@@ -126,11 +126,11 @@ export function AUP() {
             </p>
 
             <h3>7. Reporting Abuse</h3>
-            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg my-8">
-                <p className="font-bold text-red-900 mb-2">To report abuse or violations, please email:</p>
-                <a href="mailto:reportabuse@stackryze.com" className="text-2xl font-bold text-red-700 hover:underline">reportabuse@stackryze.com</a>
-                <p className="text-red-800 mt-4 text-sm">
-                    Include the full subdomain URL and a description of the violation. All reports are reviewed within <strong>24 hours</strong>. Serious threats are escalated immediately.
+            <div className="bg-red-50 dark:bg-red-950/30 border-l-4 border-red-500 p-6 rounded-r-lg my-8">
+                <p className="font-bold text-red-900 dark:text-red-200 mb-2">To report abuse or violations, please email:</p>
+                <a href="mailto:reportabuse@stackryze.com" className="text-2xl font-bold text-red-700 dark:text-red-400 hover:underline">reportabuse@stackryze.com</a>
+                <p className="text-red-800 dark:text-red-200 mt-4 text-sm">
+                    Include the full subdomain URL and a description of the violation. All reports are reviewed within <strong className="dark:text-white">24 hours</strong>. Serious threats are escalated immediately.
                 </p>
             </div>
 

@@ -24,9 +24,9 @@ const SidebarItem = ({ to, icon: Icon, label, active, onClick }) => (
     <Link
         to={to}
         onClick={onClick}
-        className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-bold transition-all duration-200 text-sm ${active
-            ? "bg-[#1A1A1A] dark:bg-slate-800 text-white shadow-md"
-            : "text-[#4A4A4A] dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#1A1A1A] dark:hover:text-white"
+        className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all duration-300 text-sm ${active
+            ? "bg-slate-900 dark:bg-white/10 text-white shadow-sm"
+            : "text-slate-600 dark:text-slate-400 hover:bg-slate-900/5 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
             }`}
     >
         <Icon className="w-5 h-5 flex-shrink-0" />
@@ -103,7 +103,7 @@ export default function DashboardLayout() {
                     active={isActive("/whois")}
                     onClick={() => setSidebarOpen(false)}
                 />
-                <div className="pt-4 border-t border-[#E5E3DF] dark:border-[#333] my-2"></div>
+                <div className="pt-4 border-t border-slate-200/80 dark:border-white/10 my-2"></div>
                 {/* Analytics placeholder */}
                 <div className="opacity-50 pointer-events-none">
                     <SidebarItem to="#" icon={BarChart3} label="Analytics (Soon)" active={false} />
@@ -131,13 +131,13 @@ export default function DashboardLayout() {
                 />
             </div>
 
-            <div className="p-6 border-t border-[#E5E3DF] dark:border-[#333] bg-white dark:bg-[#111]">
+            <div className="p-6 border-t border-slate-200/80 dark:border-white/10 bg-transparent">
                 <button
                     onClick={() => {
                         setSidebarOpen(false);
                         logout();
                     }}
-                    className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg font-bold text-white bg-[#E63946] hover:bg-[#d32f2f] transition-colors text-sm"
+                    className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl font-bold text-red-600 bg-red-50 dark:bg-red-500/10 hover:bg-red-100 dark:hover:bg-red-500/20 transition-colors text-sm"
                 >
                     <LogOut className="w-5 h-5" />
                     <span>Sign Out</span>
@@ -154,13 +154,13 @@ export default function DashboardLayout() {
                 {/* Mobile Hamburger Button */}
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="md:hidden fixed top-[calc(5rem+var(--incident-height,0px))] left-4 z-50 p-2 bg-white dark:bg-[#111] border-2 border-[#E5E3DF] dark:border-[#27272a] rounded-lg shadow-lg hover:bg-slate-100 dark:hover:bg-[#222] transition-colors"
+                    className="md:hidden fixed top-[calc(5rem+var(--incident-height,0px))] left-4 z-50 p-2 bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-md transition-all"
                     aria-label="Toggle menu"
                 >
                     {sidebarOpen ? (
-                        <X className="w-6 h-6 text-[#1A1A1A]" />
+                        <X className="w-6 h-6 text-slate-900 dark:text-white" />
                     ) : (
-                        <Menu className="w-6 h-6 text-[#1A1A1A]" />
+                        <Menu className="w-6 h-6 text-slate-900 dark:text-white" />
                     )}
                 </button>
 
@@ -174,23 +174,23 @@ export default function DashboardLayout() {
 
                 <div className="flex flex-1 pt-[calc(4rem+var(--incident-height,0px))]">
                     {/* Desktop Sidebar */}
-                    <aside className="w-64 bg-white dark:bg-[#111] border-r-2 border-[#E5E3DF] dark:border-[#333] hidden md:flex md:flex-col fixed top-[calc(4rem+var(--incident-height,0px))] h-[calc(100vh-4rem-var(--incident-height,0px))] z-10">
+                    <aside className="w-64 bg-white/60 dark:bg-white/5 backdrop-blur-2xl border-r border-slate-200/80 dark:border-white/10 hidden md:flex md:flex-col fixed top-[calc(4rem+var(--incident-height,0px))] h-[calc(100vh-4rem-var(--incident-height,0px))] z-10">
                         <SidebarContent />
                     </aside>
 
                     {/* Mobile Sidebar */}
                     <aside
-                        className={`fixed top-[var(--incident-height,0px)] left-0 h-[calc(100vh-var(--incident-height,0px))] w-64 bg-white dark:bg-[#111] border-r-2 border-[#E5E3DF] dark:border-[#333] z-40 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+                        className={`fixed top-[var(--incident-height,0px)] left-0 h-[calc(100vh-var(--incident-height,0px))] w-64 bg-white/80 dark:bg-[#111]/80 backdrop-blur-2xl border-r border-slate-200/80 dark:border-white/10 z-40 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
                             }`}
                     >
                         {/* Mobile sidebar header with close button */}
-                        <div className="flex items-center justify-between p-4 border-b-2 border-[#E5E3DF] dark:border-[#333] mt-16">
-                            <h2 className="text-lg font-bold text-[#1A1A1A] dark:text-white">Menu</h2>
+                        <div className="flex items-center justify-between p-4 border-b border-slate-200/80 dark:border-white/10 mt-16">
+                            <h2 className="text-lg font-bold text-slate-900 dark:text-white">Menu</h2>
                             <button
                                 onClick={() => setSidebarOpen(false)}
-                                className="p-2 hover:bg-[#FAFAFA] rounded-lg transition-colors"
+                                className="p-2 hover:bg-slate-900/5 dark:hover:bg-white/5 rounded-lg transition-colors"
                             >
-                                <X className="w-5 h-5 text-[#4A4A4A]" />
+                                <X className="w-5 h-5 text-slate-600 dark:text-slate-400" />
                             </button>
                         </div>
                         <SidebarContent />

@@ -57,11 +57,11 @@ export function FeatureCards() {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white dark:bg-[#2A2A2A] border border-slate-200 dark:border-[#444]/50 rounded-[2rem] p-8 h-full shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col justify-between group ring-1 ring-slate-900/5 hover:ring-slate-900/10"
+              className="bg-white/60 dark:bg-white/5 backdrop-blur-lg border border-slate-200/60 dark:border-white/10 rounded-[2rem] p-8 h-full shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-start justify-between mb-8">
-                  <span className="text-4xl lg:text-5xl font-black text-slate-100 dark:text-white/20 transition-colors duration-500 group-hover:text-slate-200 dark:group-hover:text-white/40">
+                  <span className="text-4xl lg:text-5xl font-black text-slate-200/80 dark:text-white/20 transition-colors duration-500 group-hover:text-slate-300 dark:group-hover:text-white/40">
                     {feature.number}
                   </span>
                   <div

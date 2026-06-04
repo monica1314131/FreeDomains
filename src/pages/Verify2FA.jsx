@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Smartphone, Loader2, ArrowLeft, Shield, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../components/ui/input-otp";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -10,6 +11,7 @@ export default function Verify2FA() {
     const navigate = useNavigate();
     
     const [code, setCode] = useState("");
+    const [useBackupCode, setUseBackupCode] = useState(false);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
@@ -93,22 +95,41 @@ export default function Verify2FA() {
 
                     {/* Form */}
                     <form onSubmit={handleVerify} className="space-y-5">
-                        <div>
-                            <label className="block text-xs font-bold text-[#4A4A4A] dark:text-slate-400 mb-2 uppercase tracking-wider">
-                                Verification Code
+                        <div className="flex flex-col items-center">
+                            <label className="block text-xs font-bold text-[#4A4A4A] dark:text-slate-400 mb-4 w-full text-left uppercase tracking-wider">
+                                {useBackupCode ? "Backup Code" : "Verification Code"}
                             </label>
-                            <input
-                                type="text"
-                                value={code}
-                                onChange={(e) => { setCode(e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8)); setError(""); }}
-                                placeholder="Enter 6-digit code or backup code"
-                                maxLength={8}
-                                autoFocus
-                                className={`w-full px-4 py-3 text-lg border-2 ${error ? 'border-red-300' : 'border-[#E5E3DF] dark:border-[#27272a]'} focus:border-[#1A1A1A] rounded-xl outline-none text-center font-mono tracking-[0.5em] transition-colors`}
-                            />
-                            <p className="text-xs text-[#888] mt-2 text-center">
-                                You can also use a backup code
-                            </p>
+                            
+                            {!useBackupCode ? (
+                                <InputOTP maxLength={6} value={code} onChange={(v) => { setCode(v); setError(""); }} required autoFocus>
+                                    <InputOTPGroup>
+                                        <InputOTPSlot index={0} />
+                                        <InputOTPSlot index={1} />
+                                        <InputOTPSlot index={2} />
+                                        <InputOTPSlot index={3} />
+                                        <InputOTPSlot index={4} />
+                                        <InputOTPSlot index={5} />
+                                    </InputOTPGroup>
+                                </InputOTP>
+                            ) : (
+                                <input
+                                    type="text"
+                                    value={code}
+                                    onChange={(e) => { setCode(e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8)); setError(""); }}
+                                    placeholder="Enter 8-character backup code"
+                                    maxLength={8}
+                                    autoFocus
+                                    className={`w-full px-4 py-3 text-lg border-2 ${error ? 'border-red-300' : 'border-[#E5E3DF] dark:border-[#27272a]'} focus:border-[#1A1A1A] rounded-[14px] outline-none text-center font-mono tracking-[0.2em] transition-colors`}
+                                />
+                            )}
+                            
+                            <button 
+                                type="button" 
+                                onClick={() => { setUseBackupCode(!useBackupCode); setCode(""); setError(""); }}
+                                className="text-xs text-[#888] mt-4 hover:text-[#1A1A1A] dark:hover:text-white transition-colors"
+                            >
+                                {useBackupCode ? "Use Authenticator App Instead" : "Use a backup code"}
+                            </button>
                         </div>
 
                         <button

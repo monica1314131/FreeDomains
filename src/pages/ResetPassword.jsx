@@ -4,6 +4,7 @@ import { subdomainAPI } from "../lib/api";
 import { useToast } from "../hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { Header } from "../components/header";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../components/ui/input-otp";
 
 export default function ResetPassword() {
     const [searchParams] = useSearchParams();
@@ -86,17 +87,18 @@ export default function ResetPassword() {
                     </div>
 
                     <form onSubmit={handleReset} className="space-y-5 text-left">
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1.5">Reset Code</label>
-                            <input
-                                type="text"
-                                required
-                                maxLength={6}
-                                value={otp}
-                                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                                className="w-full text-center text-2xl tracking-[0.5em] px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white/20 focus:border-transparent font-mono transition-all dark:text-white dark:placeholder-slate-500"
-                                placeholder="000000"
-                            />
+                        <div className="flex flex-col items-center">
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-3 w-full text-left">Reset Code</label>
+                            <InputOTP maxLength={6} value={otp} onChange={setOtp} required>
+                                <InputOTPGroup>
+                                    <InputOTPSlot index={0} />
+                                    <InputOTPSlot index={1} />
+                                    <InputOTPSlot index={2} />
+                                    <InputOTPSlot index={3} />
+                                    <InputOTPSlot index={4} />
+                                    <InputOTPSlot index={5} />
+                                </InputOTPGroup>
+                            </InputOTP>
                         </div>
 
                         <div>

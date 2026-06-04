@@ -61,16 +61,16 @@ export default function History() {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
                 <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B35] mb-1">Account</p>
-                    <h1 className="text-2xl md:text-3xl font-extrabold text-[#111827] leading-tight">Activity History</h1>
-                    <p className="text-sm text-[#6B7280] mt-1">
+                    <p className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-1">Account</p>
+                    <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">Activity History</h1>
+                    <p className="text-sm text-slate-900 dark:text-white mt-1">
                         {activities.length} {activities.length === 1 ? 'activity' : 'activities'} recorded
                     </p>
                 </div>
                 <button
                     onClick={fetchActivities}
                     disabled={loading}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] text-[#374151] font-semibold text-sm rounded-lg hover:border-[#9CA3AF] transition-colors disabled:opacity-50 self-start sm:self-auto"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white font-bold text-sm rounded-lg hover:bg-slate-50 dark:hover:bg-white/10 transition-colors disabled:opacity-50 self-start sm:self-auto backdrop-blur-md shadow-sm"
                 >
                     <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                     {loading ? 'Refreshing…' : 'Refresh'}
@@ -80,61 +80,61 @@ export default function History() {
             {/* Loading */}
             {loading && (
                 <div className="flex items-center justify-center py-20">
-                    <Loader2 className="w-7 h-7 animate-spin text-[#9CA3AF]" />
+                    <Loader2 className="w-7 h-7 animate-spin text-slate-900 dark:text-white" />
                 </div>
             )}
 
             {/* Error */}
             {error && (
-                <div className="bg-red-50 border-[1px] border-red-200 rounded-xl p-5 flex items-start gap-3">
+                <div className="bg-red-50/90 dark:bg-red-500/10 border border-red-200/50 dark:border-red-500/20 rounded-xl p-5 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                     <div>
-                        <p className="font-semibold text-red-800 text-sm">Failed to load history</p>
-                        <p className="text-red-600 text-sm mt-0.5">{error}</p>
+                        <p className="font-bold text-red-900 dark:text-red-400 text-sm">Failed to load history</p>
+                        <p className="text-red-700 dark:text-red-300 font-medium text-sm mt-0.5">{error}</p>
                     </div>
                 </div>
             )}
 
             {/* Empty */}
             {!loading && !error && activities.length === 0 && (
-                <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-12 text-center">
-                    <Clock className="w-10 h-10 text-[#D1D5DB] mx-auto mb-3" />
-                    <p className="font-semibold text-[#374151] text-sm mb-1">No Activity Yet</p>
-                    <p className="text-[#6B7280] text-sm">Your account history will appear here.</p>
+                <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-xl p-12 text-center">
+                    <Clock className="w-10 h-10 text-slate-900 dark:text-white mx-auto mb-3" />
+                    <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">No Activity Yet</p>
+                    <p className="text-slate-900 dark:text-white text-sm">Your account history will appear here.</p>
                 </div>
             )}
 
             {/* Table */}
             {!loading && !error && activities.length > 0 && (
                 <>
-                    <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl overflow-hidden">
+                    <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-xl overflow-hidden shadow-sm">
                         <table className="w-full">
-                            <thead className="bg-[#F9FAFB] border-b border-[#E5E7EB]">
+                            <thead className="bg-slate-50 dark:bg-black/40 border-b border-slate-200/80 dark:border-white/10">
                                 <tr>
-                                    <th className="px-5 py-3 text-left text-xs font-bold text-[#6B7280] uppercase tracking-wider">Event</th>
-                                    <th className="px-5 py-3 text-left text-xs font-bold text-[#6B7280] uppercase tracking-wider">Description</th>
-                                    <th className="px-5 py-3 text-right text-xs font-bold text-[#6B7280] uppercase tracking-wider">Date & Time</th>
+                                    <th className="px-5 py-3 text-left text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Event</th>
+                                    <th className="px-5 py-3 text-left text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Description</th>
+                                    <th className="px-5 py-3 text-right text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Date & Time</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-[#F3F4F6]">
+                            <tbody className="divide-y divide-slate-200/80 dark:divide-white/10">
                                 {currentActivities.map((activity, index) => {
                                     const { icon: Icon, color } = getIcon(activity.type);
                                     return (
-                                        <tr key={index} className="hover:bg-[#F9FAFB] transition-colors">
+                                        <tr key={index} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
                                             <td className="px-5 py-3">
                                                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${color}`}>
                                                     <Icon className="w-4 h-4" />
                                                 </div>
                                             </td>
                                             <td className="px-5 py-3">
-                                                <p className="text-sm font-medium text-[#111827]">{activity.description}</p>
+                                                <p className="text-sm font-bold text-slate-900 dark:text-white">{activity.description}</p>
                                                 {activity.changes?.before && activity.changes?.after && (
-                                                    <p className="text-xs text-[#6B7280] mt-0.5">{activity.changes.before} → {activity.changes.after}</p>
+                                                    <p className="text-xs font-medium text-slate-900 dark:text-white mt-0.5">{activity.changes.before} → {activity.changes.after}</p>
                                                 )}
                                             </td>
                                             <td className="px-5 py-3 text-right">
-                                                <p className="text-sm font-medium text-[#111827]">{formatDate(activity.timestamp)}</p>
-                                                <p className="text-xs text-[#6B7280]">{formatTime(activity.timestamp)}</p>
+                                                <p className="text-sm font-bold text-slate-900 dark:text-white">{formatDate(activity.timestamp)}</p>
+                                                <p className="text-xs font-medium text-slate-900 dark:text-white">{formatTime(activity.timestamp)}</p>
                                             </td>
                                         </tr>
                                     );
@@ -146,24 +146,24 @@ export default function History() {
                     {/* Pagination */}
                     {totalPages > 1 && (
                         <div className="flex items-center justify-between">
-                            <p className="text-sm text-[#6B7280]">
+                            <p className="text-sm font-medium text-slate-900 dark:text-white">
                                 Showing {startIndex + 1}–{Math.min(endIndex, activities.length)} of {activities.length}
                             </p>
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                                     disabled={currentPage === 1}
-                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm border-[1px] border-[#D1D5DB] rounded-lg hover:border-[#9CA3AF] disabled:opacity-40 transition-colors"
+                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-bold bg-white/60 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white rounded-lg hover:bg-slate-50 dark:hover:bg-white/10 disabled:opacity-40 transition-colors shadow-sm"
                                 >
                                     <ChevronLeft className="w-4 h-4" /> Previous
                                 </button>
-                                <span className="px-3 py-1.5 text-sm font-medium text-[#374151]">
+                                <span className="px-3 py-1.5 text-sm font-bold text-slate-900 dark:text-white">
                                     {currentPage} / {totalPages}
                                 </span>
                                 <button
                                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                                     disabled={currentPage === totalPages}
-                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm border-[1px] border-[#D1D5DB] rounded-lg hover:border-[#9CA3AF] disabled:opacity-40 transition-colors"
+                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-bold bg-white/60 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white rounded-lg hover:bg-slate-50 dark:hover:bg-white/10 disabled:opacity-40 transition-colors shadow-sm"
                                 >
                                     Next <ChevronRight className="w-4 h-4" />
                                 </button>

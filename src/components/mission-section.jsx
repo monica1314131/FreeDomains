@@ -204,12 +204,12 @@ export function MissionSection() {
             ].map((block, idx, arr) => (
               <Fragment key={idx}>
                 <div
-                  className="sticky w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] pt-8 pb-8 min-h-[65vh] top-[15vh] lg:top-[35vh]"
+                  className="sticky w-full bg-[#F5F5F5] dark:bg-[#1A1A1A] pt-8 pb-8 min-h-[65vh] top-[15vh] lg:top-[35vh]"
                   style={{
                     zIndex: 10 + idx
                   }}
                 >
-                  <div className="relative z-10 bg-[#FAFAFA] dark:bg-[#1A1A1A] pr-4">
+                  <div className="relative z-10 bg-[#F5F5F5] dark:bg-[#1A1A1A] pr-4">
                     {block.isIntro ? (
                       <>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-6">
@@ -253,7 +253,7 @@ export function MissionSection() {
                   </div>
                   {/* White Tail to hide previous content */}
                   {idx < arr.length - 1 && (
-                    <div className="absolute top-full left-0 right-0 h-[150vh] bg-[#FAFAFA] dark:bg-[#1A1A1A] pointer-events-none z-0"></div>
+                    <div className="absolute top-full left-0 right-0 h-[150vh] bg-[#F5F5F5] dark:bg-[#1A1A1A] pointer-events-none z-0"></div>
                   )}
                 </div>
                 {idx < arr.length - 1 && (

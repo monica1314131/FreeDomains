@@ -52,7 +52,7 @@ export function HowItWorksSection() {
           <div
             key={idx}
             title={item.description}
-            className={`group flex items-center justify-center md:justify-start gap-2 md:gap-3 bg-white dark:bg-[#2A2A2A] border border-slate-200 dark:border-[#444]/50 px-4 py-3 md:px-6 md:py-3.5 rounded-2xl md:rounded-[2rem] shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out ring-1 ring-slate-900/5 hover:ring-slate-900/10 cursor-help ${item.bgHover}`}
+            className={`group flex items-center justify-center md:justify-start gap-2 md:gap-3 bg-white/60 dark:bg-white/5 backdrop-blur-lg border border-slate-200/60 dark:border-white/10 px-4 py-3 md:px-6 md:py-3.5 rounded-2xl md:rounded-[2rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 ease-out cursor-help ${item.bgHover}`}
           >
             <item.icon className={`w-4 h-4 md:w-5 md:h-5 ${item.iconColor} transition-transform duration-300 group-hover:scale-110 shrink-0`} strokeWidth={2.5} />
             <span className="text-base md:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">

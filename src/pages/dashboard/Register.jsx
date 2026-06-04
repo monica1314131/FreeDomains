@@ -8,7 +8,7 @@ import { useDashboard } from "@/context/dashboard-context";
 import { useToast } from "@/hooks/use-toast";
 import { subdomainAPI } from "@/lib/api";
 import { useAuth } from "@/context/auth-context";
-import { Globe, CheckCircle, XCircle, AlertCircle, Loader2, Sparkles, Info, Github, Shield } from "lucide-react";
+import { Globe, CheckCircle, XCircle, AlertCircle, Loader2, Sparkles, Info, Github, Shield, Star } from "lucide-react";
 import { Turnstile } from '@marsidev/react-turnstile';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -69,7 +69,7 @@ export default function Register() {
         } else if (kyc === 'already_linked') {
             toast({
                 title: '⛔ GitHub Account Already Used',
-                description: githubUser 
+                description: githubUser
                     ? `The GitHub account @${githubUser} is already linked to another Stackryze account.`
                     : 'This GitHub account is already linked to another Stackryze account.',
                 variant: 'destructive'
@@ -77,7 +77,7 @@ export default function Register() {
         } else if (kyc === 'too_new') {
             toast({
                 title: 'Account Too New',
-                description: githubUser 
+                description: githubUser
                     ? `The GitHub account @${githubUser} is too new. Accounts must be at least 1 month old to prevent abuse.`
                     : 'Your GitHub account is too new. Accounts must be at least 1 month old to prevent abuse.',
                 variant: 'destructive'
@@ -270,82 +270,71 @@ export default function Register() {
         <div className="max-w-3xl">
             {/* Header */}
             <div className="mb-7">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B35] mb-1">Account</p>
-                <h1 className="text-2xl md:text-3xl font-extrabold text-[#111827] leading-tight">Register a Domain</h1>
-                <p className="text-sm text-[#6B7280] mt-1">Claim your free subdomain in seconds — valid for 1 year.</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-1">Account</p>
+                <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">Register a Domain</h1>
+                <p className="text-sm text-slate-900 dark:text-white mt-1">Claim your free subdomain in seconds — valid for 1 year.</p>
             </div>
 
             {/* Domain Usage Indicator */}
-            <div className={`mb-5 border-[1px] rounded-xl p-4 ${
-                !canRegisterMore ? 'bg-red-50 border-red-200' : 'bg-white dark:bg-[#111] border-[#D1D5DB]'
-            }`}>
+            <div className={`mb-5 border rounded-xl p-4 backdrop-blur-md transition-colors ${!canRegisterMore ? 'bg-red-50/90 dark:bg-red-500/10 border-red-200/50 dark:border-red-500/20' : 'bg-white/60 dark:bg-white/5 border-slate-200/80 dark:border-white/10'
+                }`}>
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
-                        <Info className={`w-4 h-4 ${!canRegisterMore ? 'text-red-500' : 'text-[#6B7280]'}`} />
-                        <span className={`font-semibold text-sm ${!canRegisterMore ? 'text-red-800' : 'text-[#111827]'}`}>
+                        <Info className={`w-4 h-4 ${!canRegisterMore ? 'text-red-500 dark:text-red-400' : 'text-slate-900 dark:text-white'}`} />
+                        <span className={`font-semibold text-sm ${!canRegisterMore ? 'text-red-900 dark:text-red-400' : 'text-slate-900 dark:text-white'}`}>
                             {rootDomain} Usage: {domainsRegistered} / {domainLimit}
                         </span>
                     </div>
                     {!canRegisterMore && (
-                        <span className="text-xs font-semibold text-red-600 uppercase">Limit Reached</span>
+                        <span className="text-xs font-semibold text-red-600 dark:text-red-400 uppercase">Limit Reached</span>
                     )}
                 </div>
 
                 {/* Progress Bar */}
-                <div className="w-full bg-[#E5E7EB] rounded-full h-2.5 mb-2">
+                <div className="w-full bg-slate-200 dark:bg-white/10 rounded-full h-2.5 mb-2">
                     <div
-                        className={`h-2.5 rounded-full transition-all ${usagePercentage >= 100 ? 'bg-red-600' : usagePercentage >= 80 ? 'bg-amber-500' : 'bg-green-600'
+                        className={`h-2.5 rounded-full transition-all ${usagePercentage >= 100 ? 'bg-red-600 dark:bg-red-500' : usagePercentage >= 80 ? 'bg-amber-500' : 'bg-green-600 dark:bg-green-500'
                             }`}
                         style={{ width: `${Math.min(usagePercentage, 100)}%` }}
                     ></div>
                 </div>
 
                 {!canRegisterMore ? (
-                    <p className="text-xs text-red-800 mt-2">
-                        {!user?.githubVerified
-                            ? <>
-                                🛡️ <a href={`${API_BASE}/github/kyc/start`} className="underline font-bold hover:text-red-900">Verify with GitHub</a> to unlock domain registration instantly!
-                              </>
-                            : <>Need more domains?{' '}
-                                <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:text-red-900">Join our Discord</a>{' '}
-                                or <a href="mailto:support@stackryze.com" className="underline font-bold hover:text-red-900">email support</a>{' '}
-                                to request a limit increase.
-                              </>
-                        }
+                    <p className="text-xs text-red-700 dark:text-red-400 font-medium mt-2">
+                        0 {rootDomain} domains remaining
                     </p>
                 ) : (
-                    <p className="text-xs text-blue-800">
+                    <p className="text-xs text-blue-700 dark:text-blue-400 font-medium mt-2">
                         {domainLimit - domainsRegistered} {rootDomain} {domainLimit - domainsRegistered === 1 ? 'domain' : 'domains'} remaining
                     </p>
                 )}
             </div>
 
             {/* Registration Card */}
-            <div className="bg-white p-6 md:p-8 rounded-xl border-[1px] border-[#D1D5DB]">
+            <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-xl border border-slate-200/80 dark:border-white/10">
                 {!canRegisterMore && (
-                    <Alert className="mb-6 border-red-200 bg-red-50">
-                        <AlertCircle className="h-4 w-4 text-red-600" />
-                        <AlertDescription className="text-red-800 font-medium">
-                            Registration disabled. You've reached your limit of {domainLimit} domain{domainLimit === 1 ? '' : 's'}.
-                            {!user?.githubVerified ? (
-                                <span className="block mt-1 text-xs">
-                                    🛡️ Verify with GitHub below to unlock domain registration instantly!
-                                </span>
-                            ) : (
-                                <span className="block mt-1 text-xs">
-                                    Need more domains?{' '}
-                                    <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:text-red-900">Join our Discord</a>{' '}
-                                    or <a href="mailto:support@stackryze.com" className="underline font-bold hover:text-red-900">email support</a>{' '}
-                                    to request a limit increase.
-                                </span>
-                            )}
-                        </AlertDescription>
-                    </Alert>
+                    <div className="mb-6 flex items-start gap-3 p-4 bg-red-50/90 dark:bg-red-500/10 border border-red-200/50 dark:border-red-500/20 rounded-lg">
+                        <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                        <div>
+                            <p className="text-sm font-bold text-red-900 dark:text-red-400 mb-1">
+                                Registration disabled
+                            </p>
+                            <p className="text-sm text-red-700 dark:text-red-300 font-medium">
+                                You've reached your limit of {domainLimit} {rootDomain} domain{domainLimit === 1 ? '' : 's'}.
+                            </p>
+                            <p className="text-sm text-red-700 dark:text-red-300 font-medium mt-1">
+                                Need more domains?{' '}
+                                <a href="https://discord.gg/wr7s97cfM7" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:text-red-900 dark:hover:text-red-400">Join our Discord</a>{' '}
+                                or <a href="mailto:support@stackryze.com" className="underline font-bold hover:text-red-900 dark:hover:text-red-400">email support</a>{' '}
+                                to request a limit increase.
+                            </p>
+                        </div>
+                    </div>
                 )}
                 {/* Domain Input */}
                 <div className="space-y-6">
                     <div>
-                        <label className="text-sm font-bold text-[#1A1A1A] dark:text-white mb-3 block flex items-center gap-2">
+                        <label className="text-sm font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                             <Globe className="w-4 h-4" />
                             Choose Your Domain Name
                         </label>
@@ -356,16 +345,16 @@ export default function Register() {
                                     value={domain}
                                     onChange={(e) => setDomain(e.target.value)}
                                     placeholder="your-awesome-project"
-                                    className="font-mono text-xl h-14 pr-12 rounded-t-lg rounded-b-none sm:rounded-l-lg sm:rounded-r-none border-b-0 sm:border-b sm:border-r-0 focus:z-10 w-full"
+                                    className="font-mono text-xl h-14 pr-12 rounded-t-lg rounded-b-none sm:rounded-l-lg sm:rounded-r-none border-b-0 sm:border-b sm:border-r-0 focus:z-10 w-full bg-white/50 dark:bg-black/40 border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white"
                                 />
                                 {isChecking && (
-                                    <Loader2 className="w-5 h-5 text-gray-400 animate-spin absolute right-3 top-1/2 -translate-y-1/2" />
+                                    <Loader2 className="w-5 h-5 text-slate-400 animate-spin absolute right-3 top-1/2 -translate-y-1/2" />
                                 )}
                                 {!isChecking && isAvailable === true && (
-                                    <CheckCircle className="w-5 h-5 text-green-600 absolute right-3 top-1/2 -translate-y-1/2" />
+                                    <CheckCircle className="w-5 h-5 text-green-500 absolute right-3 top-1/2 -translate-y-1/2" />
                                 )}
                                 {!isChecking && isAvailable === false && domain.length >= 3 && (
-                                    <XCircle className="w-5 h-5 text-red-600 absolute right-3 top-1/2 -translate-y-1/2" />
+                                    <XCircle className="w-5 h-5 text-red-500 absolute right-3 top-1/2 -translate-y-1/2" />
                                 )}
                             </div>
                             <div className="relative h-12 sm:h-14 -mt-[1px] sm:mt-0 min-w-[155px]">
@@ -373,23 +362,22 @@ export default function Register() {
                                     type="button"
                                     onClick={() => setDropdownOpen(o => !o)}
                                     onBlur={() => setTimeout(() => setDropdownOpen(false), 150)}
-                                    className="w-full h-full flex items-center justify-between gap-2 px-4 bg-[#1A1A1A] text-white text-base font-bold focus:outline-none cursor-pointer border-2 border-[#1A1A1A] rounded-b-lg rounded-t-none sm:rounded-r-lg sm:rounded-l-none border-t sm:border-t sm:border-l-0"
+                                    className="w-full h-full flex items-center justify-between gap-2 px-4 bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-base font-bold focus:outline-none cursor-pointer rounded-b-lg rounded-t-none sm:rounded-r-lg sm:rounded-l-none border border-transparent shadow-sm"
                                 >
                                     <span className="font-mono">.{rootDomain}</span>
-                                    <svg className={`w-4 h-4 text-white flex-shrink-0 transition-transform duration-150 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
+                                    <svg className={`w-4 h-4 text-white dark:text-slate-900 flex-shrink-0 transition-transform duration-150 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
                                 </button>
                                 {dropdownOpen && (
-                                    <div className="absolute top-[calc(100%+4px)] left-0 right-0 z-50 border-2 border-[#1A1A1A] rounded-xl overflow-hidden ">
+                                    <div className="absolute top-[calc(100%+4px)] left-0 right-0 z-50 border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden shadow-lg bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-xl">
                                         {availableDomains.map(d => (
                                             <button
                                                 key={d}
                                                 type="button"
                                                 onMouseDown={() => { setRootDomain(d); setDropdownOpen(false); }}
-                                                className={`w-full text-left px-4 py-3 font-mono font-bold text-sm transition-colors ${
-                                                    d === rootDomain
-                                                        ? 'bg-[#1A1A1A] text-white'
-                                                        : 'bg-white text-[#1A1A1A] dark:text-white hover:bg-gray-50'
-                                                }`}
+                                                className={`w-full text-left px-4 py-3 font-mono font-bold text-sm transition-colors ${d === rootDomain
+                                                        ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                                                        : 'bg-transparent text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10'
+                                                    }`}
                                             >
                                                 .{d}
                                             </button>
@@ -401,27 +389,27 @@ export default function Register() {
 
                         {/* Status Messages */}
                         {domain.length > 0 && domain.length < 3 && (
-                            <div className="mt-4 flex items-start gap-3 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg">
-                                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                                <p className="text-sm font-medium text-amber-800">
+                            <div className="mt-4 flex items-start gap-3 p-4 bg-amber-50/90 dark:bg-amber-500/10 border border-amber-200/50 dark:border-amber-500/20 rounded-lg">
+                                <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                                <p className="text-sm font-medium text-amber-700 dark:text-amber-400">
                                     Domain name must be at least 3 characters. Keep typing!
                                 </p>
                             </div>
                         )}
                         {errorMsg && domain.length >= 3 && (
-                            <div className="mt-4 flex items-start gap-3 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-                                <XCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                                <p className="text-sm font-medium text-red-800">{errorMsg}</p>
+                            <div className="mt-4 flex items-start gap-3 p-4 bg-red-50/90 dark:bg-red-500/10 border border-red-200/50 dark:border-red-500/20 rounded-lg">
+                                <XCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                                <p className="text-sm font-medium text-red-700 dark:text-red-400">{errorMsg}</p>
                             </div>
                         )}
                         {isAvailable && !errorMsg && (
-                            <div className="mt-4 flex items-start gap-3 p-4 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
-                                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                            <div className="mt-4 flex items-start gap-3 p-4 bg-green-50/90 dark:bg-green-500/10 border border-green-200/50 dark:border-green-500/20 rounded-lg">
+                                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                                 <div>
-                                    <p className="text-sm font-bold text-green-900 mb-1">
+                                    <p className="text-sm font-bold text-green-800 dark:text-green-400 mb-1">
                                         ✨ {domain}.{rootDomain} is available!
                                     </p>
-                                    <p className="text-xs text-green-700">
+                                    <p className="text-xs text-green-700 dark:text-green-500 font-medium">
                                         {!user?.githubVerified
                                             ? 'Verify your account with GitHub to unlock this domain.'
                                             : 'This domain is yours for the taking. Accept the terms below to claim it.'
@@ -442,30 +430,41 @@ export default function Register() {
 
                         const isSryzeOrRyzeDns = rootDomain === 'sryze.cc' || rootDomain === 'ryzedns.org' || rootDomain === 'nx.kg';
                         return (
-                            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-6">
+                            <div className="bg-amber-50/50 dark:bg-amber-500/10 border border-amber-200/50 dark:border-amber-500/20 rounded-xl p-6">
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-[#FFD23F]/20 border-2 border-[#FFD23F] flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <Shield className="w-5 h-5 text-[#FFD23F]" />
+                                    <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-500/20 border border-amber-200 dark:border-amber-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <Shield className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className="text-[#1A1A1A] dark:text-white font-extrabold text-lg mb-1">
+                                        <h3 className="text-slate-900 dark:text-white font-extrabold text-lg mb-1">
                                             GitHub Verification Required
                                         </h3>
-                                        <p className="text-[#4A4A4A] dark:text-slate-400 text-sm mb-1">
+                                        <p className="text-slate-900 dark:text-white text-sm mb-1">
                                             You must verify your GitHub account to register domains.
                                         </p>
-                                        <p className="text-[#6B6B6B] text-xs mb-4">
-                                            Verification helps us prevent abuse and keeps these domains <span className="font-semibold text-[#1A1A1A] dark:text-white">free for everyone</span>.
+                                        <p className="text-slate-900 dark:text-white text-xs mb-4">
+                                            Verification helps us prevent abuse and keeps these domains <span className="font-semibold text-slate-900 dark:text-white">free for everyone</span>.
                                         </p>
-                                        <ol className="text-[#6B6B6B] text-xs space-y-1 mb-5 ml-1">
-                                            <li>1. Click "Verify with GitHub" below to authenticate</li>
-                                            <li>2. You'll be instantly unlocked — no admin wait!</li>
+                                        <ol className="text-slate-900 dark:text-white font-medium text-xs space-y-1 mb-5 ml-1">
+                                            <li>1. Star our GitHub repository</li>
+                                            <li>2. Click "Verify with GitHub" below to authenticate</li>
+                                            <li>3. You'll be instantly unlocked — no admin wait!</li>
                                         </ol>
                                         <div className="flex flex-col sm:flex-row gap-3">
-                                            {/* Step 1: Verify */}
+                                            {/* Step 1: Star Repo */}
+                                            <a
+                                                href="https://github.com/stackryze/FreeDomains"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold text-sm border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 shadow-sm transition duration-200 cursor-pointer rounded-lg"
+                                            >
+                                                <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                                                Star our Repo
+                                            </a>
+                                            {/* Step 2: Verify */}
                                             <a
                                                 href={`${API_BASE}/github/kyc/start?domain=${encodeURIComponent(domain)}&root=${encodeURIComponent(rootDomain)}`}
-                                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border-2 border-black bg-[#1A1A1A] text-white font-bold text-sm hover:bg-[#333] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0)] transition duration-200 cursor-pointer rounded-lg"
+                                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold text-sm hover:bg-slate-800 dark:hover:bg-slate-200 shadow-sm transition duration-200 cursor-pointer rounded-lg"
                                             >
                                                 <Github className="w-4 h-4" />
                                                 Verify with GitHub
@@ -479,72 +478,72 @@ export default function Register() {
 
                     {/* Terms of Service — only shown if not gated by KYC */}
                     {isAvailable &&
-                     user?.githubVerified && (
-                        <>
-                            {/* Registration Period Info */}
-                            <div className="bg-[#F9FAFB] border-[1px] border-[#E5E7EB] rounded-xl p-4">
-                                <div className="space-y-3">
-                                    <div className="flex items-center justify-between">
-                                        <span className="text-sm font-semibold text-[#4B5563]">Registration Period:</span>
-                                        <span className="text-sm font-bold text-[#111827]">1 Year</span>
-                                    </div>
-                                    <div className="flex items-center justify-between border-t border-[#E5E7EB] pt-3">
-                                        <span className="text-sm font-semibold text-[#4B5563]">Expires On:</span>
-                                        <span className="text-sm font-mono font-bold text-[#111827]">
-                                            {new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB', {
-                                                year: 'numeric',
-                                                month: 'short',
-                                                day: 'numeric'
-                                            })}
-                                        </span>
-                                    </div>
-                                    <div className="border-t border-blue-200 pt-3">
-                                        <p className="text-xs text-blue-800">
-                                            ✓ Renewable 60 days before expiry • Email reminders included
-                                        </p>
+                        user?.githubVerified && (
+                            <>
+                                {/* Registration Period Info */}
+                                <div className="bg-slate-50 dark:bg-black/40 border border-slate-200/80 dark:border-white/10 rounded-xl p-4">
+                                    <div className="space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm font-semibold text-slate-900 dark:text-white">Registration Period:</span>
+                                            <span className="text-sm font-bold text-slate-900 dark:text-white">1 Year</span>
+                                        </div>
+                                        <div className="flex items-center justify-between border-t border-slate-200 dark:border-white/10 pt-3">
+                                            <span className="text-sm font-semibold text-slate-900 dark:text-white">Expires On:</span>
+                                            <span className="text-sm font-mono font-bold text-slate-900 dark:text-white">
+                                                {new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB', {
+                                                    year: 'numeric',
+                                                    month: 'short',
+                                                    day: 'numeric'
+                                                })}
+                                            </span>
+                                        </div>
+                                        <div className="border-t border-blue-200 dark:border-blue-500/20 pt-3">
+                                            <p className="text-xs text-blue-700 dark:text-blue-400 font-medium">
+                                                ✓ Renewable 60 days before expiry • Email reminders included
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Terms Acceptance */}
-                            <div className="bg-white dark:bg-[#111] border-[1px] border-[#D1D5DB] rounded-xl p-6">
-                                <div className="flex items-start gap-4">
-                                    <Checkbox
-                                        id="tos"
-                                        checked={acceptedToS}
-                                        onCheckedChange={(checked) => setAcceptedToS(checked)}
-                                        className="mt-1 h-5 w-5"
-                                    />
-                                    <label htmlFor="tos" className="text-sm text-[#1A1A1A] dark:text-white leading-relaxed cursor-pointer flex-1">
-                                        I have read and agree to the{" "}
-                                        <a href="/terms" target="_blank" className="font-bold underline hover:text-[#FF6B35] transition-colors">
-                                            Terms of Service
-                                        </a>
-                                        {" "}and{" "}
-                                        <a href="/privacy" target="_blank" className="font-bold underline hover:text-[#FF6B35] transition-colors">
-                                            Privacy Policy
-                                        </a>
-                                    </label>
+                                {/* Terms Acceptance */}
+                                <div className="bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-xl p-6">
+                                    <div className="flex items-start gap-4">
+                                        <Checkbox
+                                            id="tos"
+                                            checked={acceptedToS}
+                                            onCheckedChange={(checked) => setAcceptedToS(checked)}
+                                            className="mt-1 h-5 w-5 bg-white dark:bg-black/40 border-slate-300 dark:border-white/20"
+                                        />
+                                        <label htmlFor="tos" className="text-sm text-slate-900 dark:text-white leading-relaxed cursor-pointer flex-1 font-medium">
+                                            I have read and agree to the{" "}
+                                            <a href="/terms" target="_blank" className="font-bold underline hover:text-orange-500 transition-colors">
+                                                Terms of Service
+                                            </a>
+                                            {" "}and{" "}
+                                            <a href="/privacy" target="_blank" className="font-bold underline hover:text-orange-500 transition-colors">
+                                                Privacy Policy
+                                            </a>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Cloudflare Turnstile */}
-                            {!import.meta.env.DEV && (
-                                <div className="flex justify-center my-4 min-h-[65px]">
-                                    <Turnstile
-                                        siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
-                                        onSuccess={(token) => setCaptchaToken(token)}
-                                        onExpire={() => setCaptchaToken(null)}
-                                        onError={() => setCaptchaToken(null)}
-                                        options={{
-                                            theme: 'light',
-                                            size: 'normal',
-                                        }}
-                                    />
-                                </div>
-                            )}
-                        </>
-                    )}
+                                {/* Cloudflare Turnstile */}
+                                {!import.meta.env.DEV && (
+                                    <div className="flex justify-center my-4 min-h-[65px]">
+                                        <Turnstile
+                                            siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+                                            onSuccess={(token) => setCaptchaToken(token)}
+                                            onExpire={() => setCaptchaToken(null)}
+                                            onError={() => setCaptchaToken(null)}
+                                            options={{
+                                                theme: 'light',
+                                                size: 'normal',
+                                            }}
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        )}
 
 
                     {/* Register Button — disabled when KYC gate is active */}
@@ -554,7 +553,7 @@ export default function Register() {
                             !isAvailable || !acceptedToS || !captchaToken || isSubmitting || !canRegisterMore ||
                             !user?.githubVerified
                         }
-                        className="w-full bg-[#FFD23F] text-[#1A1A1A] dark:text-white font-extrabold py-4 text-lg border-2 border-black rounded-xl hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:translate-x-0 disabled:translate-y-0 cursor-pointer flex items-center justify-center"
+                        className="w-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-extrabold py-4 text-lg rounded-xl shadow-sm hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
                     >
                         {isSubmitting ? (
                             <>
@@ -570,12 +569,12 @@ export default function Register() {
                     </button>
 
                     {/* Info Notice */}
-                    <div className="bg-blue-50 border-l-4 border-blue-400 p-5 rounded-r-lg">
+                    <div className="bg-blue-50/50 dark:bg-blue-500/10 border border-blue-200/50 dark:border-blue-500/20 p-5 rounded-lg">
                         <div className="flex gap-3">
-                            <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                            <div className="text-sm text-blue-900">
+                            <Info className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                            <div className="text-sm text-blue-700 dark:text-blue-400">
                                 <p className="font-bold mb-2">What happens next?</p>
-                                <ul className="space-y-1 text-blue-800">
+                                <ul className="space-y-1 font-medium">
                                     <li>• Your domain will be registered instantly</li>
                                     <li>• Configure DNS nameservers from the management page</li>
                                     <li>• Domain is valid for 1 year (renewable 60 days before expiry)</li>
