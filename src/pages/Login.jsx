@@ -264,7 +264,7 @@ export default function Login() {
                             </div>
 
                             <div className="text-right">
-                                <Link to="/forgot-password" className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors">Forgot Password?</Link>
+                                <Link to="/forgot-password" className="text-xs font-medium text-slate-500 dark:text-[#888] hover:text-slate-900 dark:hover:text-white transition-colors">Forgot Password?</Link>
                             </div>
 
                             {/* Captcha */}
