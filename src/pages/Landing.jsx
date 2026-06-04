@@ -4,7 +4,7 @@ import { SponsorsSection } from "@/components/sponsors-section";
 import { MissionSection } from "@/components/mission-section";
 import { FeatureCards } from "@/components/feature-cards";
 import { Footer } from "@/components/footer-section";
-import { HowItWorksSection } from "@/components/domain-extensions";
+import { DomainExtensionsSection } from "@/components/domain-extensions";
 import { LiveStatsSection } from "@/components/live-stats";
 
 
@@ -48,7 +48,7 @@ export function Landing() {
 
                     <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 relative z-10">
                         <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-8 items-center">
-                            <HowItWorksSection />
+                            <DomainExtensionsSection />
                             <LiveStatsSection />
                         </div>
                     </div>

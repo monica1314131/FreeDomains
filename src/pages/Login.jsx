@@ -169,6 +169,7 @@ export default function Login() {
                                 </div>
                                 <button
                                     onClick={() => setErrorBanner(null)}
+                                    aria-label="Dismiss error"
                                     className="text-red-900 hover:text-red-700 font-bold text-xl leading-none"
                                 >×</button>
                             </div>

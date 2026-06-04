@@ -294,7 +294,9 @@ export function MissionSection() {
                     bumpScale: 1.0,
                     autoRotateSpeed: 0.4,
                   }}
-                  onMarkerClick={(marker) => console.log("Clicked:", marker.label)}
+                  onMarkerClick={(marker) => {
+                    if (import.meta.env.DEV) console.log("Clicked:", marker.label);
+                  }}
                 />
               </div>
 

@@ -14,11 +14,12 @@ export function IncidentAnnouncement() {
             }
         };
 
-        // Delay slighty to ensure fonts/layout are ready before calculating height
-        setTimeout(updateHeight, 50);
+        // Delay slightly to ensure fonts/layout are ready before calculating height
+        const timeoutId = window.setTimeout(updateHeight, 50);
         
         window.addEventListener('resize', updateHeight);
         return () => {
+            window.clearTimeout(timeoutId);
             window.removeEventListener('resize', updateHeight);
             document.documentElement.style.removeProperty('--incident-height');
         };

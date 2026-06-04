@@ -87,7 +87,7 @@ export default function Overview() {
                     value={expiringCount}
                     label="Expiring"
                     sub="within 30 days"
-                    accentClass={expiringCount > 0 ? "text-amber-600 dark:text-amber-400" : "text-slate-900 dark:text-white dark:text-slate-900 dark:text-white"}
+                    accentClass={expiringCount > 0 ? "text-amber-600 dark:text-amber-400" : "text-slate-900 dark:text-white"}
                     dot={expiringCount > 0 ? "#fbbf24" : "#D1D5DB"}
                     to="/my-domains"
                     warn={expiringCount > 0}
@@ -96,7 +96,7 @@ export default function Overview() {
                     value={expiredCount}
                     label="Expired"
                     sub="domains"
-                    accentClass={expiredCount > 0 ? "text-red-600 dark:text-red-400" : "text-slate-900 dark:text-white dark:text-slate-900 dark:text-white"}
+                    accentClass={expiredCount > 0 ? "text-red-600 dark:text-red-400" : "text-slate-900 dark:text-white"}
                     dot={expiredCount > 0 ? "#f87171" : "#D1D5DB"}
                     to="/my-domains"
                 />

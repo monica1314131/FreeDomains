@@ -27,8 +27,7 @@ export function Header() {
         <div className="flex items-center">
           <a href="/" className="flex items-center gap-2 sm:gap-4 group">
             <div className="flex items-center gap-2 sm:gap-3">
-              <img src="/stackryze_logo_black.png" alt="Stackryze Logo" className="h-8 sm:h-10 md:h-10 w-auto dark:hidden dark:hidden" />
-                        <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-8 sm:h-10 md:h-10 w-auto dark:hidden hidden dark:block" />
+              <img src="/stackryze_logo_black.png" alt="Stackryze Logo" className="h-8 sm:h-10 md:h-10 w-auto dark:hidden" />
               <img src="/stackryze_logo_white.png" alt="Stackryze Logo" className="h-8 sm:h-10 md:h-10 w-auto hidden dark:block" />
               <span className="text-sm sm:text-lg md:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">Stackryze Domains</span>
             </div>
