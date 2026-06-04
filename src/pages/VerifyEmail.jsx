@@ -5,6 +5,7 @@ import { useToast } from "../hooks/use-toast";
 import { Loader2, MailCheck, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../components/ui/input-otp";
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function VerifyEmail() {
     const [searchParams] = useSearchParams();
@@ -12,6 +13,7 @@ export default function VerifyEmail() {
     const [otp, setOtp] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isResending, setIsResending] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState(import.meta.env.DEV ? "dev-bypass" : "");
     const { toast } = useToast();
     const navigate = useNavigate();
 
@@ -88,9 +90,18 @@ export default function VerifyEmail() {
     };
 
     const handleResend = async () => {
+        if (!captchaToken) {
+            toast({
+                variant: "destructive",
+                title: "Verification Required",
+                description: "Please complete the CAPTCHA verification to resend.",
+            });
+            return;
+        }
+
         setIsResending(true);
         try {
-            await subdomainAPI.post('/auth/email/resend-verification', { email });
+            await subdomainAPI.post('/auth/email/resend-verification', { email, captchaToken });
             toast({
                 title: "Code Resent",
                 description: "Check your inbox for a new verification code.",
@@ -177,12 +188,25 @@ export default function VerifyEmail() {
                             </button>
                         </form>
 
-                        <div className="mt-6 space-y-2">
+                        <div className="mt-6 space-y-4">
+                            {!import.meta.env.DEV && (
+                                <div className="flex justify-center py-2">
+                                    <Turnstile
+                                        siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                                        onSuccess={(token) => setCaptchaToken(token)}
+                                        onError={(error) => {
+                                            console.error('Turnstile error:', error);
+                                            toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification." });
+                                        }}
+                                        options={{ theme: 'light' }}
+                                    />
+                                </div>
+                            )}
                             <p className="text-xs text-gray-500">Code expires in 10 minutes.</p>
                             <button
                                 onClick={handleResend}
-                                disabled={isResending}
-                                className="text-sm text-gray-600 hover:text-black hover:underline disabled:opacity-50"
+                                disabled={isResending || !captchaToken}
+                                className="w-full text-sm font-medium text-[#1A1A1A] dark:text-white border-2 border-[#1A1A1A] dark:border-white py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors disabled:opacity-50"
                             >
                                 {isResending ? "Sending..." : "Didn't receive code? Resend"}
                             </button>
