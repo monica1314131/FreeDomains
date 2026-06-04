@@ -520,7 +520,7 @@ export default function Settings() {
                     </div>
 
                     {/* Official Channels */}
-                    <div className="bg-[#FFF8F0] border-2 border-[#E5E3DF] rounded-xl p-5">
+                    <div className="bg-white border-2 border-[#E5E3DF] rounded-xl p-5">
                         <div className="flex items-center gap-2 mb-3">
                             <Shield className="w-4 h-4 text-[#1A1A1A]" />
                             <h3 className="font-bold text-[#1A1A1A] text-sm">Official Contact Channels</h3>

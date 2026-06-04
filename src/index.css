@@ -148,7 +148,7 @@ textarea {
   }
 
   html {
-    @apply h-full w-full antialiased bg-[#FFF8F0] text-[#1A1A1A] overflow-x-hidden;
+    @apply h-full w-full antialiased bg-[#FAFAFA] dark:bg-[#09090b] text-slate-900 dark:text-slate-100 overflow-x-hidden;
   }
 
   body {

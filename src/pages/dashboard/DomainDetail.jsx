@@ -360,7 +360,7 @@ export default function DomainDetail() {
                 </div>
 
                 <div className="space-y-6">
-                    <div className={`border rounded-lg p-6 transition-colors ${isEditingDNS ? 'bg-blue-50 border-blue-200' : 'bg-[#FFF8F0] border-[#E5E3DF]'}`}>
+                    <div className={`border rounded-lg p-6 transition-colors ${isEditingDNS ? 'bg-blue-50 border-blue-200' : 'bg-white border-[#E5E3DF]'}`}>
                         <h3 className="font-bold text-[#1A1A1A] mb-2">Nameservers (NS Records)</h3>
                         <p className="text-sm text-[#4A4A4A] mb-4">
                             Custom nameservers allow you to manage your DNS records via external providers like Cloudflare or Route53.

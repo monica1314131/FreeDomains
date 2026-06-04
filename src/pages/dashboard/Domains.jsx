@@ -425,7 +425,7 @@ export default function MyDomains() {
                             <tr>
                                 <td colSpan={4} className="p-16">
                                     <div className="text-center">
-                                        <div className="w-20 h-20 bg-[#FFF8F0] rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
                                             <Globe className="w-10 h-10 text-[#FF6B35]" />
                                         </div>
                                         <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">No Domains Yet</h3>
@@ -462,14 +462,14 @@ export default function MyDomains() {
                     <div className="py-4 space-y-8">
                         {/* Status Overview */}
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-[#FFF8F0] border-[1px] border-[#D1D5DB] rounded-lg p-4">
+                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-lg p-4">
                                 <h5 className="font-bold text-[#1A1A1A] text-sm mb-1">HTTPS Security</h5>
                                 <div className="flex items-center gap-2 text-xs font-medium text-[#1e8e3e]">
                                     <div className="w-2 h-2 rounded-full bg-[#1e8e3e] animate-pulse"></div>
                                     Active (Let's Encrypt)
                                 </div>
                             </div>
-                            <div className="bg-[#FFF8F0] border-[1px] border-[#D1D5DB] rounded-lg p-4">
+                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-lg p-4">
                                 <h5 className="font-bold text-[#1A1A1A] text-sm mb-1">Expiration</h5>
                                 <div className="flex items-center gap-2 text-xs font-medium text-[#b06000]">
                                     <Clock className="w-3 h-3" />

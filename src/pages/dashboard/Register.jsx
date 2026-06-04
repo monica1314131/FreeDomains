@@ -22,7 +22,7 @@ export default function Register() {
     const [errorMsg, setErrorMsg] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [acceptedToS, setAcceptedToS] = useState(false);
-    const [captchaToken, setCaptchaToken] = useState(null);
+    const [captchaToken, setCaptchaToken] = useState(import.meta.env.DEV ? "dev-bypass" : null);
     const captchaRef = useRef(null);
 
     const availableDomains = ["indevs.in", "sryze.cc", "ryzedns.org", "nx.kg"];
@@ -442,7 +442,7 @@ export default function Register() {
 
                         const isSryzeOrRyzeDns = rootDomain === 'sryze.cc' || rootDomain === 'ryzedns.org' || rootDomain === 'nx.kg';
                         return (
-                            <div className="bg-[#FFF8F0] border-[1px] border-[#D1D5DB] rounded-xl p-6">
+                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-6">
                                 <div className="flex items-start gap-4">
                                     <div className="w-10 h-10 rounded-full bg-[#FFD23F]/20 border-2 border-[#FFD23F] flex items-center justify-center flex-shrink-0 mt-0.5">
                                         <Shield className="w-5 h-5 text-[#FFD23F]" />
@@ -507,7 +507,7 @@ export default function Register() {
                             </div>
 
                             {/* Terms Acceptance */}
-                            <div className="bg-[#FFF8F0] border-[1px] border-[#D1D5DB] rounded-xl p-6">
+                            <div className="bg-white border-[1px] border-[#D1D5DB] rounded-xl p-6">
                                 <div className="flex items-start gap-4">
                                     <Checkbox
                                         id="tos"
@@ -529,18 +529,20 @@ export default function Register() {
                             </div>
 
                             {/* Cloudflare Turnstile */}
-                            <div className="flex justify-center my-4 min-h-[65px]">
-                                <Turnstile
-                                    siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
-                                    onSuccess={(token) => setCaptchaToken(token)}
-                                    onExpire={() => setCaptchaToken(null)}
-                                    onError={() => setCaptchaToken(null)}
-                                    options={{
-                                        theme: 'light',
-                                        size: 'normal',
-                                    }}
-                                />
-                            </div>
+                            {!import.meta.env.DEV && (
+                                <div className="flex justify-center my-4 min-h-[65px]">
+                                    <Turnstile
+                                        siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+                                        onSuccess={(token) => setCaptchaToken(token)}
+                                        onExpire={() => setCaptchaToken(null)}
+                                        onError={() => setCaptchaToken(null)}
+                                        options={{
+                                            theme: 'light',
+                                            size: 'normal',
+                                        }}
+                                    />
+                                </div>
+                            )}
                         </>
                     )}
 

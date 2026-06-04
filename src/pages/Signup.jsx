@@ -46,7 +46,7 @@ export default function Signup() {
     const [emailError, setEmailError] = useState("");
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const [captchaToken, setCaptchaToken] = useState(null);
+    const [captchaToken, setCaptchaToken] = useState(import.meta.env.DEV ? "dev-bypass" : null);
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const { toast } = useToast();
@@ -312,17 +312,19 @@ export default function Signup() {
                     </div>
 
                     {/* Captcha */}
-                    <div className="flex justify-center py-2">
-                        <Turnstile
-                            siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-                            onSuccess={(token) => setCaptchaToken(token)}
-                            onError={(error) => {
-                                console.error('Turnstile error:', error);
-                                toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification. Please refresh the page or contact support if this persists." });
-                            }}
-                            options={{ theme: 'light' }}
-                        />
-                    </div>
+                    {!import.meta.env.DEV && (
+                        <div className="flex justify-center py-2">
+                            <Turnstile
+                                siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                                onSuccess={(token) => setCaptchaToken(token)}
+                                onError={(error) => {
+                                    console.error('Turnstile error:', error);
+                                    toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification. Please refresh the page or contact support if this persists." });
+                                }}
+                                options={{ theme: 'light' }}
+                            />
+                        </div>
+                    )}
 
                     {/* Button */}
                     <button

@@ -15,7 +15,7 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [errorBanner, setErrorBanner] = useState(null);
-    const [captchaToken, setCaptchaToken] = useState("");
+    const [captchaToken, setCaptchaToken] = useState(import.meta.env.DEV ? "dev-bypass" : "");
     const [searchParams] = useSearchParams();
     const error = searchParams.get('error');
     const { toast } = useToast();
@@ -266,17 +266,19 @@ export default function Login() {
                         </div>
 
                         {/* Captcha */}
-                        <div className="flex justify-center py-2">
-                            <Turnstile
-                                siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-                                onSuccess={(token) => setCaptchaToken(token)}
-                                onError={(error) => {
-                                    console.error('Turnstile error:', error);
-                                    toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification. Please refresh." });
-                                }}
-                                options={{ theme: 'light' }}
-                            />
-                        </div>
+                        {!import.meta.env.DEV && (
+                            <div className="flex justify-center py-2">
+                                <Turnstile
+                                    siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                                    onSuccess={(token) => setCaptchaToken(token)}
+                                    onError={(error) => {
+                                        console.error('Turnstile error:', error);
+                                        toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification. Please refresh." });
+                                    }}
+                                    options={{ theme: 'light' }}
+                                />
+                            </div>
+                        )}
 
                         <button
                             type="submit"

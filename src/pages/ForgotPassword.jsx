@@ -10,7 +10,7 @@ export default function ForgotPassword() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [captchaToken, setCaptchaToken] = useState("");
+    const [captchaToken, setCaptchaToken] = useState(import.meta.env.DEV ? "dev-bypass" : "");
     const { toast } = useToast();
 
     const handleSubmit = async (e) => {
@@ -81,17 +81,19 @@ export default function ForgotPassword() {
                         />
                     </div>
                     
-                    <div className="flex justify-center py-2">
-                        <Turnstile
-                            siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-                            onSuccess={(token) => setCaptchaToken(token)}
-                            onError={(error) => {
-                                console.error('Turnstile error:', error);
-                                toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification." });
-                            }}
-                            options={{ theme: 'light' }}
-                        />
-                    </div>
+                    {!import.meta.env.DEV && (
+                        <div className="flex justify-center py-2">
+                            <Turnstile
+                                siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                                onSuccess={(token) => setCaptchaToken(token)}
+                                onError={(error) => {
+                                    console.error('Turnstile error:', error);
+                                    toast({ variant: "destructive", title: "CAPTCHA Error", description: "Unable to load verification." });
+                                }}
+                                options={{ theme: 'light' }}
+                            />
+                        </div>
+                    )}
 
                     <button
                         type="submit"

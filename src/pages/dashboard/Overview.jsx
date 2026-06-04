@@ -115,9 +115,9 @@ export default function Overview() {
                     <span className="shrink-0 text-xs font-bold px-2.5 py-1 bg-green-600 text-white rounded-full">Verified</span>
                 </div>
             ) : (
-                <Link
-                    to="/github-kyc"
-                    className="group flex items-center gap-3 px-4 py-3 bg-amber-50 border-2 border-amber-200 rounded-xl hover:border-amber-400 transition-colors"
+                <a
+                    href={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/github/kyc/start`}
+                    className="group flex items-center gap-3 px-4 py-3 bg-amber-50 border-2 border-amber-200 rounded-xl hover:border-amber-400 transition-colors cursor-pointer"
                 >
                     <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
                         <Shield className="w-4 h-4 text-amber-600" />
@@ -129,7 +129,7 @@ export default function Overview() {
                     <span className="shrink-0 text-xs font-bold px-2.5 py-1 border-2 border-amber-400 text-amber-700 rounded-full group-hover:bg-amber-400 group-hover:text-white transition-colors">
                         Verify →
                     </span>
-                </Link>
+                </a>
             )}
 
             {/* ── Main grid ── */}

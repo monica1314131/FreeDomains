@@ -26,7 +26,7 @@ const SidebarItem = ({ to, icon: Icon, label, active, onClick }) => (
         onClick={onClick}
         className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-bold transition-all duration-200 text-sm ${active
             ? "bg-[#1A1A1A] text-white shadow-md"
-            : "text-[#4A4A4A] hover:bg-[#FFF8F0] hover:text-[#1A1A1A]"
+            : "text-[#4A4A4A] hover:bg-[#FAFAFA] hover:text-[#1A1A1A]"
             }`}
     >
         <Icon className="w-5 h-5 flex-shrink-0" />
@@ -148,13 +148,13 @@ export default function DashboardLayout() {
 
     return (
         <DashboardProvider>
-            <div className="min-h-screen bg-[#FFF8F0] font-sans flex flex-col">
+            <div className="min-h-screen bg-[#FAFAFA] font-sans flex flex-col">
                 <Header />
 
                 {/* Mobile Hamburger Button */}
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="md:hidden fixed top-[calc(5rem+var(--incident-height,0px))] left-4 z-50 p-2 bg-white border-2 border-[#E5E3DF] rounded-lg shadow-lg hover:bg-[#FFF8F0] transition-colors"
+                    className="md:hidden fixed top-[calc(5rem+var(--incident-height,0px))] left-4 z-50 p-2 bg-white border-2 border-[#E5E3DF] rounded-lg shadow-lg hover:bg-[#FAFAFA] transition-colors"
                     aria-label="Toggle menu"
                 >
                     {sidebarOpen ? (
@@ -188,7 +188,7 @@ export default function DashboardLayout() {
                             <h2 className="text-lg font-bold text-[#1A1A1A]">Menu</h2>
                             <button
                                 onClick={() => setSidebarOpen(false)}
-                                className="p-2 hover:bg-[#FFF8F0] rounded-lg transition-colors"
+                                className="p-2 hover:bg-[#FAFAFA] rounded-lg transition-colors"
                             >
                                 <X className="w-5 h-5 text-[#4A4A4A]" />
                             </button>
