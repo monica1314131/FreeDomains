@@ -1,6 +1,6 @@
 import { Globe2, Sparkles, Server, Zap } from "lucide-react";
 
-export function HowItWorksSection() {
+export function DomainExtensionsSection() {
   const extensions = [
     {
       ext: ".indevs.in",

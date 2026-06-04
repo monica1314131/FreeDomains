@@ -4,7 +4,7 @@ import { SponsorsSection } from "@/components/sponsors-section";
 import { MissionSection } from "@/components/mission-section";
 import { FeatureCards } from "@/components/feature-cards";
 import { Footer } from "@/components/footer-section";
-import { HowItWorksSection } from "@/components/how-it-works";
+import { HowItWorksSection } from "@/components/domain-extensions";
 import { LiveStatsSection } from "@/components/live-stats";
 
 
