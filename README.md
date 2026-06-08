@@ -4,7 +4,7 @@
 
 ---
 
-**Stackryze Domains** runs **MuLtiple** Domains Names, a free managed subdomain service for developers, students, and open-source communities.
+**Stackryze Domains** runs **Multiple** Domains Names, a free managed subdomain service for developers, students, and open-source communities.
 
 Claim a domain and point it to any hosting provider or your own infrastructure. You get full ownership and complete control.
 
